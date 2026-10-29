@@ -1,10 +1,26 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
+import { Be_Vietnam_Pro, Lora } from 'next/font/google'
 import './globals.css'
 
+const sans = Be_Vietnam_Pro({
+  subsets: ['latin', 'vietnamese'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-sans',
+  display: 'swap',
+})
+
+const serif = Lora({
+  subsets: ['latin', 'vietnamese'],
+  weight: ['400', '500', '600'],
+  style: ['normal', 'italic'],
+  variable: '--font-serif',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
-  title: 'KiN Hotel Group | Khách Sạn Boutique & Lifestyle TP.HCM',
-  description: 'KiN Hotel Group — khách sạn boutique và lifestyle tại TP.HCM, kết hợp tinh thần hiếu khách, wellness Nhật Bản và trải nghiệm lưu trú tinh tế.',
+  title: 'PML Hotel | Boutique & lifestyle hotel in Ho Chi Minh City',
+  description: 'PML Hotel — a boutique and lifestyle hotel in Ho Chi Minh City, with considered hospitality and a refined stay.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -37,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
       <body className="antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
