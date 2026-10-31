@@ -1,0 +1,168 @@
+{
+  "branches": [
+    {
+      "id": "pml-dong-du",
+      "slug": "dong-du",
+      "name": "PML Hotel Đông Du Edition",
+      "short_name": "Đông Du",
+      "type": "Boutique city hotel",
+      "style": "Indochine kết hợp hiện đại",
+      "address": "19-21 Đông Du, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
+      "district": "Quận 1",
+      "ward": "Bến Nghé",
+      "coordinates_approx": {"lat": 10.7743, "lng": 106.7040, "note": "Ước tính, cần xác minh bằng Google Maps"},
+      "phone": "+84 28 3822 1111",
+      "email": "dongdu@pmlhotel.com",
+      "highlights": "Vị trí vàng sát cạnh phố đi bộ Nguyễn Huệ, Takashimaya và bến Bạch Đằng. Thiết kế Indochine kết hợp hiện đại.",
+      "tagline_vi": "Trái tim Sài Gòn, ngay trước cửa.",
+      "total_rooms": 42,
+      "floors": 9,
+      "year_opened": 2018,
+      "reception_hours": "24/7",
+      "check_in_time": "14:00",
+      "check_out_time": "12:00",
+      "room_ids": ["room-superior-indochine", "room-deluxe-city", "room-executive-corner", "room-family-connecting"],
+      "facilities": [
+        "Sảnh lounge Indochine",
+        "Nhà hàng ăn sáng buffet",
+        "Quầy Trà chiều Signature",
+        "Phòng làm việc chung nhỏ",
+        "Thang máy, két an toàn, Wi-Fi miễn phí",
+        "Dịch vụ giặt ủi, gửi hành lý",
+        "Bàn tour & concierge"
+      ],
+      "not_available": ["Onsen", "Hồ bơi", "Rooftop Jacuzzi"],
+      "parking": {
+        "motorbike": "Miễn phí, hầm xe nhỏ",
+        "car": "Đỗ tạm thời để xuống hành lý trước cửa; gửi qua đêm tại bãi đối tác gần đó, khoảng 150,000 VND/đêm (cần đặt trước)."
+      },
+      "accessibility": "Có thang máy, lối vào có đường dốc; phòng dành cho khách khuyết tật vận động: liên hệ khách sạn để xác nhận.",
+      "directions": {
+        "from_airport_sgn": "Khoảng 8 - 9 km, 30 - 45 phút bằng ô tô tùy giờ cao điểm.",
+        "from_ben_xe_mien_dong_moi": "Khoảng 25 km, 45 - 75 phút.",
+        "by_metro": "Ga Nhà hát Thành phố của tuyến Metro số 1 cách khoảng 300 - 500 m đi bộ (cần xác minh giờ hoạt động mới nhất).",
+        "by_taxi_grab": "Báo tài xế điểm đến '19 Đông Du, Quận 1'. Xe có thể dừng đón khách ngay trước cửa."
+      },
+      "nearby_landmarks": [
+        {"name": "Phố đi bộ Nguyễn Huệ", "distance": "150m (3 phút đi bộ)"},
+        {"name": "Nhà hát Thành phố (Opera House)", "distance": "200m (4 phút đi bộ)"},
+        {"name": "Bến Bạch Đằng & Waterbus", "distance": "300m (5 phút đi bộ)"},
+        {"name": "Trung tâm thương mại Vincom Đồng Khởi", "distance": "250m"},
+        {"name": "Takashimaya (Saigon Centre)", "distance": "Khoảng 350m (6 phút đi bộ)"},
+        {"name": "Bitexco Financial Tower", "distance": "Khoảng 600m (10 phút đi bộ)"},
+        {"name": "Nhà thờ Đức Bà & Bưu điện Trung tâm", "distance": "Khoảng 1,2 km (5 phút đi xe)"},
+        {"name": "Chợ Bến Thành", "distance": "Khoảng 1,2 km (5 phút đi xe)"}
+      ],
+      "best_for": ["Khách du lịch lần đầu đến Sài Gòn", "Khách công tác ở khu trung tâm", "Cặp đôi thích đi bộ khám phá thành phố"],
+      "neighborhood_vibe_vi": "Khu vực sôi động ban ngày, lung linh về đêm; mọi thứ nằm trong bán kính đi bộ: quán cà phê, nhà hàng, mua sắm, phố đi bộ và bờ sông.",
+      "signature_experience": "Trà chiều Signature tại sảnh Indochine và lộ trình đi bộ Sài Gòn xưa & nay do concierge gợi ý."
+    },
+    {
+      "id": "pml-onsen-hai-ba-trung",
+      "slug": "onsen-hai-ba-trung",
+      "name": "PML Hotel & Onsen Lounge",
+      "short_name": "Onsen Hai Bà Trưng",
+      "type": "Wellness boutique hotel",
+      "style": "Japandi: gỗ tuyết tùng, đá tự nhiên, ánh sáng ấm",
+      "address": "40 Hai Bà Trưng, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
+      "district": "Quận 1",
+      "ward": "Bến Nghé",
+      "coordinates_approx": {"lat": 10.7775, "lng": 106.7022, "note": "Ước tính, cần xác minh bằng Google Maps"},
+      "phone": "+84 28 3822 2222",
+      "email": "onsen@pmlhotel.com",
+      "highlights": "Khách sạn Boutique duy nhất tại Quận 1 sở hữu tổ hợp Bể ngâm khoáng nóng Onsen chuẩn Nhật và Phòng xông hơi đá muối.",
+      "tagline_vi": "Chậm lại giữa lòng Quận 1.",
+      "total_rooms": 36,
+      "floors": 8,
+      "year_opened": 2020,
+      "reception_hours": "24/7",
+      "check_in_time": "14:00",
+      "check_out_time": "12:00",
+      "room_ids": ["room-onsen-suite", "room-onsen-deluxe-queen", "room-onsen-twin", "room-onsen-family-suite"],
+      "facilities": [
+        "Tổ hợp Onsen khoáng nóng (tầng 7)",
+        "Bể ngâm lạnh, phòng xông hơi đá muối Himalayan",
+        "Khu Lounge thư giãn với trà thảo mộc",
+        "Quầy Trà chiều Signature",
+        "Nhà hàng ăn sáng á - âu",
+        "Dịch vụ massage tại phòng (đặt trước)",
+        "Wi-Fi miễn phí, két an toàn, thang máy"
+      ],
+      "not_available": ["Hồ bơi", "Rooftop bar", "Phòng gym"],
+      "parking": {
+        "motorbike": "Miễn phí, hầm xe tầng trệt",
+        "car": "Có dịch vụ valet đưa xe tới bãi đối tác gần đó, khoảng 150,000 VND/đêm (cần đặt trước)."
+      },
+      "accessibility": "Có thang máy tới khu Onsen; khu vực Onsen có tay vịn chống trượt. Liên hệ khách sạn để được hỗ trợ khách cần xe lăn.",
+      "directions": {
+        "from_airport_sgn": "Khoảng 8 km, 30 - 40 phút bằng ô tô tùy giờ cao điểm.",
+        "by_metro": "Ga Bến Thành hoặc ga Nhà hát Thành phố của tuyến Metro số 1, đi bộ khoảng 10 - 12 phút (cần xác minh).",
+        "by_taxi_grab": "Báo tài xế điểm đến '40 Hai Bà Trưng, Quận 1'."
+      },
+      "nearby_landmarks": [
+        {"name": "Nhà thờ Đức Bà & Bưu điện Trung tâm", "distance": "400m (6 phút đi bộ)"},
+        {"name": "Đường sách Nguyễn Văn Bình", "distance": "350m"},
+        {"name": "Chợ Bến Thành", "distance": "800m (3 phút đi xe)"},
+        {"name": "Dinh Độc Lập", "distance": "Khoảng 1 km (4 phút đi xe)"},
+        {"name": "Phố đi bộ Nguyễn Huệ", "distance": "Khoảng 1,3 km (5 phút đi xe)"},
+        {"name": "Bảo tàng Chứng tích Chiến tranh", "distance": "Khoảng 1,6 km (7 phút đi xe)"}
+      ],
+      "best_for": ["Cặp đôi nghỉ dưỡng", "Khách muốn phục hồi sau chuyến bay dài", "Staycation cuối tuần"],
+      "neighborhood_vibe_vi": "Khu trung tâm hành chính - văn hóa, gần nhà thờ Đức Bà, đường sách và các quán cà phê yên tĩnh; buổi tối dễ dàng đi bộ ra phố.",
+      "signature_experience": "Nghi thức tắm khoáng Onsen: ngâm nóng - ngâm lạnh - xông hơi đá muối - nghỉ tại Lounge với trà thảo mộc."
+    },
+    {
+      "id": "pml-central-park",
+      "slug": "central-park",
+      "name": "PML Hotel Central Park & Rooftop",
+      "short_name": "Central Park",
+      "type": "Lifestyle rooftop hotel",
+      "style": "Hiện đại, nhiều cây xanh, sân thượng mở",
+      "address": "223 Hai Bà Trưng, Phường Tân Định, Quận 1, TP. Hồ Chí Minh",
+      "district": "Quận 1",
+      "ward": "Tân Định",
+      "coordinates_approx": {"lat": 10.7897, "lng": 106.6919, "note": "Ước tính, cần xác minh bằng Google Maps"},
+      "phone": "+84 28 3822 3333",
+      "email": "centralpark@pmlhotel.com",
+      "highlights": "Sở hữu Rooftop Jacuzzi Bar view công viên Lê Văn Tám, không gian Co-working Lounge và phòng Gym hiện đại.",
+      "tagline_vi": "Sài Gòn nhìn từ trên cao.",
+      "total_rooms": 48,
+      "floors": 12,
+      "year_opened": 2022,
+      "reception_hours": "24/7",
+      "check_in_time": "14:00",
+      "check_out_time": "12:00",
+      "room_ids": ["room-rooftop-jacuzzi", "room-park-view-deluxe", "room-park-twin", "room-studio-longstay"],
+      "facilities": [
+        "Rooftop Jacuzzi & Sky Bar (tầng thượng)",
+        "Co-working Lounge (tầng 2)",
+        "Phòng Gym hiện đại",
+        "Quầy Trà chiều Signature",
+        "Nhà hàng ăn sáng buffet",
+        "Giặt ủi self-service cho khách ở dài ngày",
+        "Wi-Fi miễn phí, két an toàn, thang máy"
+      ],
+      "not_available": ["Onsen", "Hồ bơi trong nhà"],
+      "parking": {
+        "motorbike": "Miễn phí, hầm xe 2 tầng",
+        "car": "Có chỗ đỗ ô tô hạn chế dưới hầm (tối đa 6 xe, cần đặt trước), phí tham khảo 100,000 VND/đêm."
+      },
+      "accessibility": "Thang máy lên tới tầng thượng; phòng gym và co-working lounge có lối đi thuận tiện. Liên hệ khách sạn để xác nhận phòng phù hợp.",
+      "directions": {
+        "from_airport_sgn": "Khoảng 6 - 7 km, 25 - 35 phút bằng ô tô tùy giờ cao điểm.",
+        "by_taxi_grab": "Báo tài xế điểm đến '223 Hai Bà Trưng, Quận 1', đối diện công viên Lê Văn Tám."
+      },
+      "nearby_landmarks": [
+        {"name": "Công viên Lê Văn Tám", "distance": "Đối diện (1 phút đi bộ)"},
+        {"name": "Chợ Tân Định & Nhà thờ Tân Định (Chợ Hồng)", "distance": "300m (5 phút đi bộ)"},
+        {"name": "Chùa Ngọc Hoàng (Phước Hải Tự)", "distance": "Khoảng 700m (3 phút đi xe)"},
+        {"name": "Bảo tàng Mỹ thuật TP.HCM", "distance": "Khoảng 1,5 km (6 phút đi xe)"},
+        {"name": "Thảo Cầm Viên (Sở thú)", "distance": "Khoảng 2,5 km (10 phút đi xe)"},
+        {"name": "Dinh Độc Lập", "distance": "Khoảng 2 km (8 phút đi xe)"}
+      ],
+      "best_for": ["Khách công tác kiêm nghỉ dưỡng (Bleisure)", "Tiệc kỷ niệm, cầu hôn", "Khách ở dài ngày, freelancer"],
+      "neighborhood_vibe_vi": "Khu Tân Định nhiều quán ăn địa phương nổi tiếng, yên tĩnh hơn trung tâm nhưng chỉ vài phút di chuyển tới các điểm chính của Quận 1.",
+      "signature_experience": "Ngâm Jacuzzi ngắm hoàng hôn và thưởng thức cocktail tại Sky Bar."
+    }
+  ]
+}

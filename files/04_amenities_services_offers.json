@@ -1,0 +1,228 @@
+{
+  "wellness_and_amenities": [
+    {
+      "id": "amenity-onsen",
+      "name": "Tổ hợp Onsen Khoáng Nóng Nhật Bản",
+      "available_at": ["pml-onsen-hai-ba-trung"],
+      "hours": "06:00 - 22:00 hàng ngày",
+      "fee": "Miễn phí 100% cho khách lưu trú tại chi nhánh Hai Bà Trưng. Khách bên ngoài hoặc chi nhánh khác: 350,000 VND/lượt.",
+      "details": "Bao gồm bể khoáng nóng 40°C, bể ngâm lạnh 18°C, phòng xông hơi đá muối Himalayan và khu thư giãn Lounge.",
+      "ritual_steps": ["Tắm rửa sạch trước khi xuống bể", "Ngâm nóng 10 - 15 phút", "Ngâm lạnh 1 - 2 phút", "Xông hơi đá muối 8 - 10 phút", "Nghỉ tại Lounge với trà thảo mộc"],
+      "etiquette": ["Giữ yên tĩnh", "Mặc trang phục tắm hoặc yukata theo hướng dẫn của khu vực", "Không mang thức ăn, đồ uống có cồn vào khu bể", "Uống đủ nước, ra ngoài nếu thấy chóng mặt"],
+      "capacity_note": "Tối đa 12 người cùng lúc để giữ sự yên tĩnh; có thể đặt trước khung giờ riêng cho cặp đôi (60 phút, 600,000 VND).",
+      "related_faq_ids": ["faq-onsen-01", "faq-onsen-02", "faq-onsen-03"]
+    },
+    {
+      "id": "amenity-afternoon-tea",
+      "name": "Tiệc Trà Chiều Miễn Phí (Free Afternoon Tea)",
+      "available_at": ["pml-dong-du", "pml-onsen-hai-ba-trung", "pml-central-park"],
+      "hours": "14:30 - 16:30 hàng ngày",
+      "fee": "Miễn phí cho tất cả khách đặt phòng trực tiếp qua Website.",
+      "details": "Phục vụ các loại trà thảo mộc organic, cà phê phin thủ công, bánh ngọt Pháp và trái cây tươi mùa.",
+      "seasonal_menu_examples": ["Trà sen - bánh dẻ nhân đậu xanh", "Trà gừng mật ong - bánh gato chanh dây", "Cà phê phin - bánh flan caramel"],
+      "related_faq_ids": ["faq-dining-02"]
+    },
+    {
+      "id": "amenity-rooftop-skybar",
+      "name": "Rooftop Jacuzzi & Sky Bar",
+      "available_at": ["pml-central-park"],
+      "hours": "16:00 - 23:30 hàng ngày",
+      "fee": "Khách lưu trú được giảm 20% menu Cocktail.",
+      "details": "Hồ bơi Jacuzzi ngắm hoàng hôn cực chill kết hợp âm nhạc Acoustic/Chillhop buổi tối.",
+      "jacuzzi_rules": "Khách trên 16 tuổi, tối đa 6 người cùng lúc, trẻ em cần người lớn đi kèm; đóng cửa khi thời tiết xấu.",
+      "menu_highlights": [
+        {"name": "Saigon Sunset (cocktail đặc trưng)", "price_vnd": 185000},
+        {"name": "Cà phê muối - rum", "price_vnd": 165000},
+        {"name": "Mocktail vải - hoa hồng", "price_vnd": 110000},
+        {"name": "Đĩa tapas chia sẻ", "price_vnd": 245000}
+      ],
+      "related_faq_ids": ["faq-skybar-01"]
+    },
+    {
+      "id": "amenity-coworking",
+      "name": "Executive Coworking Lounge",
+      "available_at": ["pml-central-park"],
+      "hours": "07:00 - 22:00 hàng ngày",
+      "fee": "Miễn phí cho khách lưu trú. Khách bên ngoài: 150,000 VND/ngày (bao gồm 1 đồ uống).",
+      "details": "Không gian yên tĩnh với bàn làm việc, ổ cắm đầy đủ, Wi-Fi tốc độ cao, máy in cơ bản, khu gọi điện riêng và cà phê pha máy miễn phí.",
+      "equipment": ["Wi-Fi tốc độ cao", "Máy in A4 (hạn chế số trang miễn phí)", "Phòng gọi điện/họp trực tuyến 2 chỗ", "Màn hình rời cho thuê theo yêu cầu"]
+    },
+    {
+      "id": "amenity-gym",
+      "name": "Phòng Gym",
+      "available_at": ["pml-central-park"],
+      "hours": "05:30 - 22:00 hàng ngày",
+      "fee": "Miễn phí cho khách lưu trú tại Central Park.",
+      "details": "Máy chạy bộ, xe đạp tập, tạ tự do, thảm yoga, khăn lạnh và nước uống miễn phí."
+    },
+    {
+      "id": "amenity-breakfast",
+      "name": "Bữa sáng",
+      "available_at": ["pml-dong-du", "pml-onsen-hai-ba-trung", "pml-central-park"],
+      "hours": "06:30 - 10:00 (thứ 7, Chủ nhật đến 10:30)",
+      "fee": "Miễn phí cho hạng phòng có kèm bữa sáng. Khách khác: 250,000 VND/người lớn, 150,000 VND/trẻ 6 - 11 tuổi.",
+      "details": "Buffet á - âu: phở, bún, bánh mì, trứng nấu theo yêu cầu, salad, trái cây tươi, bánh ngọt, cà phê phin, trà.",
+      "dietary_options": ["Thuần chay", "Ăn chay", "Không gluten (báo trước)", "Không đậu phộng/hải sản theo yêu cầu"],
+      "related_faq_ids": ["faq-dining-01", "faq-dining-03"]
+    },
+    {
+      "id": "amenity-concierge",
+      "name": "Concierge & bàn tour",
+      "available_at": ["pml-dong-du", "pml-onsen-hai-ba-trung", "pml-central-park"],
+      "hours": "07:00 - 22:00 hàng ngày",
+      "fee": "Tư vấn miễn phí; dịch vụ đặt tour, xe, vé tính theo bảng giá đối tác.",
+      "details": "Gợi ý lộ trình đi bộ, đặt bàn nhà hàng, đặt tour Củ Chi, Mê Kông, đặt vé show, hỗ trợ visa/giấy tờ cơ bản."
+    },
+    {
+      "id": "amenity-laundry",
+      "name": "Giặt ủi",
+      "available_at": ["pml-dong-du", "pml-onsen-hai-ba-trung", "pml-central-park"],
+      "hours": "Nhận đồ trước 10:00, trả trong ngày; dịch vụ nhanh 4 giờ có phụ thu 50%.",
+      "fee": "Theo bảng giá giặt ủi (xem file services).",
+      "details": "Giặt khô, giặt ướt, ủi; túi giặt trong tủ phòng."
+    },
+    {
+      "id": "amenity-luggage",
+      "name": "Gửi hành lý",
+      "available_at": ["pml-dong-du", "pml-onsen-hai-ba-trung", "pml-central-park"],
+      "hours": "24/7",
+      "fee": "Miễn phí cho khách lưu trú trước giờ nhận phòng và sau giờ trả phòng."
+    }
+  ],
+
+  "dining": {
+    "room_service": {
+      "hours": "07:00 - 22:00",
+      "delivery_fee_vnd": 0,
+      "sample_menu": [
+        {"name": "Phở bò Sài Gòn", "price_vnd": 120000},
+        {"name": "Bánh mì ốp la đặc biệt", "price_vnd": 75000},
+        {"name": "Cơm chiên hải sản", "price_vnd": 135000},
+        {"name": "Mì Ý sốt bò bằm", "price_vnd": 145000},
+        {"name": "Salad gà nướng", "price_vnd": 125000},
+        {"name": "Đĩa trái cây tươi", "price_vnd": 95000},
+        {"name": "Cà phê phin sữa đá", "price_vnd": 55000}
+      ]
+    },
+    "restaurant_hours": {"breakfast": "06:30 - 10:00", "afternoon_tea": "14:30 - 16:30", "sky_bar": "16:00 - 23:30 (Central Park)"},
+    "special_dietary_support": "Vui lòng báo trước dị ứng thực phẩm hoặc chế độ ăn đặc biệt khi đặt phòng hoặc khi nhận phòng; nhà bếp sẽ chuẩn bị theo khả năng.",
+    "outside_food_policy": "Khách có thể mang đồ ăn ngoài vào phòng; không mang vào khu Onsen và Sky Bar."
+  },
+
+  "services": [
+    {"id": "svc-airport-sedan", "name": "Xe đưa đón sân bay (Sedan 4 chỗ)", "price_vnd": 450000, "unit": "chuyến", "notes": "Đặt trước ít nhất 4 tiếng. Phụ thu 100,000 VND từ 23:00 đến 05:00."},
+    {"id": "svc-airport-suv", "name": "Xe đưa đón sân bay (SUV 7 chỗ)", "price_vnd": 600000, "unit": "chuyến", "notes": "Đặt trước ít nhất 4 tiếng. Phù hợp nhóm 4 - 6 người có hành lý."},
+    {"id": "svc-extra-bed", "name": "Giường phụ", "price_vnd": 350000, "unit": "đêm", "notes": "Tùy hạng phòng và diện tích."},
+    {"id": "svc-baby-cot", "name": "Cũi em bé", "price_vnd": 0, "unit": "đêm", "notes": "Miễn phí, báo trước khi đến."},
+    {"id": "svc-breakfast-addon", "name": "Bữa sáng buffet bổ sung", "price_vnd": 250000, "unit": "người", "notes": "Trẻ 6 - 11 tuổi: 150,000 VND."},
+    {"id": "svc-massage-60", "name": "Massage thư giãn 60 phút (tại phòng/Lounge)", "price_vnd": 480000, "unit": "lượt", "notes": "Đặt trước 3 giờ."},
+    {"id": "svc-massage-90", "name": "Massage đá nóng 90 phút", "price_vnd": 690000, "unit": "lượt", "notes": "Đặt trước 3 giờ."},
+    {"id": "svc-romantic-setup", "name": "Trang trí lãng mạn tại phòng (hoa, nến, chocolate)", "price_vnd": 1500000, "unit": "lần", "notes": "Đặt trước 24 giờ."},
+    {"id": "svc-flowers", "name": "Bó hoa tươi", "price_vnd": 650000, "unit": "bó", "notes": "Đặt trước 24 giờ."},
+    {"id": "svc-cake", "name": "Bánh kem kỷ niệm (6 inch)", "price_vnd": 450000, "unit": "chiếc", "notes": "Đặt trước 24 giờ."},
+    {"id": "svc-skybar-voucher", "name": "Voucher Sky Bar (2 cocktail + tapas)", "price_vnd": 520000, "unit": "set", "notes": "Chỉ áp dụng tại Central Park."},
+    {"id": "svc-laundry-express", "name": "Giặt ủi nhanh 4 giờ", "price_vnd": 0, "unit": "phụ thu 50%", "notes": "Phụ thu 50% trên giá giặt thường."},
+    {"id": "svc-laundry-weekly", "name": "Gói giặt ủi tuần cho khách ở dài ngày", "price_vnd": 350000, "unit": "tuần", "notes": "Tối đa 7 kg/tuần."},
+    {"id": "svc-car-rental-4h", "name": "Thuê xe có tài xế 4 giờ (nội thành)", "price_vnd": 900000, "unit": "lượt", "notes": "Xe 4 chỗ, giới hạn 40 km."},
+    {"id": "svc-car-rental-8h", "name": "Thuê xe có tài xế 8 giờ (nội thành)", "price_vnd": 1500000, "unit": "ngày", "notes": "Xe 4 chỗ, giới hạn 80 km."},
+    {"id": "svc-tour-cuchi", "name": "Tour Địa đạo Củ Chi nửa ngày", "price_vnd": 650000, "unit": "người", "notes": "Giá tham khảo, thay đổi theo đối tác tour."},
+    {"id": "svc-tour-mekong", "name": "Tour Đồng bằng sông Cửu Long một ngày", "price_vnd": 850000, "unit": "người", "notes": "Giá tham khảo, thay đổi theo đối tác tour."},
+    {"id": "svc-photographer", "name": "Chụp ảnh kỷ niệm / cầu hôn (60 phút)", "price_vnd": 2500000, "unit": "buổi", "notes": "Đặt trước 3 ngày."},
+    {"id": "svc-meeting-room", "name": "Phòng họp nhỏ (8 người)", "price_vnd": 1200000, "unit": "4 giờ", "notes": "Có màn hình, Wi-Fi, trà cà phê. Chỉ tại Central Park."}
+  ],
+
+  "offers": [
+    {
+      "id": "offer-direct-booking",
+      "name": "Đặt trực tiếp - Nhận quà tặng",
+      "description": "Đặt phòng qua website chính thức để nhận 2 suất Trà chiều Signature và ưu tiên nâng hạng phòng khi còn trống.",
+      "applies_to_branches": ["pml-dong-du", "pml-onsen-hai-ba-trung", "pml-central-park"],
+      "conditions": "Chỉ áp dụng khi đặt qua website chính thức. Không cộng dồn với ưu đãi khác.",
+      "valid": "Quanh năm"
+    },
+    {
+      "id": "offer-onsen-weekend",
+      "name": "Onsen Weekend Retreat",
+      "description": "2 đêm Onsen Signature Suite, ăn sáng, trà chiều, 1 buổi massage 60 phút và đồ uống chào đón.",
+      "applies_to_rooms": ["room-onsen-suite", "room-onsen-deluxe-queen"],
+      "price_from_vnd": 5200000,
+      "conditions": "Đặt trước 5 ngày. Áp dụng thứ 6 - Chủ nhật.",
+      "valid": "Quanh năm, trừ kỳ lễ"
+    },
+    {
+      "id": "offer-honeymoon",
+      "name": "Honeymoon & Kỷ niệm ngày cưới",
+      "description": "Trang trí lãng mạn, bánh kem, vang chào đón, ăn sáng tại phòng, trả phòng muộn đến 15:00.",
+      "applies_to_rooms": ["room-onsen-suite", "room-rooftop-jacuzzi"],
+      "price_from_vnd": 4400000,
+      "conditions": "Xuất trình giấy chứng nhận kết hôn trong vòng 12 tháng (không bắt buộc cho gói kỷ niệm).",
+      "valid": "Quanh năm"
+    },
+    {
+      "id": "offer-proposal",
+      "name": "Gói cầu hôn trên mái",
+      "description": "Setup bàn riêng ngắm hoàng hôn tại tầng thượng, hoa tươi, chụp ảnh kỷ niệm 60 phút và 1 đêm Penthouse.",
+      "applies_to_rooms": ["room-rooftop-jacuzzi"],
+      "price_from_vnd": 8500000,
+      "conditions": "Đặt trước tối thiểu 5 ngày. Phụ thuộc thời tiết, có phương án dự phòng trong nhà.",
+      "valid": "Quanh năm"
+    },
+    {
+      "id": "offer-staycation-midweek",
+      "name": "Staycation giữa tuần",
+      "description": "Giảm 15% giá phòng, trả phòng muộn đến 14:00 khi lưu trú từ Chủ nhật đến Thứ 5.",
+      "applies_to_branches": ["pml-dong-du", "pml-onsen-hai-ba-trung", "pml-central-park"],
+      "conditions": "Không áp dụng dịp lễ, Tết.",
+      "valid": "Quanh năm"
+    },
+    {
+      "id": "offer-longstay",
+      "name": "Ở dài ngày",
+      "description": "Giảm 12% cho 7 đêm, 25% cho 30 đêm, kèm giặt ủi hàng tuần và dọn phòng 3 lần/tuần.",
+      "applies_to_rooms": ["room-studio-longstay", "room-park-view-deluxe"],
+      "conditions": "Thanh toán theo tuần hoặc tháng.",
+      "valid": "Quanh năm"
+    },
+    {
+      "id": "offer-business",
+      "name": "Bleisure Package",
+      "description": "Giá ưu đãi cho khách doanh nghiệp: phòng Deluxe, ăn sáng, giặt ủi 3 món/ngày, truy cập Co-working Lounge và đưa đón sân bay một chiều.",
+      "applies_to_rooms": ["room-deluxe-city", "room-park-view-deluxe", "room-executive-corner"],
+      "conditions": "Cần ký thỏa thuận giá doanh nghiệp, tối thiểu 10 đêm/tháng.",
+      "valid": "Theo hợp đồng"
+    },
+    {
+      "id": "offer-early-bird",
+      "name": "Đặt sớm 14 ngày",
+      "description": "Giảm 10% giá phòng khi đặt trước tối thiểu 14 ngày.",
+      "applies_to_branches": ["pml-dong-du", "pml-onsen-hai-ba-trung", "pml-central-park"],
+      "conditions": "Hủy miễn phí trước 7 ngày.",
+      "valid": "Quanh năm"
+    },
+    {
+      "id": "offer-birthday",
+      "name": "Sinh nhật tại PML",
+      "description": "Tặng bánh kem 6 inch và một bữa Trà chiều cho khách đặt phòng trong tuần sinh nhật.",
+      "conditions": "Xuất trình giấy tờ tùy thân khi nhận phòng.",
+      "valid": "Quanh năm"
+    }
+  ],
+
+  "events_and_occasions": {
+    "supported_occasions": ["Kỷ niệm ngày cưới", "Cầu hôn", "Sinh nhật", "Tiệc nhỏ (tối đa 20 khách) tại Sky Bar", "Họp nhóm nhỏ", "Chụp ảnh thương hiệu/lookbook"],
+    "venues": [
+      {"name": "Phòng họp nhỏ Central Park", "capacity": 8, "branch_id": "pml-central-park"},
+      {"name": "Sky Bar buyout (đặt riêng)", "capacity": 20, "branch_id": "pml-central-park", "notes": "Cần đặt trước tối thiểu 7 ngày, thuê tối thiểu 3 giờ."},
+      {"name": "Lounge Onsen (đặt riêng cho nhóm nhỏ)", "capacity": 10, "branch_id": "pml-onsen-hai-ba-trung"}
+    ],
+    "contact": "events@pmlhotel.com"
+  },
+
+  "sustainability": [
+    "Không sử dụng ống hút nhựa; dùng ống hút giấy/inox",
+    "Chai nước thủy tinh đổ lại tại phòng",
+    "Khăn và ga trải giường chỉ thay khi khách yêu cầu (nếu ở nhiều đêm)",
+    "Dầu gội, sữa tắm dạng bơm lớn, không dùng chai nhỏ dùng một lần",
+    "Phân loại rác tại nguồn"
+  ]
+}

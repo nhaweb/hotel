@@ -1,0 +1,155 @@
+{
+  "meta": {
+    "dataset_name": "PML Hotel Template Dataset",
+    "version": "2.0.0",
+    "language_default": "vi",
+    "languages_supported": ["vi", "en"],
+    "currency": "VND",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "data_status": "SAMPLE_CONTENT",
+    "disclaimer": "Toàn bộ số liệu (giá, số phòng, chính sách, SĐT, email, tên thành viên, đánh giá) là DỮ LIỆU MẪU cho template. Khi bàn giao cho khách hàng thật phải thay bằng thông tin thực tế và xác minh lại địa chỉ, khoảng cách, giờ mở cửa của các địa điểm bên ngoài.",
+    "id_conventions": {
+      "branch": "pml-<ten-co-so>",
+      "room": "room-<ten-phong>",
+      "offer": "offer-<ten-uu-dai>",
+      "faq": "faq-<nhom>-<so>",
+      "note": "Các id được dùng để liên kết chéo giữa các file (branch_id, room_ids, related_faq_ids)."
+    }
+  },
+
+  "brand_info": {
+    "name": "PML Boutique & Lifestyle Hotel Group",
+    "short_name": "PML Hotel",
+    "concept": "The Warmth of Kinship & Modern Lifestyle Sanctuary",
+    "concept_vi": "Hơi ấm của sự gắn kết & không gian sống hiện đại",
+    "tagline_vi": "Lưu trú vì cảm xúc.",
+    "tagline_en": "Stay for the feeling.",
+    "founded_year": 2018,
+    "city": "TP. Hồ Chí Minh",
+    "positioning": "Khách sạn boutique & lifestyle tại trung tâm Quận 1, kết hợp nghi thức tắm khoáng Nhật Bản với tinh thần hiếu khách của Sài Gòn.",
+    "story_vi": "PML bắt đầu từ một niềm tin giản dị: khách sạn nên mang lại cảm giác được chờ đón hơn là được phục vụ. Từ cơ sở đầu tiên năm 2018, PML phát triển thành ba địa chỉ ở Quận 1, mỗi nơi một tính cách nhưng chung một tinh thần: không gian có xúc giác, nhịp sống chậm, và những nghi thức nhỏ được làm thật tinh tế.",
+    "brand_pillars": [
+      {"name": "Kinship – Sự gắn kết", "description": "Đội ngũ nhớ tên khách, nhớ sở thích, đón tiếp như người quen."},
+      {"name": "Ritual – Nghi thức nhỏ", "description": "Tắm khoáng Onsen, trà chiều, cà phê phin: những khoảnh khắc chậm được chăm chút."},
+      {"name": "Locality – Hồn Sài Gòn", "description": "Thiết kế Indochine, ẩm thực địa phương, bản đồ khám phá do chính nhân viên chọn lọc."},
+      {"name": "Calm – Sự tĩnh lặng", "description": "Cách âm tốt, ánh sáng ấm, không gian yên tĩnh giữa trung tâm sôi động."}
+    ],
+    "brand_voice": {
+      "tone": ["ấm áp", "tinh tế", "gần gũi", "ngắn gọn"],
+      "avoid": ["quảng cáo quá đà", "ngôn ngữ sáo rỗng", "từ ngữ máy móc"],
+      "address_guests_as": "Quý khách / anh / chị"
+    },
+    "target_guests": [
+      "Cặp đôi nghỉ dưỡng và kỷ niệm",
+      "Khách công tác theo xu hướng Bleisure",
+      "Du khách quốc tế khám phá Sài Gòn",
+      "Khách trong nước staycation cuối tuần",
+      "Freelancer, digital nomad lưu trú dài ngày",
+      "Gia đình nhỏ có trẻ em"
+    ],
+    "hotline": "+84 28 3822 9999",
+    "zalo": "https://zalo.me/pmlhotel",
+    "email": "stay@pmlhotel.com",
+    "website": "https://pmlhotel.example",
+    "social": {
+      "facebook": "https://facebook.com/pmlhotel",
+      "instagram": "https://instagram.com/pmlhotel",
+      "tiktok": "https://tiktok.com/@pmlhotel",
+      "youtube": "https://youtube.com/@pmlhotel"
+    },
+    "reception_hours": "24/7",
+    "staff_languages": ["Tiếng Việt", "English", "日本語 (giao tiếp cơ bản)", "한국어 (giao tiếp cơ bản)"],
+    "certifications_placeholder": "Thay bằng giải thưởng, chứng nhận thật của khách sạn (không dùng tên tổ chức khi chưa có xác nhận)."
+  },
+
+  "general_policies": {
+    "check_in_time": "14:00",
+    "check_out_time": "12:00",
+    "early_check_in_policy": "Nhận phòng sớm tùy thuộc vào tình trạng phòng trống. Trước 09:00 tính 100% giá phòng, từ 09:00 - 12:00 tính 50% giá phòng.",
+    "late_check_out_policy": "Trả phòng muộn đến 15:00 tính 30% giá phòng, đến 18:00 tính 50% giá phòng, sau 18:00 tính 100% giá phòng.",
+    "deposit_policy": "Khách hàng cần đặt cọc 500,000 VND/đêm hoặc CCCD/Hộ chiếu khi làm thủ tục nhận phòng.",
+    "cancellation_policy": "Miễn phí hủy phòng trước 3 ngày so với ngày nhận phòng. Hủy trong vòng 3 ngày tính phí 100% đêm đầu tiên.",
+    "children_policy": "Trẻ em dưới 6 tuổi ở chung giường với cha mẹ miễn phí. Trẻ từ 6 - 11 tuổi phụ thu ăn sáng 150,000 VND/ngày.",
+    "no_show_policy": "Khách không đến nhận phòng mà không thông báo (no-show) bị tính 100% giá phòng đêm đầu tiên; các đêm còn lại được hủy tự động.",
+    "date_change_policy": "Miễn phí đổi ngày nếu yêu cầu trước 3 ngày so với ngày nhận phòng và còn phòng trống; giá áp dụng theo giá tại thời điểm đổi.",
+    "age_requirement": "Người đứng tên đặt phòng và nhận phòng phải từ 18 tuổi trở lên.",
+    "id_requirements": "Khách Việt Nam xuất trình CCCD/CMND; khách nước ngoài xuất trình hộ chiếu kèm thị thực hoặc giấy tờ miễn thị thực còn hiệu lực. Khách sạn có trách nhiệm khai báo lưu trú theo quy định pháp luật.",
+    "payment_methods": ["Tiền mặt VND", "Thẻ Visa / Mastercard / JCB", "Chuyển khoản ngân hàng", "Ví điện tử / QR (MoMo, VNPay)"],
+    "foreign_currency_policy": "Khách sạn chấp nhận thanh toán bằng VND. Có thể hỗ trợ đổi ngoại tệ theo tỷ giá niêm yết tại quầy (tùy cơ sở).",
+    "extra_bed_policy": "Giường phụ 350,000 VND/đêm (đã gồm ăn sáng cho 1 người), tùy loại phòng và chỉ áp dụng cho phòng còn đủ diện tích.",
+    "extra_person_policy": "Phụ thu người lớn thêm: 450,000 VND/người/đêm (gồm ăn sáng). Không vượt quá sức chứa tối đa của từng hạng phòng.",
+    "baby_cot_policy": "Miễn phí cũi em bé (dưới 2 tuổi), cần báo trước khi đặt phòng.",
+    "pets_policy": "Hiện chưa nhận thú cưng, ngoại trừ chó dẫn đường theo quy định.",
+    "smoking_policy": "Toàn bộ phòng và khu vực công cộng trong nhà là không hút thuốc. Phạt vệ sinh 1,000,000 VND nếu vi phạm. Có khu hút thuốc riêng ngoài trời tại mỗi cơ sở.",
+    "quiet_hours": "22:00 - 07:00. Vui lòng giữ yên lặng để không ảnh hưởng đến khách lưu trú khác.",
+    "visitors_policy": "Khách đến thăm vui lòng đăng ký tại lễ tân, có mặt trong khu vực sảnh/lounge đến 22:00. Không được ở lại qua đêm nếu chưa đăng ký lưu trú.",
+    "damage_policy": "Khách chịu trách nhiệm bồi thường hư hỏng hoặc mất mát tài sản của khách sạn theo bảng giá niêm yết tại phòng.",
+    "lost_and_found_policy": "Đồ thất lạc được lưu giữ 90 ngày. Khách sạn hỗ trợ gửi về địa chỉ khách yêu cầu, phí vận chuyển do khách thanh toán.",
+    "luggage_storage_policy": "Miễn phí gửi hành lý trước giờ nhận phòng và sau giờ trả phòng trong ngày.",
+    "parking_policy": "Xe máy gửi miễn phí. Ô tô: gửi tại bãi đối tác gần khách sạn, phí tham khảo 100,000 - 150,000 VND/đêm (xem chi tiết từng cơ sở).",
+    "wifi_policy": "Wi-Fi miễn phí tốc độ cao toàn khách sạn. Mật khẩu được cung cấp khi nhận phòng.",
+    "invoice_policy": "Hỗ trợ xuất hóa đơn VAT cho doanh nghiệp. Vui lòng cung cấp tên công ty, mã số thuế, địa chỉ khi đặt phòng hoặc trước khi trả phòng.",
+    "group_booking_policy": "Đặt từ 5 phòng trở lên được xem là đặt đoàn, áp dụng bảng giá riêng và điều kiện đặt cọc riêng. Liên hệ bộ phận Sales.",
+    "long_stay_policy": "Lưu trú từ 7 đêm trở lên được hưởng ưu đãi giá. Từ 30 đêm áp dụng hợp đồng lưu trú dài hạn.",
+    "onsen_safety_policy": "Trẻ em dưới 12 tuổi phải có người lớn đi kèm. Không khuyến khích sử dụng bể khoáng nóng và phòng xông hơi với người đang mang thai, có bệnh tim mạch, huyết áp bất thường hoặc đã dùng rượu bia. Mỗi lượt ngâm nên không quá 15 - 20 phút.",
+    "safety_and_security": "Camera an ninh tại khu vực công cộng, két an toàn trong phòng, thẻ từ kiểm soát thang máy, hệ thống báo cháy và thoát hiểm theo tiêu chuẩn, lễ tân trực 24/7.",
+    "privacy_policy_summary": "Thông tin cá nhân của khách chỉ dùng cho mục đích đặt phòng, khai báo lưu trú theo quy định và chăm sóc khách hàng. Khách sạn không chia sẻ cho bên thứ ba ngoài các trường hợp pháp luật yêu cầu."
+  },
+
+  "pricing_rules": {
+    "price_basis": "Giá công bố là giá mỗi phòng mỗi đêm, tính theo VND.",
+    "price_includes": "Giá đã bao gồm thuế VAT và phí dịch vụ (cần xác nhận lại theo cấu hình thực tế của khách sạn).",
+    "rate_plans": [
+      {"id": "rate-flexible", "name": "Giá linh hoạt", "adjustment": "0%", "conditions": "Miễn phí hủy trước 3 ngày, có thể đổi ngày."},
+      {"id": "rate-advance-14", "name": "Đặt sớm 14 ngày", "adjustment": "-10%", "conditions": "Đặt trước tối thiểu 14 ngày, miễn phí hủy trước 7 ngày."},
+      {"id": "rate-nonrefundable", "name": "Giá không hoàn hủy", "adjustment": "-15%", "conditions": "Thanh toán toàn bộ khi đặt, không hoàn tiền, không đổi ngày."},
+      {"id": "rate-longstay-7", "name": "Lưu trú 7 đêm trở lên", "adjustment": "-12%", "conditions": "Áp dụng từ đêm thứ 1 khi đặt tối thiểu 7 đêm liên tục."},
+      {"id": "rate-longstay-30", "name": "Lưu trú 30 đêm trở lên", "adjustment": "-25%", "conditions": "Cần ký hợp đồng lưu trú dài hạn, thanh toán theo tháng."}
+    ],
+    "weekend_surcharge": {"days": ["Friday", "Saturday"], "percent": 10},
+    "peak_periods": [
+      {"name": "Tết Nguyên Đán (7 ngày quanh Tết)", "surcharge_percent": 30, "min_stay_nights": 2},
+      {"name": "Lễ 30/4 - 1/5", "surcharge_percent": 25, "min_stay_nights": 2},
+      {"name": "Quốc khánh 2/9", "surcharge_percent": 20, "min_stay_nights": 2},
+      {"name": "Giáng sinh & Tết Dương lịch (24/12 - 02/01)", "surcharge_percent": 30, "min_stay_nights": 2},
+      {"name": "Valentine (13 - 15/02) & 8/3 & 20/10", "surcharge_percent": 15, "min_stay_nights": 1}
+    ],
+    "direct_booking_benefits": [
+      "Miễn phí Trà chiều Signature cho khách đặt trực tiếp qua Website",
+      "Ưu tiên nâng hạng phòng miễn phí khi còn phòng trống (không cam kết)",
+      "Miễn phí đổi ngày một lần",
+      "Tích lũy điểm PML Kinship Club"
+    ],
+    "extra_charges": {
+      "extra_bed_vnd": 350000,
+      "extra_adult_vnd": 450000,
+      "child_6_11_breakfast_vnd": 150000,
+      "adult_breakfast_vnd": 250000,
+      "smoking_cleaning_fee_vnd": 1000000,
+      "onsen_outside_guest_vnd": 350000
+    },
+    "price_display_rules": "Hiển thị giá bằng VND với dấu chấm phân cách hàng nghìn (ví dụ 2.200.000đ). Luôn ghi chú: giá có thể thay đổi theo mùa và tình trạng phòng; giá cuối cùng hiển thị ở bước xác nhận đặt phòng."
+  },
+
+  "loyalty_program": {
+    "name": "PML Kinship Club",
+    "description": "Chương trình khách hàng thân thiết miễn phí dành cho khách đặt phòng trực tiếp.",
+    "earning_rule": "Mỗi 10,000 VND chi tiêu cho phòng và dịch vụ tại khách sạn tích lũy 1 điểm.",
+    "tiers": [
+      {"id": "tier-member", "name": "Member", "requirement": "Đăng ký miễn phí", "benefits": ["Tích điểm mỗi lần lưu trú", "Ưu đãi sinh nhật: tặng 1 suất Trà chiều", "Nhận thông tin ưu đãi sớm"]},
+      {"id": "tier-silver", "name": "Silver", "requirement": "Từ 5 đêm hoặc 5,000 điểm trong 12 tháng", "benefits": ["Giảm 5% giá phòng khi đặt trực tiếp", "Nhận phòng sớm miễn phí (tùy tình trạng phòng)", "Giảm 10% menu Sky Bar"]},
+      {"id": "tier-gold", "name": "Gold", "requirement": "Từ 15 đêm hoặc 15,000 điểm trong 12 tháng", "benefits": ["Giảm 10% giá phòng khi đặt trực tiếp", "Trả phòng muộn đến 15:00 miễn phí (tùy tình trạng phòng)", "Miễn phí 1 lượt Onsen/lần lưu trú tại chi nhánh khác", "Ưu tiên nâng hạng phòng"]}
+    ],
+    "points_redemption": "1 điểm = 100 VND khi đổi cho dịch vụ F&B, spa, xe đưa đón. Tối đa 30% giá trị hóa đơn."
+  },
+
+  "contact_directory": [
+    {"department": "Đặt phòng (Reservations)", "phone": "+84 28 3822 9999", "email": "stay@pmlhotel.com", "hours": "24/7"},
+    {"department": "Sales đoàn & doanh nghiệp", "phone": "+84 28 3822 9988", "email": "sales@pmlhotel.com", "hours": "08:00 - 18:00, Thứ 2 - Thứ 7"},
+    {"department": "Sự kiện & tiệc nhỏ", "phone": "+84 28 3822 9977", "email": "events@pmlhotel.com", "hours": "08:00 - 18:00, Thứ 2 - Thứ 7"},
+    {"department": "Chăm sóc khách hàng & góp ý", "phone": "+84 28 3822 9966", "email": "care@pmlhotel.com", "hours": "08:00 - 22:00 hàng ngày"},
+    {"department": "Kế toán & hóa đơn", "phone": "+84 28 3822 9955", "email": "billing@pmlhotel.com", "hours": "08:00 - 17:00, Thứ 2 - Thứ 6"},
+    {"department": "Tuyển dụng", "phone": null, "email": "careers@pmlhotel.com", "hours": null},
+    {"department": "Truyền thông & hợp tác", "phone": null, "email": "press@pmlhotel.com", "hours": null}
+  ]
+}

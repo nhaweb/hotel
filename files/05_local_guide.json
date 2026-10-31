@@ -1,0 +1,157 @@
+{
+  "local_guide_notice": "Địa chỉ, khoảng cách, giá và giờ mở cửa của địa điểm bên ngoài chỉ mang tính tham khảo; cần xác minh lại trước khi xuất bản website hoặc huấn luyện trợ lý AI.",
+
+  "local_travel_guide": [
+    {
+      "category": "Ăn uống & Cà phê chill",
+      "recommendations": [
+        {"name": "Bánh mì Huỳnh Hoa", "address": "26 Lê Thị Riêng, Q1", "note": "Bánh mì kẹp thịt nổi tiếng đắt và ngon nhất Sài Gòn (cách 5-10 phút đi xe)."},
+        {"name": "Phở Minh (Phở gia truyền)", "address": "Hẻm 63 Pasteur, Q1", "note": "Phở vị Bắc thanh thanh nằm trong hẻm cổ ngay gần chi nhánh Đông Du."},
+        {"name": "Cà phê Nhỏ / Cà phê Đỗ Phủ", "address": "Quận 1", "note": "Quán cà phê phong cách Sài Gòn xưa cổ kính."},
+        {"name": "Cà phê Chung cư 42 Nguyễn Huệ", "address": "42 Nguyễn Huệ, Q1", "note": "Dãy quán cà phê trong chung cư cũ nhìn ra phố đi bộ, gần chi nhánh Đông Du.", "best_for_branch": "pml-dong-du", "needs_verification": true},
+        {"name": "The Workshop Coffee", "address": "27 Ngô Đức Kế, Q1", "note": "Cà phê specialty trong tòa nhà cổ, hợp làm việc nhẹ buổi sáng.", "needs_verification": true},
+        {"name": "Nhà hàng Ngon", "address": "160 Pasteur, Q1", "note": "Tập hợp món Việt ba miền trong khuôn viên biệt thự cổ, tiện cho khách lần đầu muốn thử nhiều món.", "needs_verification": true},
+        {"name": "Cục Gạch Quán", "address": "10 Đặng Tất, Tân Định, Q1", "note": "Món Việt kiểu gia đình trong ngôi nhà cổ, gần chi nhánh Central Park.", "best_for_branch": "pml-central-park", "needs_verification": true},
+        {"name": "Bánh xèo 46A", "address": "46A Đinh Công Tráng, Tân Định, Q1", "note": "Bánh xèo giòn nổi tiếng, thường đông vào bữa tối.", "best_for_branch": "pml-central-park", "needs_verification": true},
+        {"name": "Phở Hòa Pasteur", "address": "260C Pasteur, Q3", "note": "Phở bò nổi tiếng lâu năm, mở từ sáng sớm đến tối.", "needs_verification": true},
+        {"name": "Khu ẩm thực Vĩnh Khánh (Quận 4)", "area": "Quận 4", "note": "Phố ẩm thực ốc, hải sản về đêm, cách trung tâm khoảng 10 - 15 phút đi xe.", "needs_verification": true}
+      ]
+    },
+    {
+      "category": "Điểm tham quan đi bộ hoặc đi xe ngắn",
+      "recommendations": [
+        {"name": "Nhà thờ Đức Bà & Bưu điện Trung tâm", "area": "Quận 1", "note": "Hai công trình kiến trúc Pháp nằm cạnh nhau, dễ chụp ảnh; nên đến buổi sáng sớm hoặc chiều muộn để tránh đông.", "typical_visit_time": "45 - 60 phút"},
+        {"name": "Dinh Độc Lập (Dinh Thống Nhất)", "area": "Quận 1", "note": "Di tích lịch sử và kiến trúc thập niên 60; kiểm tra giờ mở cửa và ngày nghỉ trước khi đi.", "typical_visit_time": "60 - 90 phút"},
+        {"name": "Bảo tàng Chứng tích Chiến tranh", "area": "Quận 3", "note": "Trưng bày về chiến tranh Việt Nam, nội dung có thể gây xúc động mạnh.", "typical_visit_time": "90 phút"},
+        {"name": "Bảo tàng Thành phố Hồ Chí Minh", "area": "Quận 1", "note": "Tòa nhà Gia Long cổ kính với bộ sưu tập lịch sử đô thị.", "typical_visit_time": "60 phút"},
+        {"name": "Bảo tàng Mỹ thuật TP.HCM", "area": "Quận 1", "note": "Tòa nhà phong cách Pháp - Hoa với sưu tập tranh, điêu khắc.", "typical_visit_time": "60 phút"},
+        {"name": "Chợ Bến Thành", "area": "Quận 1", "note": "Chợ biểu tượng, nên mặc cả lịch sự; buổi tối có chợ đêm bên ngoài.", "typical_visit_time": "60 - 90 phút"},
+        {"name": "Phố đi bộ Nguyễn Huệ & Bến Bạch Đằng", "area": "Quận 1", "note": "Không gian đi dạo ven sông, nhiều hoạt động cuối tuần và dịp lễ.", "typical_visit_time": "45 - 60 phút"},
+        {"name": "Bitexco Financial Tower - Saigon Skydeck", "area": "Quận 1", "note": "Đài quan sát nhìn toàn cảnh thành phố; nên đi lúc hoàng hôn.", "typical_visit_time": "60 phút", "needs_verification": true},
+        {"name": "Chùa Ngọc Hoàng (Phước Hải Tự)", "area": "Quận 1", "note": "Ngôi chùa Hoa kiều cổ với nhiều tượng gỗ; ăn mặc kín đáo khi vào.", "best_for_branch": "pml-central-park", "typical_visit_time": "30 - 45 phút"},
+        {"name": "Thảo Cầm Viên Sài Gòn", "area": "Quận 1", "note": "Sở thú và vườn bách thảo lâu đời, phù hợp gia đình có trẻ em.", "typical_visit_time": "2 - 3 giờ"},
+        {"name": "Phố sách Nguyễn Văn Bình", "area": "Quận 1", "note": "Con phố sách và cà phê ngay cạnh Bưu điện Trung tâm.", "typical_visit_time": "30 - 60 phút"},
+        {"name": "Chợ Lớn & chùa Thiên Hậu", "area": "Quận 5", "note": "Khu người Hoa với chùa cổ, tiệm thuốc bắc, ẩm thực Hoa; đi xe khoảng 15 - 25 phút.", "typical_visit_time": "2 - 3 giờ"}
+      ]
+    },
+    {
+      "category": "Mua sắm",
+      "recommendations": [
+        {"name": "Takashimaya (Saigon Centre)", "note": "Trung tâm thương mại Nhật, gần chi nhánh Đông Du, nhiều thương hiệu và ẩm thực Nhật."},
+        {"name": "Vincom Center Đồng Khởi", "note": "Trung tâm thương mại trên phố Lê Thánh Tôn, đối diện khu trung tâm."},
+        {"name": "Chợ Bến Thành & chợ đêm", "note": "Đồ lưu niệm, cà phê, trà, đặc sản; nên so sánh giá và mặc cả."},
+        {"name": "Phố Đồng Khởi & Lê Lợi", "note": "Các cửa hàng thời trang, nghệ thuật, nội thất của nhà thiết kế Việt."}
+      ]
+    },
+    {
+      "category": "Giải trí buổi tối",
+      "recommendations": [
+        {"name": "Sky Bar tại PML Central Park", "note": "Cocktail và nhạc acoustic ngắm hoàng hôn; khách lưu trú giảm 20%."},
+        {"name": "Phố Bùi Viện & Đề Thám", "note": "Khu phố Tây sôi động, nhiều quán bar và nhạc sống; nên giữ cẩn thận tài sản cá nhân."},
+        {"name": "Nhà hát Thành phố", "note": "Kiểm tra lịch biểu diễn (nhạc kịch, hòa nhạc, múa) trước khi đến."},
+        {"name": "Du thuyền ăn tối trên sông Sài Gòn", "note": "Khởi hành từ bến Bạch Đằng, nên đặt trước, thông qua concierge."}
+      ]
+    },
+    {
+      "category": "Đi trong ngày từ TP.HCM",
+      "recommendations": [
+        {"name": "Địa đạo Củ Chi", "distance": "Khoảng 60 - 70 km (1,5 - 2 giờ)", "note": "Hệ thống địa đạo thời chiến; nên đi nửa ngày, tránh trưa nắng."},
+        {"name": "Đồng bằng sông Cửu Long (Mỹ Tho - Bến Tre)", "distance": "Khoảng 70 - 90 km (2 giờ)", "note": "Đi thuyền, thăm vườn trái cây, nghe đờn ca tài tử; thường là tour một ngày."},
+        {"name": "Rừng ngập mặn Cần Giờ", "distance": "Khoảng 50 - 60 km (1,5 - 2 giờ)", "note": "Hợp với khách thích thiên nhiên, đi xuồng, ngắm khỉ."},
+        {"name": "Núi Bà Đen (Tây Ninh)", "distance": "Khoảng 100 km (2,5 giờ)", "note": "Đi cáp treo lên đỉnh, nên đi ngày thường để tránh đông."},
+        {"name": "Vũng Tàu", "distance": "Khoảng 100 km (2 - 2,5 giờ)", "note": "Biển cuối tuần cho dân Sài Gòn; nên đi sớm để tránh kẹt xe."}
+      ]
+    },
+    {
+      "category": "Di chuyển từ Sân bay Tân Sơn Nhất (SGN)",
+      "recommendations": [
+        {"service": "Xe đưa đón riêng của Khách sạn (Private Airport Transfer)", "price": "450,000 VND/chuyến (Xe 4 chỗ sedan) hoặc 600,000 VND/chuyến (Xe 7 chỗ SUV)", "note": "Khách cần đặt trước ít nhất 4 tiếng."},
+        {"service": "Taxi / Grab", "price": "Khoảng 150,000 - 220,000 VND", "duration": "30 - 45 phút tùy giờ cao điểm."},
+        {"service": "Xe buýt sân bay", "price": "Khoảng 5,000 - 20,000 VND", "duration": "45 - 70 phút", "note": "Rẻ nhất nhưng cần đi bộ thêm từ điểm dừng; không thuận tiện khi mang nhiều hành lý.", "needs_verification": true}
+      ]
+    }
+  ],
+
+  "getting_around": [
+    {"mode": "Đi bộ", "tips": "Khu trung tâm Quận 1 rất thuận tiện đi bộ; băng qua đường chậm, đều tay, không dừng đột ngột và để xe máy tự né."},
+    {"mode": "Ứng dụng gọi xe (Grab, Be, Xanh SM)", "tips": "Nhập địa chỉ khách sạn bằng tiếng Việt; chọn điểm đón có thể đỗ xe an toàn. Xanh SM sử dụng xe điện."},
+    {"mode": "Taxi truyền thống", "tips": "Chọn hãng uy tín, yêu cầu bật đồng hồ tính tiền."},
+    {"mode": "Xe buýt", "tips": "Rẻ nhưng cần quen tuyến; dùng Google Maps để chọn tuyến."},
+    {"mode": "Metro số 1 (Bến Thành - Suối Tiên)", "tips": "Tuyến đã khai thác thương mại, kiểm tra giờ hoạt động và giá vé mới nhất trên kênh chính thức."},
+    {"mode": "Waterbus", "tips": "Tuyến buýt sông xuất phát từ bến Bạch Đằng; kiểm tra lịch chạy trước."}
+  ],
+
+  "practical_tips": {
+    "currency_and_payment": "Đơn vị tiền tệ là VND. Thẻ được chấp nhận ở khách sạn, nhà hàng lớn, trung tâm thương mại; tiền mặt cần cho chợ, quán nhỏ, xe ôm. ATM có ở hầu hết các khu vực, thường giới hạn mức rút mỗi lần.",
+    "money_exchange": "Đổi ngoại tệ tại ngân hàng hoặc tiệm vàng được cấp phép; tỷ giá tại sân bay thường kém hơn. Tránh đổi tiền với người ngoài đường.",
+    "tipping": "Tiền tip không bắt buộc, nhưng được trân trọng ở nhà hàng, tour, spa (khoảng 5 - 10% nếu hài lòng).",
+    "language": "Tiếng Việt là ngôn ngữ chính. Nhân viên khách sạn nói tiếng Anh; ở khu du lịch phổ biến tiếng Anh cơ bản.",
+    "sim_and_internet": "SIM/eSIM du lịch có tại sân bay và cửa hàng các nhà mạng lớn (Viettel, VinaPhone, MobiFone); cần hộ chiếu để đăng ký SIM.",
+    "electricity": "Điện áp 220V, 50Hz. Ổ cắm phổ biến loại A, C và F; nên mang bộ chuyển đổi nếu cần.",
+    "water": "Không uống nước máy trực tiếp. Phòng khách sạn có nước suối miễn phí.",
+    "weather": {
+      "overview": "TP.HCM có khí hậu nhiệt đới, nóng quanh năm với hai mùa rõ rệt.",
+      "dry_season": "Khoảng tháng 12 đến tháng 4: ít mưa, nắng nhiều; tháng 3 - 4 nóng nhất.",
+      "rainy_season": "Khoảng tháng 5 đến tháng 11: thường có mưa chiều ngắn và mạnh; mang theo ô hoặc áo mưa.",
+      "best_time_to_visit": "Tháng 12 đến tháng 2 mát và khô hơn, thích hợp nhất cho khách muốn đi bộ khám phá."
+    },
+    "dress_code": "Khi vào chùa, nhà thờ, di tích: mặc kín vai và đầu gối. Tại khách sạn không có quy định trang phục đặc biệt, trừ khu Onsen và Sky Bar (xem quy định từng khu).",
+    "safety": "Giữ điện thoại, túi xách phía trong khi đi bộ gần mép đường; không để vật dụng có giá trị trên xe máy; cảnh giác với người chào mời bất ngờ. Đa số khu vực trung tâm an toàn, ban đêm vẫn nên đi nơi đông người.",
+    "emergency_numbers": {"police": "113", "fire": "114", "ambulance": "115", "hotel_hotline": "+84 28 3822 9999"},
+    "medical_help": "Lễ tân hỗ trợ liên hệ cơ sở y tế gần nhất và hướng dẫn khách thủ tục khám cơ bản; không thay thế dịch vụ cấp cứu.",
+    "public_holidays": ["Tết Dương lịch (1/1)", "Tết Nguyên Đán (tháng 1 hoặc 2 âm lịch, nghỉ nhiều ngày)", "Giỗ Tổ Hùng Vương (10/3 âm lịch)", "Ngày Giải phóng miền Nam (30/4) và Quốc tế Lao động (1/5)", "Quốc khánh (2/9)"],
+    "tet_note": "Dịp Tết nhiều quán ăn và cửa hàng nghỉ vài ngày; khách sạn vẫn hoạt động nhưng nên đặt phòng sớm và hỏi trước lịch bữa sáng, dịch vụ đặc biệt."
+  },
+
+  "suggested_itineraries": [
+    {
+      "id": "itin-1day-central",
+      "title": "Một ngày đi bộ khám phá Sài Gòn trung tâm",
+      "best_for_branch": "pml-dong-du",
+      "steps": [
+        {"time": "07:30", "activity": "Bánh mì hoặc phở gần khách sạn, cà phê tại Cafe Apartments (42 Nguyễn Huệ)"},
+        {"time": "09:00", "activity": "Đi bộ qua Nhà hát Thành phố, Đồng Khởi tới Nhà thờ Đức Bà và Bưu điện Trung tâm"},
+        {"time": "11:00", "activity": "Dạo phố sách Nguyễn Văn Bình"},
+        {"time": "12:00", "activity": "Ăn trưa món Việt ba miền"},
+        {"time": "14:00", "activity": "Trở về khách sạn nghỉ ngơi, thưởng thức Trà chiều Signature"},
+        {"time": "16:30", "activity": "Dinh Độc Lập hoặc Bảo tàng Thành phố"},
+        {"time": "18:30", "activity": "Dạo phố đi bộ Nguyễn Huệ, bến Bạch Đằng, ăn tối"}
+      ]
+    },
+    {
+      "id": "itin-slow-onsen",
+      "title": "Một ngày chậm với Onsen",
+      "best_for_branch": "pml-onsen-hai-ba-trung",
+      "steps": [
+        {"time": "07:00", "activity": "Ngâm khoáng Onsen buổi sáng khi còn yên tĩnh"},
+        {"time": "08:30", "activity": "Ăn sáng nhẹ tại khách sạn"},
+        {"time": "10:00", "activity": "Dạo bảo tàng hoặc Nhà thờ Đức Bà"},
+        {"time": "13:00", "activity": "Ăn trưa nhẹ, về phòng nghỉ trưa"},
+        {"time": "15:00", "activity": "Trà chiều Signature và massage 60 phút"},
+        {"time": "19:00", "activity": "Ăn tối nhẹ gần khách sạn, ngâm Onsen buổi tối lần thứ hai"}
+      ]
+    },
+    {
+      "id": "itin-sunset-rooftop",
+      "title": "Hoàng hôn trên sân thượng",
+      "best_for_branch": "pml-central-park",
+      "steps": [
+        {"time": "09:00", "activity": "Ăn sáng và đi dạo công viên Lê Văn Tám"},
+        {"time": "10:30", "activity": "Chợ Tân Định, nhà thờ Tân Định"},
+        {"time": "12:00", "activity": "Ăn trưa món địa phương Tân Định"},
+        {"time": "16:30", "activity": "Jacuzzi sân thượng ngắm hoàng hôn"},
+        {"time": "18:30", "activity": "Cocktail & tapas tại Sky Bar"}
+      ]
+    },
+    {
+      "id": "itin-3days",
+      "title": "3 ngày 2 đêm cho khách lần đầu",
+      "best_for_branch": "pml-dong-du",
+      "steps": [
+        {"day": 1, "activity": "Nhận phòng, đi bộ khu trung tâm, ăn tối phố đi bộ"},
+        {"day": 2, "activity": "Tour Địa đạo Củ Chi buổi sáng, Chợ Bến Thành buổi chiều, tối thư giãn Onsen hoặc Sky Bar"},
+        {"day": 3, "activity": "Bảo tàng Chứng tích Chiến tranh, mua đặc sản, ra sân bay"}
+      ]
+    }
+  ]
+}

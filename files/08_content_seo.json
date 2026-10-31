@@ -1,0 +1,93 @@
+{
+  "content_notice": "Đánh giá, bài viết và ảnh bên dưới là NỘI DUNG MẪU. Không dùng tên báo chí, tổ chức xếp hạng hay nền tảng đánh giá thật khi chưa có xác nhận.",
+
+  "rating_summary_sample": {"average": 4.8, "scale": 5, "total_reviews_sample": 1260, "breakdown": {"5": 0.82, "4": 0.15, "3": 0.02, "2": 0.005, "1": 0.005}, "note": "Số liệu mẫu để dựng giao diện."},
+
+  "reviews_sample": [
+    {"id": "rev-001", "guest": "Minh Anh", "origin": "Hà Nội", "stay_date": "2026-09", "branch_id": "pml-onsen-hai-ba-trung", "room_id": "room-onsen-suite", "rating": 5, "trip_type": "Cặp đôi", "title": "Cuối tuần chậm giữa Sài Gòn", "text": "Bồn ngâm riêng và phòng xông hơi trong phòng quá tuyệt. Nhân viên nhớ tên chúng tôi từ lần nhận phòng. Trà chiều ngon, không gian yên tĩnh bất ngờ giữa Quận 1."},
+    {"id": "rev-002", "guest": "Sarah L.", "origin": "Melbourne, Úc", "stay_date": "2026-08", "branch_id": "pml-dong-du", "room_id": "room-deluxe-city", "rating": 5, "trip_type": "Du lịch một mình", "title": "Perfect base for first-time visitors", "text": "Walkable to everything: Nguyen Hue, the Opera House, the river. The balcony room was quiet and breakfast had great phở. Staff gave me a hand-drawn walking map."},
+    {"id": "rev-003", "guest": "Hoàng Nam", "origin": "TP.HCM", "stay_date": "2026-10", "branch_id": "pml-central-park", "room_id": "room-rooftop-jacuzzi", "rating": 5, "trip_type": "Kỷ niệm", "title": "Cầu hôn trên sân thượng", "text": "Đội ngũ giúp mình setup gần như hoàn hảo, kể cả phương án dự phòng khi trời chuyển mưa. Hoàng hôn trên Jacuzzi là khoảnh khắc không quên."},
+    {"id": "rev-004", "guest": "Tanaka Yuki", "origin": "Osaka, Nhật Bản", "stay_date": "2026-07", "branch_id": "pml-onsen-hai-ba-trung", "room_id": "room-onsen-deluxe-queen", "rating": 4, "trip_type": "Du lịch công tác", "title": "Onsen xứng đáng cho một ngày dài", "text": "Khu onsen sạch, yên tĩnh, tinh thần Nhật rất rõ. Phòng gọn và êm. Mong có thêm khung giờ riêng buổi tối."},
+    {"id": "rev-005", "guest": "Lan Phương", "origin": "Đà Nẵng", "stay_date": "2026-09", "branch_id": "pml-central-park", "room_id": "room-park-view-deluxe", "rating": 5, "trip_type": "Công tác", "title": "Làm việc dễ chịu, nghỉ ngơi cũng dễ", "text": "Co-working lounge yên tĩnh, Wi-Fi nhanh, cuối ngày lên Sky Bar thư giãn. View công viên buổi sáng rất dễ chịu."},
+    {"id": "rev-006", "guest": "Family Trần", "origin": "Cần Thơ", "stay_date": "2026-06", "branch_id": "pml-dong-du", "room_id": "room-family-connecting", "rating": 5, "trip_type": "Gia đình", "title": "Phòng liên thông tiện cho cả nhà", "text": "Hai phòng liên thông rất tiện cho gia đình 5 người. Khách sạn chuẩn bị sẵn cũi và ghế ăn dặm cho bé, nhân viên chu đáo."},
+    {"id": "rev-007", "guest": "Jonas K.", "origin": "Berlin, Đức", "stay_date": "2026-05", "branch_id": "pml-central-park", "room_id": "room-studio-longstay", "rating": 4, "trip_type": "Ở dài ngày", "title": "Ở 3 tuần như ở nhà", "text": "Bếp nhỏ và bàn làm việc rộng là điểm cộng lớn. Giặt tuần tiện. Chỉ mong hạng mục dọn phòng có thể chọn giờ linh hoạt hơn."},
+    {"id": "rev-008", "guest": "Thu Hà", "origin": "TP.HCM", "stay_date": "2026-10", "branch_id": "pml-dong-du", "room_id": "room-superior-indochine", "rating": 4, "trip_type": "Staycation", "title": "Gọn, đẹp, đúng vị trí", "text": "Phòng Superior nhỏ nhưng thiết kế Indochine rất dễ thương và rất yên tĩnh. Vị trí đi bộ ra phố cực tiện."}
+  ],
+
+  "journal_articles_sample": [
+    {"id": "post-001", "slug": "mot-ngay-di-bo-sai-gon-trung-tam", "category": "Khám phá", "title": "Một ngày đi bộ Sài Gòn trung tâm", "excerpt": "Từ bánh mì sáng đến hoàng hôn bên sông: lộ trình đi bộ do concierge PML gợi ý.", "read_time_min": 6, "related_branch_id": "pml-dong-du"},
+    {"id": "post-002", "slug": "nghi-thuc-onsen-cho-nguoi-moi", "category": "Wellness", "title": "Nghi thức Onsen cho người mới", "excerpt": "Ngâm nóng, ngâm lạnh, xông hơi: thứ tự và cách giữ nhịp để cơ thể thật sự thư giãn.", "read_time_min": 5, "related_branch_id": "pml-onsen-hai-ba-trung"},
+    {"id": "post-003", "slug": "5-quan-an-tan-dinh-nen-thu", "category": "Ẩm thực", "title": "5 quán ăn Tân Định nên thử", "excerpt": "Những quán ăn quen của người địa phương trong bán kính đi bộ từ PML Central Park.", "read_time_min": 5, "related_branch_id": "pml-central-park"},
+    {"id": "post-004", "slug": "bleisure-lam-viec-va-nghi-ngoi", "category": "Công tác", "title": "Bleisure: làm việc và nghỉ ngơi trong cùng một chuyến đi", "excerpt": "Cách sắp xếp lịch để chuyến công tác vẫn có thời gian khám phá thành phố.", "read_time_min": 4},
+    {"id": "post-005", "slug": "cau-hon-tren-san-thuong-sai-gon", "category": "Khoảnh khắc", "title": "Cầu hôn trên sân thượng: những điều cần chuẩn bị", "excerpt": "Checklist chọn thời điểm, phương án dự phòng thời tiết, chụp ảnh và hoa.", "read_time_min": 5, "related_branch_id": "pml-central-park"},
+    {"id": "post-006", "slug": "di-cu-chi-hay-me-kong", "category": "Khám phá", "title": "Củ Chi hay Mê Kông: nên đi tour nào?", "excerpt": "So sánh thời gian, độ mệt, chi phí và gợi ý cho từng kiểu khách.", "read_time_min": 7},
+    {"id": "post-007", "slug": "mua-mua-sai-gon-lam-gi", "category": "Mẹo du lịch", "title": "Mùa mưa Sài Gòn: làm gì khi trời đổ mưa chiều", "excerpt": "Những điểm tham quan trong nhà, quán cà phê và cách tận dụng tiếng mưa để nghỉ ngơi.", "read_time_min": 4},
+    {"id": "post-008", "slug": "tet-o-sai-gon", "category": "Mẹo du lịch", "title": "Tết ở Sài Gòn: đi đâu, ăn gì, quán nào mở cửa", "excerpt": "Gợi ý cho khách ở lại thành phố dịp Tết và lưu ý đặt phòng sớm.", "read_time_min": 5}
+  ],
+
+  "gallery_sample": [
+    {"id": "img-001", "src": "/images/gallery/lobby-dong-du.jpg", "alt": "Sảnh lounge phong cách Indochine tại PML Đông Du với đèn vàng ấm", "category": "Không gian", "branch_id": "pml-dong-du"},
+    {"id": "img-002", "src": "/images/gallery/onsen-pool.jpg", "alt": "Bể ngâm khoáng nóng gỗ tuyết tùng tại khu Onsen Hai Bà Trưng", "category": "Onsen", "branch_id": "pml-onsen-hai-ba-trung"},
+    {"id": "img-003", "src": "/images/gallery/rooftop-sunset.jpg", "alt": "Hoàng hôn trên sân thượng Central Park nhìn ra công viên Lê Văn Tám", "category": "Rooftop", "branch_id": "pml-central-park"},
+    {"id": "img-004", "src": "/images/gallery/penthouse-jacuzzi.jpg", "alt": "Bồn Jacuzzi ngoài trời riêng của phòng Rooftop Jacuzzi Penthouse", "category": "Phòng", "branch_id": "pml-central-park"},
+    {"id": "img-005", "src": "/images/gallery/afternoon-tea.jpg", "alt": "Bộ trà chiều Signature với bánh ngọt Pháp và trà thảo mộc", "category": "Ẩm thực"},
+    {"id": "img-006", "src": "/images/gallery/breakfast-buffet.jpg", "alt": "Quầy buffet sáng với phở, bánh mì và trái cây tươi", "category": "Ẩm thực"},
+    {"id": "img-007", "src": "/images/gallery/coworking.jpg", "alt": "Không gian Executive Coworking Lounge yên tĩnh với bàn làm việc dài", "category": "Không gian", "branch_id": "pml-central-park"},
+    {"id": "img-008", "src": "/images/gallery/deluxe-balcony.jpg", "alt": "Ban công phòng Deluxe City Balcony nhìn xuống phố Đông Du", "category": "Phòng", "branch_id": "pml-dong-du"},
+    {"id": "img-009", "src": "/images/gallery/sauna-private.jpg", "alt": "Phòng xông hơi gỗ riêng trong Onsen Signature Suite", "category": "Phòng", "branch_id": "pml-onsen-hai-ba-trung"},
+    {"id": "img-010", "src": "/images/gallery/skybar-night.jpg", "alt": "Sky Bar về đêm với ánh đèn thành phố và ly cocktail", "category": "Rooftop", "branch_id": "pml-central-park"},
+    {"id": "img-011", "src": "/images/gallery/saigon-street.jpg", "alt": "Phố Sài Gòn buổi sáng với xe máy và quán cà phê vỉa hè", "category": "Sài Gòn"},
+    {"id": "img-012", "src": "/images/gallery/family-room.jpg", "alt": "Phòng Family Connecting với hai phòng ngủ liên thông", "category": "Phòng", "branch_id": "pml-dong-du"}
+  ],
+
+  "site_copy": {
+    "hero": {
+      "headline_vi": "Lưu trú vì cảm xúc.",
+      "headline_en": "Stay for the feeling.",
+      "subheadline_vi": "Ba địa chỉ boutique giữa Quận 1, nơi nghi thức tắm khoáng Nhật Bản gặp tinh thần hiếu khách Sài Gòn.",
+      "primary_cta": "Đặt phòng ngay",
+      "secondary_cta": "Khám phá phòng nghỉ"
+    },
+    "nav_items": [
+      {"label_vi": "Trải nghiệm", "label_en": "Experience", "href": "#concept"},
+      {"label_vi": "Phòng nghỉ", "label_en": "Rooms", "href": "/phong"},
+      {"label_vi": "Tiện ích", "label_en": "Amenities", "href": "#amenities"},
+      {"label_vi": "Cơ sở", "label_en": "Locations", "href": "/co-so"},
+      {"label_vi": "Ưu đãi", "label_en": "Offers", "href": "/uu-dai"},
+      {"label_vi": "Tạp chí", "label_en": "Journal", "href": "/tin-tuc"},
+      {"label_vi": "Liên hệ", "label_en": "Contact", "href": "/lien-he"}
+    ],
+    "trust_badges": [
+      "Đặt trực tiếp nhận Trà chiều miễn phí",
+      "Hủy miễn phí trước 3 ngày",
+      "Lễ tân 24/7",
+      "Ba cơ sở trung tâm Quận 1"
+    ],
+    "footer_tagline": "Khách sạn boutique & lifestyle giữa lòng Thành phố Hồ Chí Minh."
+  },
+
+  "seo": {
+    "site": {
+      "title": "PML Hotel | Khách sạn boutique & lifestyle tại Quận 1, TP.HCM",
+      "description": "PML Hotel gồm ba khách sạn boutique tại trung tâm Quận 1: Onsen khoáng nóng chuẩn Nhật, Rooftop Jacuzzi & Sky Bar, Co-working Lounge. Đặt trực tiếp nhận Trà chiều miễn phí.",
+      "keywords": ["khách sạn boutique quận 1", "khách sạn có onsen TP.HCM", "khách sạn rooftop jacuzzi sài gòn", "khách sạn gần phố đi bộ Nguyễn Huệ", "khách sạn lifestyle TP.HCM"],
+      "og_image": "/images/og/home.jpg"
+    },
+    "pages": [
+      {"path": "/phong", "title": "Phòng nghỉ | PML Hotel Quận 1", "description": "Khám phá phòng Onsen Suite, Deluxe City Balcony, Rooftop Jacuzzi Penthouse và các hạng phòng khác tại PML Hotel."},
+      {"path": "/co-so/dong-du", "title": "PML Hotel Đông Du | Khách sạn gần phố đi bộ Nguyễn Huệ", "description": "Khách sạn boutique phong cách Indochine cách phố đi bộ Nguyễn Huệ 150m, gần Takashimaya và bến Bạch Đằng."},
+      {"path": "/co-so/onsen-hai-ba-trung", "title": "PML Hotel & Onsen Lounge | Khách sạn có Onsen tại Quận 1", "description": "Tổ hợp Onsen khoáng nóng chuẩn Nhật và phòng xông hơi đá muối giữa trung tâm Quận 1."},
+      {"path": "/co-so/central-park", "title": "PML Hotel Central Park & Rooftop | Rooftop Jacuzzi Bar Quận 1", "description": "Rooftop Jacuzzi Bar nhìn ra công viên Lê Văn Tám, co-working lounge và phòng gym hiện đại."},
+      {"path": "/uu-dai", "title": "Ưu đãi & Gói nghỉ dưỡng | PML Hotel", "description": "Gói Onsen Weekend, Honeymoon, cầu hôn, ở dài ngày và ưu đãi đặt trực tiếp."},
+      {"path": "/tin-tuc", "title": "Tạp chí PML | Cẩm nang Sài Gòn và nghỉ dưỡng", "description": "Gợi ý ăn uống, lịch trình, wellness và mẹo du lịch Sài Gòn từ đội ngũ PML."},
+      {"path": "/lien-he", "title": "Liên hệ & Đặt phòng | PML Hotel", "description": "Hotline +84 28 3822 9999, Zalo, email và địa chỉ ba cơ sở PML Hotel."}
+    ],
+    "structured_data_hints": {
+      "Hotel": "Dùng schema.org/Hotel hoặc LodgingBusiness cho từng cơ sở: name, address, telephone, geo, priceRange, checkinTime, checkoutTime, amenityFeature.",
+      "HotelRoom": "Mỗi phòng: name, bed, occupancy, floorSize, amenityFeature.",
+      "FAQPage": "Dùng cho trang FAQ và trang cơ sở.",
+      "BreadcrumbList": "Cho trang con.",
+      "Review": "Chỉ dùng khi đánh giá là thật và có thể kiểm chứng."
+    }
+  }
+}

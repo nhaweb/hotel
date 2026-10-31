@@ -1,0 +1,3577 @@
+{
+  "meta": {
+    "dataset_name": "PML Hotel Template Dataset",
+    "version": "2.0.0",
+    "language_default": "vi",
+    "languages_supported": [
+      "vi",
+      "en"
+    ],
+    "currency": "VND",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "data_status": "SAMPLE_CONTENT",
+    "disclaimer": "Toàn bộ số liệu (giá, số phòng, chính sách, SĐT, email, tên thành viên, đánh giá) là DỮ LIỆU MẪU cho template. Khi bàn giao cho khách hàng thật phải thay bằng thông tin thực tế và xác minh lại địa chỉ, khoảng cách, giờ mở cửa của các địa điểm bên ngoài.",
+    "id_conventions": {
+      "branch": "pml-<ten-co-so>",
+      "room": "room-<ten-phong>",
+      "offer": "offer-<ten-uu-dai>",
+      "faq": "faq-<nhom>-<so>",
+      "note": "Các id được dùng để liên kết chéo giữa các file (branch_id, room_ids, related_faq_ids)."
+    }
+  },
+  "brand_info": {
+    "name": "PML Boutique & Lifestyle Hotel Group",
+    "short_name": "PML Hotel",
+    "concept": "The Warmth of Kinship & Modern Lifestyle Sanctuary",
+    "concept_vi": "Hơi ấm của sự gắn kết & không gian sống hiện đại",
+    "tagline_vi": "Lưu trú vì cảm xúc.",
+    "tagline_en": "Stay for the feeling.",
+    "founded_year": 2018,
+    "city": "TP. Hồ Chí Minh",
+    "positioning": "Khách sạn boutique & lifestyle tại trung tâm Quận 1, kết hợp nghi thức tắm khoáng Nhật Bản với tinh thần hiếu khách của Sài Gòn.",
+    "story_vi": "PML bắt đầu từ một niềm tin giản dị: khách sạn nên mang lại cảm giác được chờ đón hơn là được phục vụ. Từ cơ sở đầu tiên năm 2018, PML phát triển thành ba địa chỉ ở Quận 1, mỗi nơi một tính cách nhưng chung một tinh thần: không gian có xúc giác, nhịp sống chậm, và những nghi thức nhỏ được làm thật tinh tế.",
+    "brand_pillars": [
+      {
+        "name": "Kinship – Sự gắn kết",
+        "description": "Đội ngũ nhớ tên khách, nhớ sở thích, đón tiếp như người quen."
+      },
+      {
+        "name": "Ritual – Nghi thức nhỏ",
+        "description": "Tắm khoáng Onsen, trà chiều, cà phê phin: những khoảnh khắc chậm được chăm chút."
+      },
+      {
+        "name": "Locality – Hồn Sài Gòn",
+        "description": "Thiết kế Indochine, ẩm thực địa phương, bản đồ khám phá do chính nhân viên chọn lọc."
+      },
+      {
+        "name": "Calm – Sự tĩnh lặng",
+        "description": "Cách âm tốt, ánh sáng ấm, không gian yên tĩnh giữa trung tâm sôi động."
+      }
+    ],
+    "brand_voice": {
+      "tone": [
+        "ấm áp",
+        "tinh tế",
+        "gần gũi",
+        "ngắn gọn"
+      ],
+      "avoid": [
+        "quảng cáo quá đà",
+        "ngôn ngữ sáo rỗng",
+        "từ ngữ máy móc"
+      ],
+      "address_guests_as": "Quý khách / anh / chị"
+    },
+    "target_guests": [
+      "Cặp đôi nghỉ dưỡng và kỷ niệm",
+      "Khách công tác theo xu hướng Bleisure",
+      "Du khách quốc tế khám phá Sài Gòn",
+      "Khách trong nước staycation cuối tuần",
+      "Freelancer, digital nomad lưu trú dài ngày",
+      "Gia đình nhỏ có trẻ em"
+    ],
+    "hotline": "+84 28 3822 9999",
+    "zalo": "https://zalo.me/pmlhotel",
+    "email": "stay@pmlhotel.com",
+    "website": "https://pmlhotel.example",
+    "social": {
+      "facebook": "https://facebook.com/pmlhotel",
+      "instagram": "https://instagram.com/pmlhotel",
+      "tiktok": "https://tiktok.com/@pmlhotel",
+      "youtube": "https://youtube.com/@pmlhotel"
+    },
+    "reception_hours": "24/7",
+    "staff_languages": [
+      "Tiếng Việt",
+      "English",
+      "日本語 (giao tiếp cơ bản)",
+      "한국어 (giao tiếp cơ bản)"
+    ],
+    "certifications_placeholder": "Thay bằng giải thưởng, chứng nhận thật của khách sạn (không dùng tên tổ chức khi chưa có xác nhận)."
+  },
+  "general_policies": {
+    "check_in_time": "14:00",
+    "check_out_time": "12:00",
+    "early_check_in_policy": "Nhận phòng sớm tùy thuộc vào tình trạng phòng trống. Trước 09:00 tính 100% giá phòng, từ 09:00 - 12:00 tính 50% giá phòng.",
+    "late_check_out_policy": "Trả phòng muộn đến 15:00 tính 30% giá phòng, đến 18:00 tính 50% giá phòng, sau 18:00 tính 100% giá phòng.",
+    "deposit_policy": "Khách hàng cần đặt cọc 500,000 VND/đêm hoặc CCCD/Hộ chiếu khi làm thủ tục nhận phòng.",
+    "cancellation_policy": "Miễn phí hủy phòng trước 3 ngày so với ngày nhận phòng. Hủy trong vòng 3 ngày tính phí 100% đêm đầu tiên.",
+    "children_policy": "Trẻ em dưới 6 tuổi ở chung giường với cha mẹ miễn phí. Trẻ từ 6 - 11 tuổi phụ thu ăn sáng 150,000 VND/ngày.",
+    "no_show_policy": "Khách không đến nhận phòng mà không thông báo (no-show) bị tính 100% giá phòng đêm đầu tiên; các đêm còn lại được hủy tự động.",
+    "date_change_policy": "Miễn phí đổi ngày nếu yêu cầu trước 3 ngày so với ngày nhận phòng và còn phòng trống; giá áp dụng theo giá tại thời điểm đổi.",
+    "age_requirement": "Người đứng tên đặt phòng và nhận phòng phải từ 18 tuổi trở lên.",
+    "id_requirements": "Khách Việt Nam xuất trình CCCD/CMND; khách nước ngoài xuất trình hộ chiếu kèm thị thực hoặc giấy tờ miễn thị thực còn hiệu lực. Khách sạn có trách nhiệm khai báo lưu trú theo quy định pháp luật.",
+    "payment_methods": [
+      "Tiền mặt VND",
+      "Thẻ Visa / Mastercard / JCB",
+      "Chuyển khoản ngân hàng",
+      "Ví điện tử / QR (MoMo, VNPay)"
+    ],
+    "foreign_currency_policy": "Khách sạn chấp nhận thanh toán bằng VND. Có thể hỗ trợ đổi ngoại tệ theo tỷ giá niêm yết tại quầy (tùy cơ sở).",
+    "extra_bed_policy": "Giường phụ 350,000 VND/đêm (đã gồm ăn sáng cho 1 người), tùy loại phòng và chỉ áp dụng cho phòng còn đủ diện tích.",
+    "extra_person_policy": "Phụ thu người lớn thêm: 450,000 VND/người/đêm (gồm ăn sáng). Không vượt quá sức chứa tối đa của từng hạng phòng.",
+    "baby_cot_policy": "Miễn phí cũi em bé (dưới 2 tuổi), cần báo trước khi đặt phòng.",
+    "pets_policy": "Hiện chưa nhận thú cưng, ngoại trừ chó dẫn đường theo quy định.",
+    "smoking_policy": "Toàn bộ phòng và khu vực công cộng trong nhà là không hút thuốc. Phạt vệ sinh 1,000,000 VND nếu vi phạm. Có khu hút thuốc riêng ngoài trời tại mỗi cơ sở.",
+    "quiet_hours": "22:00 - 07:00. Vui lòng giữ yên lặng để không ảnh hưởng đến khách lưu trú khác.",
+    "visitors_policy": "Khách đến thăm vui lòng đăng ký tại lễ tân, có mặt trong khu vực sảnh/lounge đến 22:00. Không được ở lại qua đêm nếu chưa đăng ký lưu trú.",
+    "damage_policy": "Khách chịu trách nhiệm bồi thường hư hỏng hoặc mất mát tài sản của khách sạn theo bảng giá niêm yết tại phòng.",
+    "lost_and_found_policy": "Đồ thất lạc được lưu giữ 90 ngày. Khách sạn hỗ trợ gửi về địa chỉ khách yêu cầu, phí vận chuyển do khách thanh toán.",
+    "luggage_storage_policy": "Miễn phí gửi hành lý trước giờ nhận phòng và sau giờ trả phòng trong ngày.",
+    "parking_policy": "Xe máy gửi miễn phí. Ô tô: gửi tại bãi đối tác gần khách sạn, phí tham khảo 100,000 - 150,000 VND/đêm (xem chi tiết từng cơ sở).",
+    "wifi_policy": "Wi-Fi miễn phí tốc độ cao toàn khách sạn. Mật khẩu được cung cấp khi nhận phòng.",
+    "invoice_policy": "Hỗ trợ xuất hóa đơn VAT cho doanh nghiệp. Vui lòng cung cấp tên công ty, mã số thuế, địa chỉ khi đặt phòng hoặc trước khi trả phòng.",
+    "group_booking_policy": "Đặt từ 5 phòng trở lên được xem là đặt đoàn, áp dụng bảng giá riêng và điều kiện đặt cọc riêng. Liên hệ bộ phận Sales.",
+    "long_stay_policy": "Lưu trú từ 7 đêm trở lên được hưởng ưu đãi giá. Từ 30 đêm áp dụng hợp đồng lưu trú dài hạn.",
+    "onsen_safety_policy": "Trẻ em dưới 12 tuổi phải có người lớn đi kèm. Không khuyến khích sử dụng bể khoáng nóng và phòng xông hơi với người đang mang thai, có bệnh tim mạch, huyết áp bất thường hoặc đã dùng rượu bia. Mỗi lượt ngâm nên không quá 15 - 20 phút.",
+    "safety_and_security": "Camera an ninh tại khu vực công cộng, két an toàn trong phòng, thẻ từ kiểm soát thang máy, hệ thống báo cháy và thoát hiểm theo tiêu chuẩn, lễ tân trực 24/7.",
+    "privacy_policy_summary": "Thông tin cá nhân của khách chỉ dùng cho mục đích đặt phòng, khai báo lưu trú theo quy định và chăm sóc khách hàng. Khách sạn không chia sẻ cho bên thứ ba ngoài các trường hợp pháp luật yêu cầu."
+  },
+  "pricing_rules": {
+    "price_basis": "Giá công bố là giá mỗi phòng mỗi đêm, tính theo VND.",
+    "price_includes": "Giá đã bao gồm thuế VAT và phí dịch vụ (cần xác nhận lại theo cấu hình thực tế của khách sạn).",
+    "rate_plans": [
+      {
+        "id": "rate-flexible",
+        "name": "Giá linh hoạt",
+        "adjustment": "0%",
+        "conditions": "Miễn phí hủy trước 3 ngày, có thể đổi ngày."
+      },
+      {
+        "id": "rate-advance-14",
+        "name": "Đặt sớm 14 ngày",
+        "adjustment": "-10%",
+        "conditions": "Đặt trước tối thiểu 14 ngày, miễn phí hủy trước 7 ngày."
+      },
+      {
+        "id": "rate-nonrefundable",
+        "name": "Giá không hoàn hủy",
+        "adjustment": "-15%",
+        "conditions": "Thanh toán toàn bộ khi đặt, không hoàn tiền, không đổi ngày."
+      },
+      {
+        "id": "rate-longstay-7",
+        "name": "Lưu trú 7 đêm trở lên",
+        "adjustment": "-12%",
+        "conditions": "Áp dụng từ đêm thứ 1 khi đặt tối thiểu 7 đêm liên tục."
+      },
+      {
+        "id": "rate-longstay-30",
+        "name": "Lưu trú 30 đêm trở lên",
+        "adjustment": "-25%",
+        "conditions": "Cần ký hợp đồng lưu trú dài hạn, thanh toán theo tháng."
+      }
+    ],
+    "weekend_surcharge": {
+      "days": [
+        "Friday",
+        "Saturday"
+      ],
+      "percent": 10
+    },
+    "peak_periods": [
+      {
+        "name": "Tết Nguyên Đán (7 ngày quanh Tết)",
+        "surcharge_percent": 30,
+        "min_stay_nights": 2
+      },
+      {
+        "name": "Lễ 30/4 - 1/5",
+        "surcharge_percent": 25,
+        "min_stay_nights": 2
+      },
+      {
+        "name": "Quốc khánh 2/9",
+        "surcharge_percent": 20,
+        "min_stay_nights": 2
+      },
+      {
+        "name": "Giáng sinh & Tết Dương lịch (24/12 - 02/01)",
+        "surcharge_percent": 30,
+        "min_stay_nights": 2
+      },
+      {
+        "name": "Valentine (13 - 15/02) & 8/3 & 20/10",
+        "surcharge_percent": 15,
+        "min_stay_nights": 1
+      }
+    ],
+    "direct_booking_benefits": [
+      "Miễn phí Trà chiều Signature cho khách đặt trực tiếp qua Website",
+      "Ưu tiên nâng hạng phòng miễn phí khi còn phòng trống (không cam kết)",
+      "Miễn phí đổi ngày một lần",
+      "Tích lũy điểm PML Kinship Club"
+    ],
+    "extra_charges": {
+      "extra_bed_vnd": 350000,
+      "extra_adult_vnd": 450000,
+      "child_6_11_breakfast_vnd": 150000,
+      "adult_breakfast_vnd": 250000,
+      "smoking_cleaning_fee_vnd": 1000000,
+      "onsen_outside_guest_vnd": 350000
+    },
+    "price_display_rules": "Hiển thị giá bằng VND với dấu chấm phân cách hàng nghìn (ví dụ 2.200.000đ). Luôn ghi chú: giá có thể thay đổi theo mùa và tình trạng phòng; giá cuối cùng hiển thị ở bước xác nhận đặt phòng."
+  },
+  "loyalty_program": {
+    "name": "PML Kinship Club",
+    "description": "Chương trình khách hàng thân thiết miễn phí dành cho khách đặt phòng trực tiếp.",
+    "earning_rule": "Mỗi 10,000 VND chi tiêu cho phòng và dịch vụ tại khách sạn tích lũy 1 điểm.",
+    "tiers": [
+      {
+        "id": "tier-member",
+        "name": "Member",
+        "requirement": "Đăng ký miễn phí",
+        "benefits": [
+          "Tích điểm mỗi lần lưu trú",
+          "Ưu đãi sinh nhật: tặng 1 suất Trà chiều",
+          "Nhận thông tin ưu đãi sớm"
+        ]
+      },
+      {
+        "id": "tier-silver",
+        "name": "Silver",
+        "requirement": "Từ 5 đêm hoặc 5,000 điểm trong 12 tháng",
+        "benefits": [
+          "Giảm 5% giá phòng khi đặt trực tiếp",
+          "Nhận phòng sớm miễn phí (tùy tình trạng phòng)",
+          "Giảm 10% menu Sky Bar"
+        ]
+      },
+      {
+        "id": "tier-gold",
+        "name": "Gold",
+        "requirement": "Từ 15 đêm hoặc 15,000 điểm trong 12 tháng",
+        "benefits": [
+          "Giảm 10% giá phòng khi đặt trực tiếp",
+          "Trả phòng muộn đến 15:00 miễn phí (tùy tình trạng phòng)",
+          "Miễn phí 1 lượt Onsen/lần lưu trú tại chi nhánh khác",
+          "Ưu tiên nâng hạng phòng"
+        ]
+      }
+    ],
+    "points_redemption": "1 điểm = 100 VND khi đổi cho dịch vụ F&B, spa, xe đưa đón. Tối đa 30% giá trị hóa đơn."
+  },
+  "contact_directory": [
+    {
+      "department": "Đặt phòng (Reservations)",
+      "phone": "+84 28 3822 9999",
+      "email": "stay@pmlhotel.com",
+      "hours": "24/7"
+    },
+    {
+      "department": "Sales đoàn & doanh nghiệp",
+      "phone": "+84 28 3822 9988",
+      "email": "sales@pmlhotel.com",
+      "hours": "08:00 - 18:00, Thứ 2 - Thứ 7"
+    },
+    {
+      "department": "Sự kiện & tiệc nhỏ",
+      "phone": "+84 28 3822 9977",
+      "email": "events@pmlhotel.com",
+      "hours": "08:00 - 18:00, Thứ 2 - Thứ 7"
+    },
+    {
+      "department": "Chăm sóc khách hàng & góp ý",
+      "phone": "+84 28 3822 9966",
+      "email": "care@pmlhotel.com",
+      "hours": "08:00 - 22:00 hàng ngày"
+    },
+    {
+      "department": "Kế toán & hóa đơn",
+      "phone": "+84 28 3822 9955",
+      "email": "billing@pmlhotel.com",
+      "hours": "08:00 - 17:00, Thứ 2 - Thứ 6"
+    },
+    {
+      "department": "Tuyển dụng",
+      "phone": null,
+      "email": "careers@pmlhotel.com",
+      "hours": null
+    },
+    {
+      "department": "Truyền thông & hợp tác",
+      "phone": null,
+      "email": "press@pmlhotel.com",
+      "hours": null
+    }
+  ],
+  "branches": [
+    {
+      "id": "pml-dong-du",
+      "slug": "dong-du",
+      "name": "PML Hotel Đông Du Edition",
+      "short_name": "Đông Du",
+      "type": "Boutique city hotel",
+      "style": "Indochine kết hợp hiện đại",
+      "address": "19-21 Đông Du, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
+      "district": "Quận 1",
+      "ward": "Bến Nghé",
+      "coordinates_approx": {
+        "lat": 10.7743,
+        "lng": 106.704,
+        "note": "Ước tính, cần xác minh bằng Google Maps"
+      },
+      "phone": "+84 28 3822 1111",
+      "email": "dongdu@pmlhotel.com",
+      "highlights": "Vị trí vàng sát cạnh phố đi bộ Nguyễn Huệ, Takashimaya và bến Bạch Đằng. Thiết kế Indochine kết hợp hiện đại.",
+      "tagline_vi": "Trái tim Sài Gòn, ngay trước cửa.",
+      "total_rooms": 42,
+      "floors": 9,
+      "year_opened": 2018,
+      "reception_hours": "24/7",
+      "check_in_time": "14:00",
+      "check_out_time": "12:00",
+      "room_ids": [
+        "room-superior-indochine",
+        "room-deluxe-city",
+        "room-executive-corner",
+        "room-family-connecting"
+      ],
+      "facilities": [
+        "Sảnh lounge Indochine",
+        "Nhà hàng ăn sáng buffet",
+        "Quầy Trà chiều Signature",
+        "Phòng làm việc chung nhỏ",
+        "Thang máy, két an toàn, Wi-Fi miễn phí",
+        "Dịch vụ giặt ủi, gửi hành lý",
+        "Bàn tour & concierge"
+      ],
+      "not_available": [
+        "Onsen",
+        "Hồ bơi",
+        "Rooftop Jacuzzi"
+      ],
+      "parking": {
+        "motorbike": "Miễn phí, hầm xe nhỏ",
+        "car": "Đỗ tạm thời để xuống hành lý trước cửa; gửi qua đêm tại bãi đối tác gần đó, khoảng 150,000 VND/đêm (cần đặt trước)."
+      },
+      "accessibility": "Có thang máy, lối vào có đường dốc; phòng dành cho khách khuyết tật vận động: liên hệ khách sạn để xác nhận.",
+      "directions": {
+        "from_airport_sgn": "Khoảng 8 - 9 km, 30 - 45 phút bằng ô tô tùy giờ cao điểm.",
+        "from_ben_xe_mien_dong_moi": "Khoảng 25 km, 45 - 75 phút.",
+        "by_metro": "Ga Nhà hát Thành phố của tuyến Metro số 1 cách khoảng 300 - 500 m đi bộ (cần xác minh giờ hoạt động mới nhất).",
+        "by_taxi_grab": "Báo tài xế điểm đến '19 Đông Du, Quận 1'. Xe có thể dừng đón khách ngay trước cửa."
+      },
+      "nearby_landmarks": [
+        {
+          "name": "Phố đi bộ Nguyễn Huệ",
+          "distance": "150m (3 phút đi bộ)"
+        },
+        {
+          "name": "Nhà hát Thành phố (Opera House)",
+          "distance": "200m (4 phút đi bộ)"
+        },
+        {
+          "name": "Bến Bạch Đằng & Waterbus",
+          "distance": "300m (5 phút đi bộ)"
+        },
+        {
+          "name": "Trung tâm thương mại Vincom Đồng Khởi",
+          "distance": "250m"
+        },
+        {
+          "name": "Takashimaya (Saigon Centre)",
+          "distance": "Khoảng 350m (6 phút đi bộ)"
+        },
+        {
+          "name": "Bitexco Financial Tower",
+          "distance": "Khoảng 600m (10 phút đi bộ)"
+        },
+        {
+          "name": "Nhà thờ Đức Bà & Bưu điện Trung tâm",
+          "distance": "Khoảng 1,2 km (5 phút đi xe)"
+        },
+        {
+          "name": "Chợ Bến Thành",
+          "distance": "Khoảng 1,2 km (5 phút đi xe)"
+        }
+      ],
+      "best_for": [
+        "Khách du lịch lần đầu đến Sài Gòn",
+        "Khách công tác ở khu trung tâm",
+        "Cặp đôi thích đi bộ khám phá thành phố"
+      ],
+      "neighborhood_vibe_vi": "Khu vực sôi động ban ngày, lung linh về đêm; mọi thứ nằm trong bán kính đi bộ: quán cà phê, nhà hàng, mua sắm, phố đi bộ và bờ sông.",
+      "signature_experience": "Trà chiều Signature tại sảnh Indochine và lộ trình đi bộ Sài Gòn xưa & nay do concierge gợi ý."
+    },
+    {
+      "id": "pml-onsen-hai-ba-trung",
+      "slug": "onsen-hai-ba-trung",
+      "name": "PML Hotel & Onsen Lounge",
+      "short_name": "Onsen Hai Bà Trưng",
+      "type": "Wellness boutique hotel",
+      "style": "Japandi: gỗ tuyết tùng, đá tự nhiên, ánh sáng ấm",
+      "address": "40 Hai Bà Trưng, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
+      "district": "Quận 1",
+      "ward": "Bến Nghé",
+      "coordinates_approx": {
+        "lat": 10.7775,
+        "lng": 106.7022,
+        "note": "Ước tính, cần xác minh bằng Google Maps"
+      },
+      "phone": "+84 28 3822 2222",
+      "email": "onsen@pmlhotel.com",
+      "highlights": "Khách sạn Boutique duy nhất tại Quận 1 sở hữu tổ hợp Bể ngâm khoáng nóng Onsen chuẩn Nhật và Phòng xông hơi đá muối.",
+      "tagline_vi": "Chậm lại giữa lòng Quận 1.",
+      "total_rooms": 36,
+      "floors": 8,
+      "year_opened": 2020,
+      "reception_hours": "24/7",
+      "check_in_time": "14:00",
+      "check_out_time": "12:00",
+      "room_ids": [
+        "room-onsen-suite",
+        "room-onsen-deluxe-queen",
+        "room-onsen-twin",
+        "room-onsen-family-suite"
+      ],
+      "facilities": [
+        "Tổ hợp Onsen khoáng nóng (tầng 7)",
+        "Bể ngâm lạnh, phòng xông hơi đá muối Himalayan",
+        "Khu Lounge thư giãn với trà thảo mộc",
+        "Quầy Trà chiều Signature",
+        "Nhà hàng ăn sáng á - âu",
+        "Dịch vụ massage tại phòng (đặt trước)",
+        "Wi-Fi miễn phí, két an toàn, thang máy"
+      ],
+      "not_available": [
+        "Hồ bơi",
+        "Rooftop bar",
+        "Phòng gym"
+      ],
+      "parking": {
+        "motorbike": "Miễn phí, hầm xe tầng trệt",
+        "car": "Có dịch vụ valet đưa xe tới bãi đối tác gần đó, khoảng 150,000 VND/đêm (cần đặt trước)."
+      },
+      "accessibility": "Có thang máy tới khu Onsen; khu vực Onsen có tay vịn chống trượt. Liên hệ khách sạn để được hỗ trợ khách cần xe lăn.",
+      "directions": {
+        "from_airport_sgn": "Khoảng 8 km, 30 - 40 phút bằng ô tô tùy giờ cao điểm.",
+        "by_metro": "Ga Bến Thành hoặc ga Nhà hát Thành phố của tuyến Metro số 1, đi bộ khoảng 10 - 12 phút (cần xác minh).",
+        "by_taxi_grab": "Báo tài xế điểm đến '40 Hai Bà Trưng, Quận 1'."
+      },
+      "nearby_landmarks": [
+        {
+          "name": "Nhà thờ Đức Bà & Bưu điện Trung tâm",
+          "distance": "400m (6 phút đi bộ)"
+        },
+        {
+          "name": "Đường sách Nguyễn Văn Bình",
+          "distance": "350m"
+        },
+        {
+          "name": "Chợ Bến Thành",
+          "distance": "800m (3 phút đi xe)"
+        },
+        {
+          "name": "Dinh Độc Lập",
+          "distance": "Khoảng 1 km (4 phút đi xe)"
+        },
+        {
+          "name": "Phố đi bộ Nguyễn Huệ",
+          "distance": "Khoảng 1,3 km (5 phút đi xe)"
+        },
+        {
+          "name": "Bảo tàng Chứng tích Chiến tranh",
+          "distance": "Khoảng 1,6 km (7 phút đi xe)"
+        }
+      ],
+      "best_for": [
+        "Cặp đôi nghỉ dưỡng",
+        "Khách muốn phục hồi sau chuyến bay dài",
+        "Staycation cuối tuần"
+      ],
+      "neighborhood_vibe_vi": "Khu trung tâm hành chính - văn hóa, gần nhà thờ Đức Bà, đường sách và các quán cà phê yên tĩnh; buổi tối dễ dàng đi bộ ra phố.",
+      "signature_experience": "Nghi thức tắm khoáng Onsen: ngâm nóng - ngâm lạnh - xông hơi đá muối - nghỉ tại Lounge với trà thảo mộc."
+    },
+    {
+      "id": "pml-central-park",
+      "slug": "central-park",
+      "name": "PML Hotel Central Park & Rooftop",
+      "short_name": "Central Park",
+      "type": "Lifestyle rooftop hotel",
+      "style": "Hiện đại, nhiều cây xanh, sân thượng mở",
+      "address": "223 Hai Bà Trưng, Phường Tân Định, Quận 1, TP. Hồ Chí Minh",
+      "district": "Quận 1",
+      "ward": "Tân Định",
+      "coordinates_approx": {
+        "lat": 10.7897,
+        "lng": 106.6919,
+        "note": "Ước tính, cần xác minh bằng Google Maps"
+      },
+      "phone": "+84 28 3822 3333",
+      "email": "centralpark@pmlhotel.com",
+      "highlights": "Sở hữu Rooftop Jacuzzi Bar view công viên Lê Văn Tám, không gian Co-working Lounge và phòng Gym hiện đại.",
+      "tagline_vi": "Sài Gòn nhìn từ trên cao.",
+      "total_rooms": 48,
+      "floors": 12,
+      "year_opened": 2022,
+      "reception_hours": "24/7",
+      "check_in_time": "14:00",
+      "check_out_time": "12:00",
+      "room_ids": [
+        "room-rooftop-jacuzzi",
+        "room-park-view-deluxe",
+        "room-park-twin",
+        "room-studio-longstay"
+      ],
+      "facilities": [
+        "Rooftop Jacuzzi & Sky Bar (tầng thượng)",
+        "Co-working Lounge (tầng 2)",
+        "Phòng Gym hiện đại",
+        "Quầy Trà chiều Signature",
+        "Nhà hàng ăn sáng buffet",
+        "Giặt ủi self-service cho khách ở dài ngày",
+        "Wi-Fi miễn phí, két an toàn, thang máy"
+      ],
+      "not_available": [
+        "Onsen",
+        "Hồ bơi trong nhà"
+      ],
+      "parking": {
+        "motorbike": "Miễn phí, hầm xe 2 tầng",
+        "car": "Có chỗ đỗ ô tô hạn chế dưới hầm (tối đa 6 xe, cần đặt trước), phí tham khảo 100,000 VND/đêm."
+      },
+      "accessibility": "Thang máy lên tới tầng thượng; phòng gym và co-working lounge có lối đi thuận tiện. Liên hệ khách sạn để xác nhận phòng phù hợp.",
+      "directions": {
+        "from_airport_sgn": "Khoảng 6 - 7 km, 25 - 35 phút bằng ô tô tùy giờ cao điểm.",
+        "by_taxi_grab": "Báo tài xế điểm đến '223 Hai Bà Trưng, Quận 1', đối diện công viên Lê Văn Tám."
+      },
+      "nearby_landmarks": [
+        {
+          "name": "Công viên Lê Văn Tám",
+          "distance": "Đối diện (1 phút đi bộ)"
+        },
+        {
+          "name": "Chợ Tân Định & Nhà thờ Tân Định (Chợ Hồng)",
+          "distance": "300m (5 phút đi bộ)"
+        },
+        {
+          "name": "Chùa Ngọc Hoàng (Phước Hải Tự)",
+          "distance": "Khoảng 700m (3 phút đi xe)"
+        },
+        {
+          "name": "Bảo tàng Mỹ thuật TP.HCM",
+          "distance": "Khoảng 1,5 km (6 phút đi xe)"
+        },
+        {
+          "name": "Thảo Cầm Viên (Sở thú)",
+          "distance": "Khoảng 2,5 km (10 phút đi xe)"
+        },
+        {
+          "name": "Dinh Độc Lập",
+          "distance": "Khoảng 2 km (8 phút đi xe)"
+        }
+      ],
+      "best_for": [
+        "Khách công tác kiêm nghỉ dưỡng (Bleisure)",
+        "Tiệc kỷ niệm, cầu hôn",
+        "Khách ở dài ngày, freelancer"
+      ],
+      "neighborhood_vibe_vi": "Khu Tân Định nhiều quán ăn địa phương nổi tiếng, yên tĩnh hơn trung tâm nhưng chỉ vài phút di chuyển tới các điểm chính của Quận 1.",
+      "signature_experience": "Ngâm Jacuzzi ngắm hoàng hôn và thưởng thức cocktail tại Sky Bar."
+    }
+  ],
+  "room_standard_inclusions": [
+    "Wi-Fi miễn phí tốc độ cao",
+    "Điều hòa riêng, TV thông minh",
+    "Két an toàn, mini bar (tính phí theo tiêu thụ)",
+    "Máy sấy tóc, đồ vệ sinh cá nhân organic, dép đi trong phòng",
+    "Ấm đun nước, trà và cà phê miễn phí",
+    "Nước suối miễn phí hàng ngày",
+    "Dịch vụ dọn phòng hàng ngày (có thể từ chối để tiết kiệm năng lượng)"
+  ],
+  "rooms": [
+    {
+      "id": "room-onsen-suite",
+      "slug": "onsen-signature-suite",
+      "branch_id": "pml-onsen-hai-ba-trung",
+      "name": "Onsen Signature Suite",
+      "name_en": "Onsen Signature Suite",
+      "category": "Suite",
+      "size_sqm": 42,
+      "bed_type": "1 Giường King Size (1m8 x 2m)",
+      "capacity": "2 Người lớn + 1 Trẻ em dưới 6 tuổi",
+      "max_adults": 2,
+      "max_children": 1,
+      "view": "Cửa sổ kính kịch trần view phố",
+      "floor_range": "Tầng 5 - 6",
+      "price_vnd_per_night": 2200000,
+      "price_display": "2,200,000 VND / đêm",
+      "breakfast_included": true,
+      "inventory_count": 4,
+      "description_vi": "Một nơi ẩn mình phục hồi sâu với bồn ngâm khoáng riêng và phòng xông hơi khô ngay trong phòng. Gỗ tuyết tùng, đá tự nhiên và ánh sáng ấm tạo cảm giác như một ryokan thu nhỏ giữa Quận 1.",
+      "key_features": [
+        "Bồn tắm ngâm khoáng Onsen riêng tại phòng",
+        "Phòng xông hơi khô (Sauna) riêng",
+        "Miễn phí 02 suất Trà chiều Signature",
+        "Cửa sổ kính Kịch trần View phố",
+        "Loa Bluetooth Marshall & Máy pha cà phê Espresso"
+      ],
+      "bathroom": "Bồn ngâm khoáng riêng, vòi sen mưa, đồ tắm yukata",
+      "tags": [
+        "wellness",
+        "romantic",
+        "private-onsen",
+        "sauna"
+      ],
+      "suitable_for": "Cặp đôi hẹn hò, nghỉ dưỡng thư giãn, khách muốn trải nghiệm khoáng nóng riêng tư.",
+      "not_suitable_for": "Nhóm trên 3 người; khách không phù hợp với tắm nước nóng (xem chính sách an toàn Onsen).",
+      "upsell_ids": [
+        "svc-romantic-setup",
+        "svc-massage-60",
+        "offer-onsen-weekend"
+      ],
+      "images": [
+        "/images/rooms/onsen-suite-1.jpg",
+        "/images/rooms/onsen-suite-2.jpg",
+        "/images/rooms/onsen-suite-bath.jpg"
+      ]
+    },
+    {
+      "id": "room-onsen-deluxe-queen",
+      "slug": "onsen-deluxe-queen",
+      "branch_id": "pml-onsen-hai-ba-trung",
+      "name": "Onsen Deluxe Queen",
+      "name_en": "Onsen Deluxe Queen",
+      "category": "Deluxe",
+      "size_sqm": 26,
+      "bed_type": "1 Giường Queen (1m6 x 2m)",
+      "capacity": "2 Người lớn",
+      "max_adults": 2,
+      "max_children": 0,
+      "view": "View phố hoặc view nội khu",
+      "floor_range": "Tầng 2 - 4",
+      "price_vnd_per_night": 1350000,
+      "price_display": "1,350,000 VND / đêm",
+      "breakfast_included": true,
+      "inventory_count": 12,
+      "description_vi": "Phòng gọn gàng, ấm áp, phù hợp khách muốn tận hưởng Onsen chung của khách sạn với mức giá dễ tiếp cận. Gỗ sáng màu, nệm êm và ánh sáng dịu.",
+      "key_features": [
+        "Miễn phí vào tổ hợp Onsen khoáng nóng chung (06:00 - 22:00)",
+        "Giường Queen nệm cao cấp",
+        "Bàn làm việc nhỏ",
+        "Máy pha cà phê Espresso"
+      ],
+      "bathroom": "Vòi sen mưa, đồ vệ sinh organic",
+      "tags": [
+        "wellness",
+        "value",
+        "couple"
+      ],
+      "suitable_for": "Cặp đôi, khách đi một mình muốn thư giãn với ngân sách vừa phải.",
+      "upsell_ids": [
+        "svc-massage-60",
+        "offer-onsen-weekend"
+      ],
+      "images": [
+        "/images/rooms/onsen-deluxe-1.jpg",
+        "/images/rooms/onsen-deluxe-2.jpg"
+      ]
+    },
+    {
+      "id": "room-onsen-twin",
+      "slug": "onsen-twin",
+      "branch_id": "pml-onsen-hai-ba-trung",
+      "name": "Onsen Twin",
+      "name_en": "Onsen Twin",
+      "category": "Deluxe",
+      "size_sqm": 28,
+      "bed_type": "2 Giường Đơn (1m2 x 2m)",
+      "capacity": "2 Người lớn hoặc 1 người lớn + 1 trẻ em",
+      "max_adults": 2,
+      "max_children": 1,
+      "view": "View phố",
+      "floor_range": "Tầng 3 - 4",
+      "price_vnd_per_night": 1450000,
+      "price_display": "1,450,000 VND / đêm",
+      "breakfast_included": true,
+      "inventory_count": 8,
+      "description_vi": "Hai giường đơn tiện cho bạn bè, đồng nghiệp hoặc cha mẹ đi cùng con nhỏ, vẫn được sử dụng đầy đủ khu Onsen của khách sạn.",
+      "key_features": [
+        "Miễn phí vào tổ hợp Onsen khoáng nóng chung",
+        "Hai giường đơn có thể ghép thành giường đôi theo yêu cầu",
+        "Bàn làm việc",
+        "Cửa sổ lớn đón sáng"
+      ],
+      "bathroom": "Vòi sen mưa, đồ vệ sinh organic",
+      "tags": [
+        "twin",
+        "friends",
+        "colleagues",
+        "wellness"
+      ],
+      "suitable_for": "Bạn bè, đồng nghiệp, cha mẹ đi cùng con nhỏ.",
+      "upsell_ids": [
+        "svc-massage-60"
+      ],
+      "images": [
+        "/images/rooms/onsen-twin-1.jpg",
+        "/images/rooms/onsen-twin-2.jpg"
+      ]
+    },
+    {
+      "id": "room-onsen-family-suite",
+      "slug": "onsen-family-suite",
+      "branch_id": "pml-onsen-hai-ba-trung",
+      "name": "Onsen Family Suite",
+      "name_en": "Onsen Family Suite",
+      "category": "Suite",
+      "size_sqm": 52,
+      "bed_type": "1 Giường King + 1 Sofa bed",
+      "capacity": "2 Người lớn + 2 Trẻ em",
+      "max_adults": 2,
+      "max_children": 2,
+      "view": "View phố",
+      "floor_range": "Tầng 6",
+      "price_vnd_per_night": 2700000,
+      "price_display": "2,700,000 VND / đêm",
+      "breakfast_included": true,
+      "inventory_count": 2,
+      "description_vi": "Căn suite rộng rãi cho gia đình nhỏ: phòng ngủ riêng, khu sinh hoạt chung có sofa bed và bồn tắm lớn. Vẫn giữ nhịp thư giãn của Onsen cho cả nhà.",
+      "key_features": [
+        "Phòng ngủ và khu sinh hoạt tách biệt",
+        "Sofa bed cho trẻ em",
+        "Bồn tắm nằm lớn",
+        "Miễn phí vào Onsen chung (trẻ dưới 12 tuổi có người lớn đi kèm)"
+      ],
+      "bathroom": "Bồn tắm nằm và vòi sen riêng",
+      "tags": [
+        "family",
+        "suite",
+        "kids"
+      ],
+      "suitable_for": "Gia đình có trẻ em, nhóm 3 - 4 người.",
+      "upsell_ids": [
+        "svc-baby-cot",
+        "svc-extra-bed"
+      ],
+      "images": [
+        "/images/rooms/onsen-family-1.jpg",
+        "/images/rooms/onsen-family-2.jpg"
+      ]
+    },
+    {
+      "id": "room-superior-indochine",
+      "slug": "superior-indochine",
+      "branch_id": "pml-dong-du",
+      "name": "Superior Indochine",
+      "name_en": "Superior Indochine",
+      "category": "Superior",
+      "size_sqm": 22,
+      "bed_type": "1 Giường Queen (1m6 x 2m)",
+      "capacity": "2 Người lớn",
+      "max_adults": 2,
+      "max_children": 0,
+      "view": "View nội khu / hẻm yên tĩnh",
+      "floor_range": "Tầng 2 - 4",
+      "price_vnd_per_night": 1150000,
+      "price_display": "1,150,000 VND / đêm",
+      "breakfast_included": false,
+      "inventory_count": 10,
+      "description_vi": "Phòng gọn gàng mang phong cách Indochine, gạch hoa, gỗ tối màu và đèn vàng ấm; lựa chọn tiết kiệm nhưng vẫn đủ tinh tế ở vị trí trung tâm.",
+      "key_features": [
+        "Gạch hoa Indochine và nội thất gỗ",
+        "Bàn làm việc nhỏ",
+        "Cách âm tốt",
+        "Có thể thêm bữa sáng 250,000 VND/người"
+      ],
+      "bathroom": "Vòi sen, đồ vệ sinh organic",
+      "tags": [
+        "budget",
+        "central",
+        "solo",
+        "couple"
+      ],
+      "suitable_for": "Khách đi một mình, cặp đôi, khách muốn ở trung tâm với ngân sách hợp lý.",
+      "upsell_ids": [
+        "svc-airport-sedan",
+        "svc-breakfast-addon"
+      ],
+      "images": [
+        "/images/rooms/superior-1.jpg",
+        "/images/rooms/superior-2.jpg"
+      ]
+    },
+    {
+      "id": "room-deluxe-city",
+      "slug": "deluxe-city-balcony",
+      "branch_id": "pml-dong-du",
+      "name": "Deluxe City Balcony",
+      "name_en": "Deluxe City Balcony",
+      "category": "Deluxe",
+      "size_sqm": 28,
+      "bed_type": "1 Giường Queen (1m6 x 2m) hoặc 2 Giường Đơn",
+      "capacity": "2 Người lớn",
+      "max_adults": 2,
+      "max_children": 0,
+      "view": "Ban công hướng phố Đông Du",
+      "floor_range": "Tầng 5 - 8",
+      "price_vnd_per_night": 1450000,
+      "price_display": "1,450,000 VND / đêm",
+      "breakfast_included": true,
+      "inventory_count": 14,
+      "description_vi": "Phòng có ban công thoáng, nhìn xuống nhịp sống phố Đông Du. Bàn làm việc yên tĩnh phù hợp khách công tác và bồn tắm nằm cao cấp để thư giãn cuối ngày.",
+      "key_features": [
+        "Ban công thoáng mát hướng phố Đông Du",
+        "Bồn tắm nằm cao cấp",
+        "Bàn làm việc yên tĩnh chuẩn Bleisure",
+        "Miễn phí ăn sáng Buffet"
+      ],
+      "bathroom": "Bồn tắm nằm và vòi sen",
+      "tags": [
+        "balcony",
+        "bleisure",
+        "central",
+        "bestseller"
+      ],
+      "suitable_for": "Khách du lịch cá nhân, cặp đôi, khách đi công tác cần vị trí trung tâm.",
+      "upsell_ids": [
+        "svc-airport-sedan",
+        "svc-laundry-express"
+      ],
+      "images": [
+        "/images/rooms/deluxe-city-1.jpg",
+        "/images/rooms/deluxe-city-2.jpg",
+        "/images/rooms/deluxe-city-balcony.jpg"
+      ]
+    },
+    {
+      "id": "room-executive-corner",
+      "slug": "executive-corner-suite",
+      "branch_id": "pml-dong-du",
+      "name": "Executive Corner Suite",
+      "name_en": "Executive Corner Suite",
+      "category": "Suite",
+      "size_sqm": 38,
+      "bed_type": "1 Giường King Size (1m8 x 2m)",
+      "capacity": "2 Người lớn + 1 Trẻ em dưới 6 tuổi",
+      "max_adults": 2,
+      "max_children": 1,
+      "view": "Góc phố, hai mặt cửa kính",
+      "floor_range": "Tầng 8 - 9",
+      "price_vnd_per_night": 2050000,
+      "price_display": "2,050,000 VND / đêm",
+      "breakfast_included": true,
+      "inventory_count": 3,
+      "description_vi": "Căn góc hai mặt kính đón ánh sáng tự nhiên, có khu tiếp khách riêng và bàn làm việc rộng, lý tưởng cho khách công tác dài ngày hoặc cặp đôi thích không gian rộng.",
+      "key_features": [
+        "Hai mặt cửa kính, view góc phố",
+        "Khu tiếp khách riêng và bàn làm việc rộng",
+        "Đặc quyền Executive: trả phòng muộn đến 14:00 (tùy tình trạng phòng)",
+        "Miễn phí ăn sáng buffet và Trà chiều"
+      ],
+      "bathroom": "Bồn tắm nằm, vòi sen mưa riêng",
+      "tags": [
+        "executive",
+        "suite",
+        "bleisure",
+        "spacious"
+      ],
+      "suitable_for": "Khách công tác cấp quản lý, cặp đôi muốn không gian rộng.",
+      "upsell_ids": [
+        "svc-airport-suv",
+        "svc-laundry-express"
+      ],
+      "images": [
+        "/images/rooms/executive-1.jpg",
+        "/images/rooms/executive-2.jpg"
+      ]
+    },
+    {
+      "id": "room-family-connecting",
+      "slug": "family-connecting-room",
+      "branch_id": "pml-dong-du",
+      "name": "Family Connecting Room",
+      "name_en": "Family Connecting Room",
+      "category": "Family",
+      "size_sqm": 48,
+      "bed_type": "2 Phòng liên thông: 1 Queen + 1 Twin (hoặc 2 Queen)",
+      "capacity": "4 Người lớn hoặc 2 người lớn + 3 trẻ em",
+      "max_adults": 4,
+      "max_children": 3,
+      "view": "Ban công hướng phố",
+      "floor_range": "Tầng 6 - 7",
+      "price_vnd_per_night": 2600000,
+      "price_display": "2,600,000 VND / đêm",
+      "breakfast_included": true,
+      "inventory_count": 3,
+      "description_vi": "Hai phòng liên thông bằng cửa riêng, vừa gần gũi vừa riêng tư cho gia đình hoặc nhóm bạn.",
+      "key_features": [
+        "Hai phòng ngủ liên thông, mỗi phòng có phòng tắm riêng",
+        "Ban công hướng phố",
+        "Miễn phí ăn sáng cho 4 người",
+        "Có thể thêm cũi em bé miễn phí"
+      ],
+      "bathroom": "2 phòng tắm riêng",
+      "tags": [
+        "family",
+        "group",
+        "connecting"
+      ],
+      "suitable_for": "Gia đình 3 thế hệ, nhóm bạn 4 người.",
+      "upsell_ids": [
+        "svc-baby-cot",
+        "svc-airport-suv"
+      ],
+      "images": [
+        "/images/rooms/family-connecting-1.jpg",
+        "/images/rooms/family-connecting-2.jpg"
+      ]
+    },
+    {
+      "id": "room-rooftop-jacuzzi",
+      "slug": "rooftop-jacuzzi-penthouse",
+      "branch_id": "pml-central-park",
+      "name": "Rooftop Jacuzzi Penthouse",
+      "name_en": "Rooftop Jacuzzi Penthouse",
+      "category": "Penthouse",
+      "size_sqm": 55,
+      "bed_type": "1 Giường Super King (2m x 2m)",
+      "capacity": "2 - 3 Người lớn",
+      "max_adults": 3,
+      "max_children": 0,
+      "view": "Toàn cảnh 360 độ Sài Gòn và công viên",
+      "floor_range": "Tầng 12",
+      "price_vnd_per_night": 3100000,
+      "price_display": "3,100,000 VND / đêm",
+      "breakfast_included": true,
+      "inventory_count": 2,
+      "description_vi": "Căn penthouse trên tầng thượng với bồn Jacuzzi ngoài trời riêng, tầm nhìn 360 độ. Dành cho những dịp muốn nhớ lâu: kỷ niệm, cầu hôn hay một đêm xa xỉ riêng tư.",
+      "key_features": [
+        "Bồn Jacuzzi ngoài trời riêng biệt trên sân thượng",
+        "Tầm nhìn 360 độ ngắm toàn cảnh Sài Gòn & Công viên",
+        "Không gian Bếp nhỏ (Kitchenette) & Tủ rượu",
+        "Đặc quyền Check-in riêng tại phòng"
+      ],
+      "bathroom": "Bồn tắm đá và vòi sen mưa",
+      "tags": [
+        "penthouse",
+        "romantic",
+        "celebration",
+        "jacuzzi",
+        "luxury"
+      ],
+      "suitable_for": "Tiệc kỷ niệm, Cầu hôn, Nghỉ dưỡng xa xỉ riêng tư.",
+      "not_suitable_for": "Trẻ nhỏ không có người giám sát (khu Jacuzzi ngoài trời); khách sợ độ cao.",
+      "upsell_ids": [
+        "svc-romantic-setup",
+        "svc-cake",
+        "offer-proposal"
+      ],
+      "images": [
+        "/images/rooms/penthouse-1.jpg",
+        "/images/rooms/penthouse-jacuzzi.jpg",
+        "/images/rooms/penthouse-night.jpg"
+      ]
+    },
+    {
+      "id": "room-park-view-deluxe",
+      "slug": "park-view-deluxe",
+      "branch_id": "pml-central-park",
+      "name": "Park View Deluxe",
+      "name_en": "Park View Deluxe",
+      "category": "Deluxe",
+      "size_sqm": 30,
+      "bed_type": "1 Giường King Size (1m8 x 2m)",
+      "capacity": "2 Người lớn + 1 Trẻ em dưới 6 tuổi",
+      "max_adults": 2,
+      "max_children": 1,
+      "view": "Công viên Lê Văn Tám",
+      "floor_range": "Tầng 6 - 10",
+      "price_vnd_per_night": 1600000,
+      "price_display": "1,600,000 VND / đêm",
+      "breakfast_included": true,
+      "inventory_count": 16,
+      "description_vi": "Cửa sổ lớn nhìn ra màu xanh của công viên Lê Văn Tám, buổi sáng nghe tiếng chim, buổi tối thấy đèn thành phố.",
+      "key_features": [
+        "View công viên Lê Văn Tám",
+        "Cửa sổ lớn, nhiều ánh sáng tự nhiên",
+        "Bàn làm việc & ghế công thái học",
+        "Miễn phí ăn sáng, vào phòng Gym và Co-working Lounge"
+      ],
+      "bathroom": "Vòi sen mưa, đồ vệ sinh organic",
+      "tags": [
+        "park-view",
+        "bleisure",
+        "bestseller"
+      ],
+      "suitable_for": "Cặp đôi, khách công tác, khách thích view xanh.",
+      "upsell_ids": [
+        "svc-airport-sedan",
+        "svc-skybar-voucher"
+      ],
+      "images": [
+        "/images/rooms/park-deluxe-1.jpg",
+        "/images/rooms/park-deluxe-2.jpg"
+      ]
+    },
+    {
+      "id": "room-park-twin",
+      "slug": "park-twin",
+      "branch_id": "pml-central-park",
+      "name": "Park Twin",
+      "name_en": "Park Twin",
+      "category": "Deluxe",
+      "size_sqm": 30,
+      "bed_type": "2 Giường Đơn (1m2 x 2m)",
+      "capacity": "2 Người lớn hoặc 1 người lớn + 1 trẻ em",
+      "max_adults": 2,
+      "max_children": 1,
+      "view": "Công viên Lê Văn Tám",
+      "floor_range": "Tầng 6 - 10",
+      "price_vnd_per_night": 1600000,
+      "price_display": "1,600,000 VND / đêm",
+      "breakfast_included": true,
+      "inventory_count": 8,
+      "description_vi": "Phòng hai giường đơn view công viên, tiện cho đồng nghiệp hoặc bạn bè đi cùng.",
+      "key_features": [
+        "Hai giường đơn",
+        "View công viên",
+        "Miễn phí ăn sáng, vào phòng Gym và Co-working Lounge"
+      ],
+      "bathroom": "Vòi sen mưa",
+      "tags": [
+        "twin",
+        "colleagues",
+        "friends"
+      ],
+      "suitable_for": "Đồng nghiệp, bạn bè đi cùng.",
+      "upsell_ids": [
+        "svc-airport-sedan"
+      ],
+      "images": [
+        "/images/rooms/park-twin-1.jpg"
+      ]
+    },
+    {
+      "id": "room-studio-longstay",
+      "slug": "studio-long-stay",
+      "branch_id": "pml-central-park",
+      "name": "Studio Long-stay",
+      "name_en": "Long-stay Studio",
+      "category": "Studio",
+      "size_sqm": 35,
+      "bed_type": "1 Giường Queen + khu bếp & bàn làm việc",
+      "capacity": "2 Người lớn",
+      "max_adults": 2,
+      "max_children": 0,
+      "view": "Nội khu / công viên một phần",
+      "floor_range": "Tầng 3 - 5",
+      "price_vnd_per_night": 1900000,
+      "price_display": "1,900,000 VND / đêm",
+      "breakfast_included": false,
+      "inventory_count": 6,
+      "description_vi": "Căn studio có bếp nhỏ, máy giặt chung và bàn làm việc rộng, thiết kế cho khách ở từ một tuần trở lên với giá ưu đãi theo số đêm.",
+      "key_features": [
+        "Kitchenette: bếp từ, tủ lạnh, lò vi sóng, bộ dụng cụ nấu ăn",
+        "Bàn làm việc lớn và ghế công thái học",
+        "Giá ưu đãi cho lưu trú 7 đêm và 30 đêm",
+        "Miễn phí vào Gym và Co-working Lounge"
+      ],
+      "bathroom": "Vòi sen mưa",
+      "tags": [
+        "long-stay",
+        "kitchenette",
+        "digital-nomad",
+        "remote-work"
+      ],
+      "suitable_for": "Freelancer, digital nomad, khách công tác dài ngày, gia đình chuyển nhà tạm.",
+      "upsell_ids": [
+        "svc-laundry-weekly"
+      ],
+      "images": [
+        "/images/rooms/studio-1.jpg",
+        "/images/rooms/studio-kitchen.jpg"
+      ]
+    }
+  ],
+  "wellness_and_amenities": [
+    {
+      "id": "amenity-onsen",
+      "name": "Tổ hợp Onsen Khoáng Nóng Nhật Bản",
+      "available_at": [
+        "pml-onsen-hai-ba-trung"
+      ],
+      "hours": "06:00 - 22:00 hàng ngày",
+      "fee": "Miễn phí 100% cho khách lưu trú tại chi nhánh Hai Bà Trưng. Khách bên ngoài hoặc chi nhánh khác: 350,000 VND/lượt.",
+      "details": "Bao gồm bể khoáng nóng 40°C, bể ngâm lạnh 18°C, phòng xông hơi đá muối Himalayan và khu thư giãn Lounge.",
+      "ritual_steps": [
+        "Tắm rửa sạch trước khi xuống bể",
+        "Ngâm nóng 10 - 15 phút",
+        "Ngâm lạnh 1 - 2 phút",
+        "Xông hơi đá muối 8 - 10 phút",
+        "Nghỉ tại Lounge với trà thảo mộc"
+      ],
+      "etiquette": [
+        "Giữ yên tĩnh",
+        "Mặc trang phục tắm hoặc yukata theo hướng dẫn của khu vực",
+        "Không mang thức ăn, đồ uống có cồn vào khu bể",
+        "Uống đủ nước, ra ngoài nếu thấy chóng mặt"
+      ],
+      "capacity_note": "Tối đa 12 người cùng lúc để giữ sự yên tĩnh; có thể đặt trước khung giờ riêng cho cặp đôi (60 phút, 600,000 VND).",
+      "related_faq_ids": [
+        "faq-onsen-01",
+        "faq-onsen-02",
+        "faq-onsen-03"
+      ]
+    },
+    {
+      "id": "amenity-afternoon-tea",
+      "name": "Tiệc Trà Chiều Miễn Phí (Free Afternoon Tea)",
+      "available_at": [
+        "pml-dong-du",
+        "pml-onsen-hai-ba-trung",
+        "pml-central-park"
+      ],
+      "hours": "14:30 - 16:30 hàng ngày",
+      "fee": "Miễn phí cho tất cả khách đặt phòng trực tiếp qua Website.",
+      "details": "Phục vụ các loại trà thảo mộc organic, cà phê phin thủ công, bánh ngọt Pháp và trái cây tươi mùa.",
+      "seasonal_menu_examples": [
+        "Trà sen - bánh dẻ nhân đậu xanh",
+        "Trà gừng mật ong - bánh gato chanh dây",
+        "Cà phê phin - bánh flan caramel"
+      ],
+      "related_faq_ids": [
+        "faq-dining-02"
+      ]
+    },
+    {
+      "id": "amenity-rooftop-skybar",
+      "name": "Rooftop Jacuzzi & Sky Bar",
+      "available_at": [
+        "pml-central-park"
+      ],
+      "hours": "16:00 - 23:30 hàng ngày",
+      "fee": "Khách lưu trú được giảm 20% menu Cocktail.",
+      "details": "Hồ bơi Jacuzzi ngắm hoàng hôn cực chill kết hợp âm nhạc Acoustic/Chillhop buổi tối.",
+      "jacuzzi_rules": "Khách trên 16 tuổi, tối đa 6 người cùng lúc, trẻ em cần người lớn đi kèm; đóng cửa khi thời tiết xấu.",
+      "menu_highlights": [
+        {
+          "name": "Saigon Sunset (cocktail đặc trưng)",
+          "price_vnd": 185000
+        },
+        {
+          "name": "Cà phê muối - rum",
+          "price_vnd": 165000
+        },
+        {
+          "name": "Mocktail vải - hoa hồng",
+          "price_vnd": 110000
+        },
+        {
+          "name": "Đĩa tapas chia sẻ",
+          "price_vnd": 245000
+        }
+      ],
+      "related_faq_ids": [
+        "faq-skybar-01"
+      ]
+    },
+    {
+      "id": "amenity-coworking",
+      "name": "Executive Coworking Lounge",
+      "available_at": [
+        "pml-central-park"
+      ],
+      "hours": "07:00 - 22:00 hàng ngày",
+      "fee": "Miễn phí cho khách lưu trú. Khách bên ngoài: 150,000 VND/ngày (bao gồm 1 đồ uống).",
+      "details": "Không gian yên tĩnh với bàn làm việc, ổ cắm đầy đủ, Wi-Fi tốc độ cao, máy in cơ bản, khu gọi điện riêng và cà phê pha máy miễn phí.",
+      "equipment": [
+        "Wi-Fi tốc độ cao",
+        "Máy in A4 (hạn chế số trang miễn phí)",
+        "Phòng gọi điện/họp trực tuyến 2 chỗ",
+        "Màn hình rời cho thuê theo yêu cầu"
+      ]
+    },
+    {
+      "id": "amenity-gym",
+      "name": "Phòng Gym",
+      "available_at": [
+        "pml-central-park"
+      ],
+      "hours": "05:30 - 22:00 hàng ngày",
+      "fee": "Miễn phí cho khách lưu trú tại Central Park.",
+      "details": "Máy chạy bộ, xe đạp tập, tạ tự do, thảm yoga, khăn lạnh và nước uống miễn phí."
+    },
+    {
+      "id": "amenity-breakfast",
+      "name": "Bữa sáng",
+      "available_at": [
+        "pml-dong-du",
+        "pml-onsen-hai-ba-trung",
+        "pml-central-park"
+      ],
+      "hours": "06:30 - 10:00 (thứ 7, Chủ nhật đến 10:30)",
+      "fee": "Miễn phí cho hạng phòng có kèm bữa sáng. Khách khác: 250,000 VND/người lớn, 150,000 VND/trẻ 6 - 11 tuổi.",
+      "details": "Buffet á - âu: phở, bún, bánh mì, trứng nấu theo yêu cầu, salad, trái cây tươi, bánh ngọt, cà phê phin, trà.",
+      "dietary_options": [
+        "Thuần chay",
+        "Ăn chay",
+        "Không gluten (báo trước)",
+        "Không đậu phộng/hải sản theo yêu cầu"
+      ],
+      "related_faq_ids": [
+        "faq-dining-01",
+        "faq-dining-03"
+      ]
+    },
+    {
+      "id": "amenity-concierge",
+      "name": "Concierge & bàn tour",
+      "available_at": [
+        "pml-dong-du",
+        "pml-onsen-hai-ba-trung",
+        "pml-central-park"
+      ],
+      "hours": "07:00 - 22:00 hàng ngày",
+      "fee": "Tư vấn miễn phí; dịch vụ đặt tour, xe, vé tính theo bảng giá đối tác.",
+      "details": "Gợi ý lộ trình đi bộ, đặt bàn nhà hàng, đặt tour Củ Chi, Mê Kông, đặt vé show, hỗ trợ visa/giấy tờ cơ bản."
+    },
+    {
+      "id": "amenity-laundry",
+      "name": "Giặt ủi",
+      "available_at": [
+        "pml-dong-du",
+        "pml-onsen-hai-ba-trung",
+        "pml-central-park"
+      ],
+      "hours": "Nhận đồ trước 10:00, trả trong ngày; dịch vụ nhanh 4 giờ có phụ thu 50%.",
+      "fee": "Theo bảng giá giặt ủi (xem file services).",
+      "details": "Giặt khô, giặt ướt, ủi; túi giặt trong tủ phòng."
+    },
+    {
+      "id": "amenity-luggage",
+      "name": "Gửi hành lý",
+      "available_at": [
+        "pml-dong-du",
+        "pml-onsen-hai-ba-trung",
+        "pml-central-park"
+      ],
+      "hours": "24/7",
+      "fee": "Miễn phí cho khách lưu trú trước giờ nhận phòng và sau giờ trả phòng."
+    }
+  ],
+  "dining": {
+    "room_service": {
+      "hours": "07:00 - 22:00",
+      "delivery_fee_vnd": 0,
+      "sample_menu": [
+        {
+          "name": "Phở bò Sài Gòn",
+          "price_vnd": 120000
+        },
+        {
+          "name": "Bánh mì ốp la đặc biệt",
+          "price_vnd": 75000
+        },
+        {
+          "name": "Cơm chiên hải sản",
+          "price_vnd": 135000
+        },
+        {
+          "name": "Mì Ý sốt bò bằm",
+          "price_vnd": 145000
+        },
+        {
+          "name": "Salad gà nướng",
+          "price_vnd": 125000
+        },
+        {
+          "name": "Đĩa trái cây tươi",
+          "price_vnd": 95000
+        },
+        {
+          "name": "Cà phê phin sữa đá",
+          "price_vnd": 55000
+        }
+      ]
+    },
+    "restaurant_hours": {
+      "breakfast": "06:30 - 10:00",
+      "afternoon_tea": "14:30 - 16:30",
+      "sky_bar": "16:00 - 23:30 (Central Park)"
+    },
+    "special_dietary_support": "Vui lòng báo trước dị ứng thực phẩm hoặc chế độ ăn đặc biệt khi đặt phòng hoặc khi nhận phòng; nhà bếp sẽ chuẩn bị theo khả năng.",
+    "outside_food_policy": "Khách có thể mang đồ ăn ngoài vào phòng; không mang vào khu Onsen và Sky Bar."
+  },
+  "services": [
+    {
+      "id": "svc-airport-sedan",
+      "name": "Xe đưa đón sân bay (Sedan 4 chỗ)",
+      "price_vnd": 450000,
+      "unit": "chuyến",
+      "notes": "Đặt trước ít nhất 4 tiếng. Phụ thu 100,000 VND từ 23:00 đến 05:00."
+    },
+    {
+      "id": "svc-airport-suv",
+      "name": "Xe đưa đón sân bay (SUV 7 chỗ)",
+      "price_vnd": 600000,
+      "unit": "chuyến",
+      "notes": "Đặt trước ít nhất 4 tiếng. Phù hợp nhóm 4 - 6 người có hành lý."
+    },
+    {
+      "id": "svc-extra-bed",
+      "name": "Giường phụ",
+      "price_vnd": 350000,
+      "unit": "đêm",
+      "notes": "Tùy hạng phòng và diện tích."
+    },
+    {
+      "id": "svc-baby-cot",
+      "name": "Cũi em bé",
+      "price_vnd": 0,
+      "unit": "đêm",
+      "notes": "Miễn phí, báo trước khi đến."
+    },
+    {
+      "id": "svc-breakfast-addon",
+      "name": "Bữa sáng buffet bổ sung",
+      "price_vnd": 250000,
+      "unit": "người",
+      "notes": "Trẻ 6 - 11 tuổi: 150,000 VND."
+    },
+    {
+      "id": "svc-massage-60",
+      "name": "Massage thư giãn 60 phút (tại phòng/Lounge)",
+      "price_vnd": 480000,
+      "unit": "lượt",
+      "notes": "Đặt trước 3 giờ."
+    },
+    {
+      "id": "svc-massage-90",
+      "name": "Massage đá nóng 90 phút",
+      "price_vnd": 690000,
+      "unit": "lượt",
+      "notes": "Đặt trước 3 giờ."
+    },
+    {
+      "id": "svc-romantic-setup",
+      "name": "Trang trí lãng mạn tại phòng (hoa, nến, chocolate)",
+      "price_vnd": 1500000,
+      "unit": "lần",
+      "notes": "Đặt trước 24 giờ."
+    },
+    {
+      "id": "svc-flowers",
+      "name": "Bó hoa tươi",
+      "price_vnd": 650000,
+      "unit": "bó",
+      "notes": "Đặt trước 24 giờ."
+    },
+    {
+      "id": "svc-cake",
+      "name": "Bánh kem kỷ niệm (6 inch)",
+      "price_vnd": 450000,
+      "unit": "chiếc",
+      "notes": "Đặt trước 24 giờ."
+    },
+    {
+      "id": "svc-skybar-voucher",
+      "name": "Voucher Sky Bar (2 cocktail + tapas)",
+      "price_vnd": 520000,
+      "unit": "set",
+      "notes": "Chỉ áp dụng tại Central Park."
+    },
+    {
+      "id": "svc-laundry-express",
+      "name": "Giặt ủi nhanh 4 giờ",
+      "price_vnd": 0,
+      "unit": "phụ thu 50%",
+      "notes": "Phụ thu 50% trên giá giặt thường."
+    },
+    {
+      "id": "svc-laundry-weekly",
+      "name": "Gói giặt ủi tuần cho khách ở dài ngày",
+      "price_vnd": 350000,
+      "unit": "tuần",
+      "notes": "Tối đa 7 kg/tuần."
+    },
+    {
+      "id": "svc-car-rental-4h",
+      "name": "Thuê xe có tài xế 4 giờ (nội thành)",
+      "price_vnd": 900000,
+      "unit": "lượt",
+      "notes": "Xe 4 chỗ, giới hạn 40 km."
+    },
+    {
+      "id": "svc-car-rental-8h",
+      "name": "Thuê xe có tài xế 8 giờ (nội thành)",
+      "price_vnd": 1500000,
+      "unit": "ngày",
+      "notes": "Xe 4 chỗ, giới hạn 80 km."
+    },
+    {
+      "id": "svc-tour-cuchi",
+      "name": "Tour Địa đạo Củ Chi nửa ngày",
+      "price_vnd": 650000,
+      "unit": "người",
+      "notes": "Giá tham khảo, thay đổi theo đối tác tour."
+    },
+    {
+      "id": "svc-tour-mekong",
+      "name": "Tour Đồng bằng sông Cửu Long một ngày",
+      "price_vnd": 850000,
+      "unit": "người",
+      "notes": "Giá tham khảo, thay đổi theo đối tác tour."
+    },
+    {
+      "id": "svc-photographer",
+      "name": "Chụp ảnh kỷ niệm / cầu hôn (60 phút)",
+      "price_vnd": 2500000,
+      "unit": "buổi",
+      "notes": "Đặt trước 3 ngày."
+    },
+    {
+      "id": "svc-meeting-room",
+      "name": "Phòng họp nhỏ (8 người)",
+      "price_vnd": 1200000,
+      "unit": "4 giờ",
+      "notes": "Có màn hình, Wi-Fi, trà cà phê. Chỉ tại Central Park."
+    }
+  ],
+  "offers": [
+    {
+      "id": "offer-direct-booking",
+      "name": "Đặt trực tiếp - Nhận quà tặng",
+      "description": "Đặt phòng qua website chính thức để nhận 2 suất Trà chiều Signature và ưu tiên nâng hạng phòng khi còn trống.",
+      "applies_to_branches": [
+        "pml-dong-du",
+        "pml-onsen-hai-ba-trung",
+        "pml-central-park"
+      ],
+      "conditions": "Chỉ áp dụng khi đặt qua website chính thức. Không cộng dồn với ưu đãi khác.",
+      "valid": "Quanh năm"
+    },
+    {
+      "id": "offer-onsen-weekend",
+      "name": "Onsen Weekend Retreat",
+      "description": "2 đêm Onsen Signature Suite, ăn sáng, trà chiều, 1 buổi massage 60 phút và đồ uống chào đón.",
+      "applies_to_rooms": [
+        "room-onsen-suite",
+        "room-onsen-deluxe-queen"
+      ],
+      "price_from_vnd": 5200000,
+      "conditions": "Đặt trước 5 ngày. Áp dụng thứ 6 - Chủ nhật.",
+      "valid": "Quanh năm, trừ kỳ lễ"
+    },
+    {
+      "id": "offer-honeymoon",
+      "name": "Honeymoon & Kỷ niệm ngày cưới",
+      "description": "Trang trí lãng mạn, bánh kem, vang chào đón, ăn sáng tại phòng, trả phòng muộn đến 15:00.",
+      "applies_to_rooms": [
+        "room-onsen-suite",
+        "room-rooftop-jacuzzi"
+      ],
+      "price_from_vnd": 4400000,
+      "conditions": "Xuất trình giấy chứng nhận kết hôn trong vòng 12 tháng (không bắt buộc cho gói kỷ niệm).",
+      "valid": "Quanh năm"
+    },
+    {
+      "id": "offer-proposal",
+      "name": "Gói cầu hôn trên mái",
+      "description": "Setup bàn riêng ngắm hoàng hôn tại tầng thượng, hoa tươi, chụp ảnh kỷ niệm 60 phút và 1 đêm Penthouse.",
+      "applies_to_rooms": [
+        "room-rooftop-jacuzzi"
+      ],
+      "price_from_vnd": 8500000,
+      "conditions": "Đặt trước tối thiểu 5 ngày. Phụ thuộc thời tiết, có phương án dự phòng trong nhà.",
+      "valid": "Quanh năm"
+    },
+    {
+      "id": "offer-staycation-midweek",
+      "name": "Staycation giữa tuần",
+      "description": "Giảm 15% giá phòng, trả phòng muộn đến 14:00 khi lưu trú từ Chủ nhật đến Thứ 5.",
+      "applies_to_branches": [
+        "pml-dong-du",
+        "pml-onsen-hai-ba-trung",
+        "pml-central-park"
+      ],
+      "conditions": "Không áp dụng dịp lễ, Tết.",
+      "valid": "Quanh năm"
+    },
+    {
+      "id": "offer-longstay",
+      "name": "Ở dài ngày",
+      "description": "Giảm 12% cho 7 đêm, 25% cho 30 đêm, kèm giặt ủi hàng tuần và dọn phòng 3 lần/tuần.",
+      "applies_to_rooms": [
+        "room-studio-longstay",
+        "room-park-view-deluxe"
+      ],
+      "conditions": "Thanh toán theo tuần hoặc tháng.",
+      "valid": "Quanh năm"
+    },
+    {
+      "id": "offer-business",
+      "name": "Bleisure Package",
+      "description": "Giá ưu đãi cho khách doanh nghiệp: phòng Deluxe, ăn sáng, giặt ủi 3 món/ngày, truy cập Co-working Lounge và đưa đón sân bay một chiều.",
+      "applies_to_rooms": [
+        "room-deluxe-city",
+        "room-park-view-deluxe",
+        "room-executive-corner"
+      ],
+      "conditions": "Cần ký thỏa thuận giá doanh nghiệp, tối thiểu 10 đêm/tháng.",
+      "valid": "Theo hợp đồng"
+    },
+    {
+      "id": "offer-early-bird",
+      "name": "Đặt sớm 14 ngày",
+      "description": "Giảm 10% giá phòng khi đặt trước tối thiểu 14 ngày.",
+      "applies_to_branches": [
+        "pml-dong-du",
+        "pml-onsen-hai-ba-trung",
+        "pml-central-park"
+      ],
+      "conditions": "Hủy miễn phí trước 7 ngày.",
+      "valid": "Quanh năm"
+    },
+    {
+      "id": "offer-birthday",
+      "name": "Sinh nhật tại PML",
+      "description": "Tặng bánh kem 6 inch và một bữa Trà chiều cho khách đặt phòng trong tuần sinh nhật.",
+      "conditions": "Xuất trình giấy tờ tùy thân khi nhận phòng.",
+      "valid": "Quanh năm"
+    }
+  ],
+  "events_and_occasions": {
+    "supported_occasions": [
+      "Kỷ niệm ngày cưới",
+      "Cầu hôn",
+      "Sinh nhật",
+      "Tiệc nhỏ (tối đa 20 khách) tại Sky Bar",
+      "Họp nhóm nhỏ",
+      "Chụp ảnh thương hiệu/lookbook"
+    ],
+    "venues": [
+      {
+        "name": "Phòng họp nhỏ Central Park",
+        "capacity": 8,
+        "branch_id": "pml-central-park"
+      },
+      {
+        "name": "Sky Bar buyout (đặt riêng)",
+        "capacity": 20,
+        "branch_id": "pml-central-park",
+        "notes": "Cần đặt trước tối thiểu 7 ngày, thuê tối thiểu 3 giờ."
+      },
+      {
+        "name": "Lounge Onsen (đặt riêng cho nhóm nhỏ)",
+        "capacity": 10,
+        "branch_id": "pml-onsen-hai-ba-trung"
+      }
+    ],
+    "contact": "events@pmlhotel.com"
+  },
+  "sustainability": [
+    "Không sử dụng ống hút nhựa; dùng ống hút giấy/inox",
+    "Chai nước thủy tinh đổ lại tại phòng",
+    "Khăn và ga trải giường chỉ thay khi khách yêu cầu (nếu ở nhiều đêm)",
+    "Dầu gội, sữa tắm dạng bơm lớn, không dùng chai nhỏ dùng một lần",
+    "Phân loại rác tại nguồn"
+  ],
+  "local_guide_notice": "Địa chỉ, khoảng cách, giá và giờ mở cửa của địa điểm bên ngoài chỉ mang tính tham khảo; cần xác minh lại trước khi xuất bản website hoặc huấn luyện trợ lý AI.",
+  "local_travel_guide": [
+    {
+      "category": "Ăn uống & Cà phê chill",
+      "recommendations": [
+        {
+          "name": "Bánh mì Huỳnh Hoa",
+          "address": "26 Lê Thị Riêng, Q1",
+          "note": "Bánh mì kẹp thịt nổi tiếng đắt và ngon nhất Sài Gòn (cách 5-10 phút đi xe)."
+        },
+        {
+          "name": "Phở Minh (Phở gia truyền)",
+          "address": "Hẻm 63 Pasteur, Q1",
+          "note": "Phở vị Bắc thanh thanh nằm trong hẻm cổ ngay gần chi nhánh Đông Du."
+        },
+        {
+          "name": "Cà phê Nhỏ / Cà phê Đỗ Phủ",
+          "address": "Quận 1",
+          "note": "Quán cà phê phong cách Sài Gòn xưa cổ kính."
+        },
+        {
+          "name": "Cà phê Chung cư 42 Nguyễn Huệ",
+          "address": "42 Nguyễn Huệ, Q1",
+          "note": "Dãy quán cà phê trong chung cư cũ nhìn ra phố đi bộ, gần chi nhánh Đông Du.",
+          "best_for_branch": "pml-dong-du",
+          "needs_verification": true
+        },
+        {
+          "name": "The Workshop Coffee",
+          "address": "27 Ngô Đức Kế, Q1",
+          "note": "Cà phê specialty trong tòa nhà cổ, hợp làm việc nhẹ buổi sáng.",
+          "needs_verification": true
+        },
+        {
+          "name": "Nhà hàng Ngon",
+          "address": "160 Pasteur, Q1",
+          "note": "Tập hợp món Việt ba miền trong khuôn viên biệt thự cổ, tiện cho khách lần đầu muốn thử nhiều món.",
+          "needs_verification": true
+        },
+        {
+          "name": "Cục Gạch Quán",
+          "address": "10 Đặng Tất, Tân Định, Q1",
+          "note": "Món Việt kiểu gia đình trong ngôi nhà cổ, gần chi nhánh Central Park.",
+          "best_for_branch": "pml-central-park",
+          "needs_verification": true
+        },
+        {
+          "name": "Bánh xèo 46A",
+          "address": "46A Đinh Công Tráng, Tân Định, Q1",
+          "note": "Bánh xèo giòn nổi tiếng, thường đông vào bữa tối.",
+          "best_for_branch": "pml-central-park",
+          "needs_verification": true
+        },
+        {
+          "name": "Phở Hòa Pasteur",
+          "address": "260C Pasteur, Q3",
+          "note": "Phở bò nổi tiếng lâu năm, mở từ sáng sớm đến tối.",
+          "needs_verification": true
+        },
+        {
+          "name": "Khu ẩm thực Vĩnh Khánh (Quận 4)",
+          "area": "Quận 4",
+          "note": "Phố ẩm thực ốc, hải sản về đêm, cách trung tâm khoảng 10 - 15 phút đi xe.",
+          "needs_verification": true
+        }
+      ]
+    },
+    {
+      "category": "Điểm tham quan đi bộ hoặc đi xe ngắn",
+      "recommendations": [
+        {
+          "name": "Nhà thờ Đức Bà & Bưu điện Trung tâm",
+          "area": "Quận 1",
+          "note": "Hai công trình kiến trúc Pháp nằm cạnh nhau, dễ chụp ảnh; nên đến buổi sáng sớm hoặc chiều muộn để tránh đông.",
+          "typical_visit_time": "45 - 60 phút"
+        },
+        {
+          "name": "Dinh Độc Lập (Dinh Thống Nhất)",
+          "area": "Quận 1",
+          "note": "Di tích lịch sử và kiến trúc thập niên 60; kiểm tra giờ mở cửa và ngày nghỉ trước khi đi.",
+          "typical_visit_time": "60 - 90 phút"
+        },
+        {
+          "name": "Bảo tàng Chứng tích Chiến tranh",
+          "area": "Quận 3",
+          "note": "Trưng bày về chiến tranh Việt Nam, nội dung có thể gây xúc động mạnh.",
+          "typical_visit_time": "90 phút"
+        },
+        {
+          "name": "Bảo tàng Thành phố Hồ Chí Minh",
+          "area": "Quận 1",
+          "note": "Tòa nhà Gia Long cổ kính với bộ sưu tập lịch sử đô thị.",
+          "typical_visit_time": "60 phút"
+        },
+        {
+          "name": "Bảo tàng Mỹ thuật TP.HCM",
+          "area": "Quận 1",
+          "note": "Tòa nhà phong cách Pháp - Hoa với sưu tập tranh, điêu khắc.",
+          "typical_visit_time": "60 phút"
+        },
+        {
+          "name": "Chợ Bến Thành",
+          "area": "Quận 1",
+          "note": "Chợ biểu tượng, nên mặc cả lịch sự; buổi tối có chợ đêm bên ngoài.",
+          "typical_visit_time": "60 - 90 phút"
+        },
+        {
+          "name": "Phố đi bộ Nguyễn Huệ & Bến Bạch Đằng",
+          "area": "Quận 1",
+          "note": "Không gian đi dạo ven sông, nhiều hoạt động cuối tuần và dịp lễ.",
+          "typical_visit_time": "45 - 60 phút"
+        },
+        {
+          "name": "Bitexco Financial Tower - Saigon Skydeck",
+          "area": "Quận 1",
+          "note": "Đài quan sát nhìn toàn cảnh thành phố; nên đi lúc hoàng hôn.",
+          "typical_visit_time": "60 phút",
+          "needs_verification": true
+        },
+        {
+          "name": "Chùa Ngọc Hoàng (Phước Hải Tự)",
+          "area": "Quận 1",
+          "note": "Ngôi chùa Hoa kiều cổ với nhiều tượng gỗ; ăn mặc kín đáo khi vào.",
+          "best_for_branch": "pml-central-park",
+          "typical_visit_time": "30 - 45 phút"
+        },
+        {
+          "name": "Thảo Cầm Viên Sài Gòn",
+          "area": "Quận 1",
+          "note": "Sở thú và vườn bách thảo lâu đời, phù hợp gia đình có trẻ em.",
+          "typical_visit_time": "2 - 3 giờ"
+        },
+        {
+          "name": "Phố sách Nguyễn Văn Bình",
+          "area": "Quận 1",
+          "note": "Con phố sách và cà phê ngay cạnh Bưu điện Trung tâm.",
+          "typical_visit_time": "30 - 60 phút"
+        },
+        {
+          "name": "Chợ Lớn & chùa Thiên Hậu",
+          "area": "Quận 5",
+          "note": "Khu người Hoa với chùa cổ, tiệm thuốc bắc, ẩm thực Hoa; đi xe khoảng 15 - 25 phút.",
+          "typical_visit_time": "2 - 3 giờ"
+        }
+      ]
+    },
+    {
+      "category": "Mua sắm",
+      "recommendations": [
+        {
+          "name": "Takashimaya (Saigon Centre)",
+          "note": "Trung tâm thương mại Nhật, gần chi nhánh Đông Du, nhiều thương hiệu và ẩm thực Nhật."
+        },
+        {
+          "name": "Vincom Center Đồng Khởi",
+          "note": "Trung tâm thương mại trên phố Lê Thánh Tôn, đối diện khu trung tâm."
+        },
+        {
+          "name": "Chợ Bến Thành & chợ đêm",
+          "note": "Đồ lưu niệm, cà phê, trà, đặc sản; nên so sánh giá và mặc cả."
+        },
+        {
+          "name": "Phố Đồng Khởi & Lê Lợi",
+          "note": "Các cửa hàng thời trang, nghệ thuật, nội thất của nhà thiết kế Việt."
+        }
+      ]
+    },
+    {
+      "category": "Giải trí buổi tối",
+      "recommendations": [
+        {
+          "name": "Sky Bar tại PML Central Park",
+          "note": "Cocktail và nhạc acoustic ngắm hoàng hôn; khách lưu trú giảm 20%."
+        },
+        {
+          "name": "Phố Bùi Viện & Đề Thám",
+          "note": "Khu phố Tây sôi động, nhiều quán bar và nhạc sống; nên giữ cẩn thận tài sản cá nhân."
+        },
+        {
+          "name": "Nhà hát Thành phố",
+          "note": "Kiểm tra lịch biểu diễn (nhạc kịch, hòa nhạc, múa) trước khi đến."
+        },
+        {
+          "name": "Du thuyền ăn tối trên sông Sài Gòn",
+          "note": "Khởi hành từ bến Bạch Đằng, nên đặt trước, thông qua concierge."
+        }
+      ]
+    },
+    {
+      "category": "Đi trong ngày từ TP.HCM",
+      "recommendations": [
+        {
+          "name": "Địa đạo Củ Chi",
+          "distance": "Khoảng 60 - 70 km (1,5 - 2 giờ)",
+          "note": "Hệ thống địa đạo thời chiến; nên đi nửa ngày, tránh trưa nắng."
+        },
+        {
+          "name": "Đồng bằng sông Cửu Long (Mỹ Tho - Bến Tre)",
+          "distance": "Khoảng 70 - 90 km (2 giờ)",
+          "note": "Đi thuyền, thăm vườn trái cây, nghe đờn ca tài tử; thường là tour một ngày."
+        },
+        {
+          "name": "Rừng ngập mặn Cần Giờ",
+          "distance": "Khoảng 50 - 60 km (1,5 - 2 giờ)",
+          "note": "Hợp với khách thích thiên nhiên, đi xuồng, ngắm khỉ."
+        },
+        {
+          "name": "Núi Bà Đen (Tây Ninh)",
+          "distance": "Khoảng 100 km (2,5 giờ)",
+          "note": "Đi cáp treo lên đỉnh, nên đi ngày thường để tránh đông."
+        },
+        {
+          "name": "Vũng Tàu",
+          "distance": "Khoảng 100 km (2 - 2,5 giờ)",
+          "note": "Biển cuối tuần cho dân Sài Gòn; nên đi sớm để tránh kẹt xe."
+        }
+      ]
+    },
+    {
+      "category": "Di chuyển từ Sân bay Tân Sơn Nhất (SGN)",
+      "recommendations": [
+        {
+          "service": "Xe đưa đón riêng của Khách sạn (Private Airport Transfer)",
+          "price": "450,000 VND/chuyến (Xe 4 chỗ sedan) hoặc 600,000 VND/chuyến (Xe 7 chỗ SUV)",
+          "note": "Khách cần đặt trước ít nhất 4 tiếng."
+        },
+        {
+          "service": "Taxi / Grab",
+          "price": "Khoảng 150,000 - 220,000 VND",
+          "duration": "30 - 45 phút tùy giờ cao điểm."
+        },
+        {
+          "service": "Xe buýt sân bay",
+          "price": "Khoảng 5,000 - 20,000 VND",
+          "duration": "45 - 70 phút",
+          "note": "Rẻ nhất nhưng cần đi bộ thêm từ điểm dừng; không thuận tiện khi mang nhiều hành lý.",
+          "needs_verification": true
+        }
+      ]
+    }
+  ],
+  "getting_around": [
+    {
+      "mode": "Đi bộ",
+      "tips": "Khu trung tâm Quận 1 rất thuận tiện đi bộ; băng qua đường chậm, đều tay, không dừng đột ngột và để xe máy tự né."
+    },
+    {
+      "mode": "Ứng dụng gọi xe (Grab, Be, Xanh SM)",
+      "tips": "Nhập địa chỉ khách sạn bằng tiếng Việt; chọn điểm đón có thể đỗ xe an toàn. Xanh SM sử dụng xe điện."
+    },
+    {
+      "mode": "Taxi truyền thống",
+      "tips": "Chọn hãng uy tín, yêu cầu bật đồng hồ tính tiền."
+    },
+    {
+      "mode": "Xe buýt",
+      "tips": "Rẻ nhưng cần quen tuyến; dùng Google Maps để chọn tuyến."
+    },
+    {
+      "mode": "Metro số 1 (Bến Thành - Suối Tiên)",
+      "tips": "Tuyến đã khai thác thương mại, kiểm tra giờ hoạt động và giá vé mới nhất trên kênh chính thức."
+    },
+    {
+      "mode": "Waterbus",
+      "tips": "Tuyến buýt sông xuất phát từ bến Bạch Đằng; kiểm tra lịch chạy trước."
+    }
+  ],
+  "practical_tips": {
+    "currency_and_payment": "Đơn vị tiền tệ là VND. Thẻ được chấp nhận ở khách sạn, nhà hàng lớn, trung tâm thương mại; tiền mặt cần cho chợ, quán nhỏ, xe ôm. ATM có ở hầu hết các khu vực, thường giới hạn mức rút mỗi lần.",
+    "money_exchange": "Đổi ngoại tệ tại ngân hàng hoặc tiệm vàng được cấp phép; tỷ giá tại sân bay thường kém hơn. Tránh đổi tiền với người ngoài đường.",
+    "tipping": "Tiền tip không bắt buộc, nhưng được trân trọng ở nhà hàng, tour, spa (khoảng 5 - 10% nếu hài lòng).",
+    "language": "Tiếng Việt là ngôn ngữ chính. Nhân viên khách sạn nói tiếng Anh; ở khu du lịch phổ biến tiếng Anh cơ bản.",
+    "sim_and_internet": "SIM/eSIM du lịch có tại sân bay và cửa hàng các nhà mạng lớn (Viettel, VinaPhone, MobiFone); cần hộ chiếu để đăng ký SIM.",
+    "electricity": "Điện áp 220V, 50Hz. Ổ cắm phổ biến loại A, C và F; nên mang bộ chuyển đổi nếu cần.",
+    "water": "Không uống nước máy trực tiếp. Phòng khách sạn có nước suối miễn phí.",
+    "weather": {
+      "overview": "TP.HCM có khí hậu nhiệt đới, nóng quanh năm với hai mùa rõ rệt.",
+      "dry_season": "Khoảng tháng 12 đến tháng 4: ít mưa, nắng nhiều; tháng 3 - 4 nóng nhất.",
+      "rainy_season": "Khoảng tháng 5 đến tháng 11: thường có mưa chiều ngắn và mạnh; mang theo ô hoặc áo mưa.",
+      "best_time_to_visit": "Tháng 12 đến tháng 2 mát và khô hơn, thích hợp nhất cho khách muốn đi bộ khám phá."
+    },
+    "dress_code": "Khi vào chùa, nhà thờ, di tích: mặc kín vai và đầu gối. Tại khách sạn không có quy định trang phục đặc biệt, trừ khu Onsen và Sky Bar (xem quy định từng khu).",
+    "safety": "Giữ điện thoại, túi xách phía trong khi đi bộ gần mép đường; không để vật dụng có giá trị trên xe máy; cảnh giác với người chào mời bất ngờ. Đa số khu vực trung tâm an toàn, ban đêm vẫn nên đi nơi đông người.",
+    "emergency_numbers": {
+      "police": "113",
+      "fire": "114",
+      "ambulance": "115",
+      "hotel_hotline": "+84 28 3822 9999"
+    },
+    "medical_help": "Lễ tân hỗ trợ liên hệ cơ sở y tế gần nhất và hướng dẫn khách thủ tục khám cơ bản; không thay thế dịch vụ cấp cứu.",
+    "public_holidays": [
+      "Tết Dương lịch (1/1)",
+      "Tết Nguyên Đán (tháng 1 hoặc 2 âm lịch, nghỉ nhiều ngày)",
+      "Giỗ Tổ Hùng Vương (10/3 âm lịch)",
+      "Ngày Giải phóng miền Nam (30/4) và Quốc tế Lao động (1/5)",
+      "Quốc khánh (2/9)"
+    ],
+    "tet_note": "Dịp Tết nhiều quán ăn và cửa hàng nghỉ vài ngày; khách sạn vẫn hoạt động nhưng nên đặt phòng sớm và hỏi trước lịch bữa sáng, dịch vụ đặc biệt."
+  },
+  "suggested_itineraries": [
+    {
+      "id": "itin-1day-central",
+      "title": "Một ngày đi bộ khám phá Sài Gòn trung tâm",
+      "best_for_branch": "pml-dong-du",
+      "steps": [
+        {
+          "time": "07:30",
+          "activity": "Bánh mì hoặc phở gần khách sạn, cà phê tại Cafe Apartments (42 Nguyễn Huệ)"
+        },
+        {
+          "time": "09:00",
+          "activity": "Đi bộ qua Nhà hát Thành phố, Đồng Khởi tới Nhà thờ Đức Bà và Bưu điện Trung tâm"
+        },
+        {
+          "time": "11:00",
+          "activity": "Dạo phố sách Nguyễn Văn Bình"
+        },
+        {
+          "time": "12:00",
+          "activity": "Ăn trưa món Việt ba miền"
+        },
+        {
+          "time": "14:00",
+          "activity": "Trở về khách sạn nghỉ ngơi, thưởng thức Trà chiều Signature"
+        },
+        {
+          "time": "16:30",
+          "activity": "Dinh Độc Lập hoặc Bảo tàng Thành phố"
+        },
+        {
+          "time": "18:30",
+          "activity": "Dạo phố đi bộ Nguyễn Huệ, bến Bạch Đằng, ăn tối"
+        }
+      ]
+    },
+    {
+      "id": "itin-slow-onsen",
+      "title": "Một ngày chậm với Onsen",
+      "best_for_branch": "pml-onsen-hai-ba-trung",
+      "steps": [
+        {
+          "time": "07:00",
+          "activity": "Ngâm khoáng Onsen buổi sáng khi còn yên tĩnh"
+        },
+        {
+          "time": "08:30",
+          "activity": "Ăn sáng nhẹ tại khách sạn"
+        },
+        {
+          "time": "10:00",
+          "activity": "Dạo bảo tàng hoặc Nhà thờ Đức Bà"
+        },
+        {
+          "time": "13:00",
+          "activity": "Ăn trưa nhẹ, về phòng nghỉ trưa"
+        },
+        {
+          "time": "15:00",
+          "activity": "Trà chiều Signature và massage 60 phút"
+        },
+        {
+          "time": "19:00",
+          "activity": "Ăn tối nhẹ gần khách sạn, ngâm Onsen buổi tối lần thứ hai"
+        }
+      ]
+    },
+    {
+      "id": "itin-sunset-rooftop",
+      "title": "Hoàng hôn trên sân thượng",
+      "best_for_branch": "pml-central-park",
+      "steps": [
+        {
+          "time": "09:00",
+          "activity": "Ăn sáng và đi dạo công viên Lê Văn Tám"
+        },
+        {
+          "time": "10:30",
+          "activity": "Chợ Tân Định, nhà thờ Tân Định"
+        },
+        {
+          "time": "12:00",
+          "activity": "Ăn trưa món địa phương Tân Định"
+        },
+        {
+          "time": "16:30",
+          "activity": "Jacuzzi sân thượng ngắm hoàng hôn"
+        },
+        {
+          "time": "18:30",
+          "activity": "Cocktail & tapas tại Sky Bar"
+        }
+      ]
+    },
+    {
+      "id": "itin-3days",
+      "title": "3 ngày 2 đêm cho khách lần đầu",
+      "best_for_branch": "pml-dong-du",
+      "steps": [
+        {
+          "day": 1,
+          "activity": "Nhận phòng, đi bộ khu trung tâm, ăn tối phố đi bộ"
+        },
+        {
+          "day": 2,
+          "activity": "Tour Địa đạo Củ Chi buổi sáng, Chợ Bến Thành buổi chiều, tối thư giãn Onsen hoặc Sky Bar"
+        },
+        {
+          "day": 3,
+          "activity": "Bảo tàng Chứng tích Chiến tranh, mua đặc sản, ra sân bay"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "id": "faq-booking-01",
+      "category": "Đặt phòng",
+      "question": "Tôi đặt phòng bằng cách nào?",
+      "answer": "Quý khách có thể đặt phòng trực tiếp trên website (khuyên dùng để nhận Trà chiều Signature miễn phí), gọi hotline +84 28 3822 9999, nhắn Zalo hoặc gửi email stay@pmlhotel.com. Đội ngũ sẽ xác nhận trong thời gian ngắn.",
+      "keywords": [
+        "đặt phòng",
+        "book",
+        "reservation"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-booking-02",
+      "category": "Đặt phòng",
+      "question": "Đặt trực tiếp trên website có lợi gì?",
+      "answer": "Khách đặt trực tiếp được tặng Trà chiều Signature miễn phí, ưu tiên nâng hạng phòng khi còn trống, miễn phí đổi ngày một lần và tích điểm PML Kinship Club.",
+      "keywords": [
+        "đặt trực tiếp",
+        "ưu đãi",
+        "website"
+      ],
+      "related_offer_ids": [
+        "offer-direct-booking"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-booking-03",
+      "category": "Đặt phòng",
+      "question": "Làm sao biết còn phòng trống không?",
+      "answer": "Quý khách chọn cơ sở, ngày nhận/trả phòng và số khách trên thanh đặt phòng để xem phòng trống theo thời gian thực. Nếu chưa chắc chắn, vui lòng liên hệ hotline để được hỗ trợ.",
+      "keywords": [
+        "còn phòng",
+        "availability",
+        "phòng trống"
+      ],
+      "handoff": false,
+      "ai_note": "Trợ lý AI không khẳng định còn phòng; luôn hướng khách tới công cụ đặt phòng hoặc nhân viên."
+    },
+    {
+      "id": "faq-booking-04",
+      "category": "Đặt phòng",
+      "question": "Tôi có thể thay đổi hoặc hủy đặt phòng không?",
+      "answer": "Miễn phí hủy phòng trước 3 ngày so với ngày nhận phòng. Hủy trong vòng 3 ngày tính phí 100% đêm đầu tiên. Miễn phí đổi ngày nếu yêu cầu trước 3 ngày và còn phòng trống. Giá không hoàn hủy không áp dụng hủy/đổi.",
+      "keywords": [
+        "hủy phòng",
+        "đổi ngày",
+        "cancellation"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-booking-05",
+      "category": "Đặt phòng",
+      "question": "Nếu tôi không đến nhận phòng thì sao?",
+      "answer": "Khách không đến mà không thông báo (no-show) bị tính 100% giá phòng đêm đầu tiên; các đêm còn lại được hủy tự động. Nếu có thay đổi lịch trình, vui lòng báo sớm để được hỗ trợ.",
+      "keywords": [
+        "no-show",
+        "không đến"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-booking-06",
+      "category": "Đặt phòng",
+      "question": "Tôi cần đặt nhiều phòng cho đoàn thì sao?",
+      "answer": "Đặt từ 5 phòng trở lên được xem là đặt đoàn, áp dụng bảng giá riêng. Quý khách vui lòng liên hệ bộ phận Sales qua sales@pmlhotel.com hoặc +84 28 3822 9988.",
+      "keywords": [
+        "đoàn",
+        "group",
+        "nhiều phòng"
+      ],
+      "handoff": true
+    },
+    {
+      "id": "faq-booking-07",
+      "category": "Đặt phòng",
+      "question": "Có thể đặt phòng cho người khác không?",
+      "answer": "Được. Quý khách điền tên người nhận phòng khi đặt. Người nhận phòng cần từ 18 tuổi và xuất trình giấy tờ tùy thân.",
+      "keywords": [
+        "đặt hộ",
+        "tặng phòng"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-price-01",
+      "category": "Giá & thanh toán",
+      "question": "Giá phòng đã bao gồm thuế và phí dịch vụ chưa?",
+      "answer": "Giá niêm yết đã bao gồm thuế VAT và phí dịch vụ. Giá cuối cùng được hiển thị rõ ở bước xác nhận đặt phòng.",
+      "keywords": [
+        "thuế",
+        "VAT",
+        "phí dịch vụ"
+      ],
+      "handoff": false,
+      "ai_note": "Thay bằng cấu hình thật của khách sạn trước khi triển khai."
+    },
+    {
+      "id": "faq-price-02",
+      "category": "Giá & thanh toán",
+      "question": "Giá có thay đổi theo mùa không?",
+      "answer": "Có. Cuối tuần (thứ 6, thứ 7) phụ thu khoảng 10%; các dịp lễ Tết, Giáng sinh có mức phụ thu riêng. Đặt sớm 14 ngày được giảm 10%.",
+      "keywords": [
+        "giá cuối tuần",
+        "giá lễ",
+        "phụ thu"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-price-03",
+      "category": "Giá & thanh toán",
+      "question": "Phương thức thanh toán nào được chấp nhận?",
+      "answer": "Tiền mặt VND, thẻ Visa/Mastercard/JCB, chuyển khoản ngân hàng và ví điện tử/QR (MoMo, VNPay).",
+      "keywords": [
+        "thanh toán",
+        "thẻ",
+        "chuyển khoản"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-price-04",
+      "category": "Giá & thanh toán",
+      "question": "Có phải đặt cọc không?",
+      "answer": "Quý khách cần đặt cọc 500,000 VND/đêm hoặc để lại CCCD/Hộ chiếu khi làm thủ tục nhận phòng. Khoản cọc được hoàn lại khi trả phòng nếu không phát sinh chi phí.",
+      "keywords": [
+        "đặt cọc",
+        "deposit"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-price-05",
+      "category": "Giá & thanh toán",
+      "question": "Có xuất hóa đơn VAT cho công ty được không?",
+      "answer": "Được. Quý khách vui lòng cung cấp tên công ty, mã số thuế, địa chỉ khi đặt phòng hoặc trước khi trả phòng. Bộ phận Kế toán: billing@pmlhotel.com.",
+      "keywords": [
+        "hóa đơn",
+        "VAT",
+        "xuất hóa đơn"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-price-06",
+      "category": "Giá & thanh toán",
+      "question": "Có giảm giá cho khách ở dài ngày không?",
+      "answer": "Có. Lưu trú từ 7 đêm giảm khoảng 12%, từ 30 đêm giảm khoảng 25% và có hợp đồng lưu trú dài hạn. Phòng Studio Long-stay tại Central Park được thiết kế riêng cho khách ở dài ngày.",
+      "keywords": [
+        "ở dài ngày",
+        "long stay",
+        "tháng"
+      ],
+      "related_offer_ids": [
+        "offer-longstay"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-price-07",
+      "category": "Giá & thanh toán",
+      "question": "Có thể thanh toán bằng ngoại tệ không?",
+      "answer": "Khách sạn thanh toán bằng VND. Quý khách có thể thanh toán thẻ quốc tế hoặc đổi ngoại tệ tại ngân hàng/quầy đổi được cấp phép; lễ tân có thể hỗ trợ hướng dẫn.",
+      "keywords": [
+        "USD",
+        "ngoại tệ"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-checkin-01",
+      "category": "Nhận & trả phòng",
+      "question": "Giờ nhận và trả phòng là mấy giờ?",
+      "answer": "Nhận phòng từ 14:00, trả phòng trước 12:00.",
+      "keywords": [
+        "check-in",
+        "check-out",
+        "giờ"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-checkin-02",
+      "category": "Nhận & trả phòng",
+      "question": "Tôi có thể nhận phòng sớm không?",
+      "answer": "Tùy tình trạng phòng trống. Nhận phòng trước 09:00 tính 100% giá phòng; từ 09:00 đến 12:00 tính 50% giá phòng. Khách hạng Silver trở lên có thể được miễn phí (tùy tình trạng).",
+      "keywords": [
+        "nhận phòng sớm",
+        "early check-in"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-checkin-03",
+      "category": "Nhận & trả phòng",
+      "question": "Tôi có thể trả phòng muộn không?",
+      "answer": "Trả phòng muộn đến 15:00 tính 30% giá phòng, đến 18:00 tính 50%, sau 18:00 tính 100%. Khách hạng Gold và phòng Executive có thể được trả phòng muộn miễn phí (tùy tình trạng).",
+      "keywords": [
+        "trả phòng muộn",
+        "late check-out"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-checkin-04",
+      "category": "Nhận & trả phòng",
+      "question": "Tôi đến khách sạn lúc nửa đêm có được không?",
+      "answer": "Được. Lễ tân hoạt động 24/7. Quý khách nên báo giờ đến dự kiến để chúng tôi chuẩn bị phòng; chuyến bay trễ hãy thông báo qua hotline hoặc Zalo.",
+      "keywords": [
+        "đến muộn",
+        "nửa đêm",
+        "late arrival"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-checkin-05",
+      "category": "Nhận & trả phòng",
+      "question": "Khi nhận phòng tôi cần mang giấy tờ gì?",
+      "answer": "Khách Việt Nam: CCCD. Khách nước ngoài: hộ chiếu kèm thị thực hoặc giấy tờ miễn thị thực còn hiệu lực. Khách sạn có trách nhiệm khai báo lưu trú theo quy định.",
+      "keywords": [
+        "giấy tờ",
+        "CCCD",
+        "hộ chiếu"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-checkin-06",
+      "category": "Nhận & trả phòng",
+      "question": "Có thể gửi hành lý không?",
+      "answer": "Có. Miễn phí gửi hành lý trước giờ nhận phòng và sau giờ trả phòng trong ngày.",
+      "keywords": [
+        "gửi hành lý",
+        "luggage"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-room-01",
+      "category": "Phòng nghỉ",
+      "question": "Phòng nào có bồn ngâm Onsen riêng?",
+      "answer": "Phòng Onsen Signature Suite tại cơ sở Hai Bà Trưng có bồn ngâm khoáng riêng và phòng xông hơi khô trong phòng. Các hạng phòng khác của cơ sở này được dùng khu Onsen chung miễn phí.",
+      "keywords": [
+        "onsen riêng",
+        "private onsen",
+        "bồn khoáng"
+      ],
+      "related_room_ids": [
+        "room-onsen-suite"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-room-02",
+      "category": "Phòng nghỉ",
+      "question": "Phòng nào có Jacuzzi ngoài trời?",
+      "answer": "Rooftop Jacuzzi Penthouse tại cơ sở Central Park có bồn Jacuzzi ngoài trời riêng trên sân thượng, tầm nhìn 360 độ.",
+      "keywords": [
+        "jacuzzi",
+        "penthouse",
+        "sân thượng"
+      ],
+      "related_room_ids": [
+        "room-rooftop-jacuzzi"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-room-03",
+      "category": "Phòng nghỉ",
+      "question": "Phòng nào phù hợp cho gia đình có trẻ em?",
+      "answer": "Onsen Family Suite (Hai Bà Trưng) và Family Connecting Room (Đông Du) phù hợp gia đình. Trẻ dưới 6 tuổi ở chung giường với cha mẹ miễn phí; cũi em bé miễn phí khi báo trước.",
+      "keywords": [
+        "gia đình",
+        "trẻ em",
+        "family"
+      ],
+      "related_room_ids": [
+        "room-onsen-family-suite",
+        "room-family-connecting"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-room-04",
+      "category": "Phòng nghỉ",
+      "question": "Phòng nào phù hợp đi công tác?",
+      "answer": "Deluxe City Balcony và Executive Corner Suite (Đông Du), hoặc Park View Deluxe và Studio Long-stay (Central Park, có Co-working Lounge) là lựa chọn phù hợp cho khách công tác.",
+      "keywords": [
+        "công tác",
+        "business",
+        "làm việc"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-room-05",
+      "category": "Phòng nghỉ",
+      "question": "Phòng nào phù hợp cặp đôi hoặc dịp kỷ niệm?",
+      "answer": "Onsen Signature Suite cho kỳ nghỉ thư giãn riêng tư, Rooftop Jacuzzi Penthouse cho kỷ niệm và cầu hôn. Chúng tôi có gói trang trí lãng mạn, bánh kem, chụp ảnh.",
+      "keywords": [
+        "cặp đôi",
+        "kỷ niệm",
+        "cầu hôn",
+        "honeymoon"
+      ],
+      "related_offer_ids": [
+        "offer-honeymoon",
+        "offer-proposal"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-room-06",
+      "category": "Phòng nghỉ",
+      "question": "Có phòng liên thông hoặc phòng nhiều giường không?",
+      "answer": "Có Family Connecting Room (2 phòng liên thông) tại Đông Du và các phòng Twin tại Hai Bà Trưng, Central Park. Có thể thêm giường phụ 350,000 VND/đêm tùy hạng phòng.",
+      "keywords": [
+        "liên thông",
+        "twin",
+        "giường phụ"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-room-07",
+      "category": "Phòng nghỉ",
+      "question": "Phòng có cách âm tốt không?",
+      "answer": "Phòng được thiết kế cách âm tốt, đặc biệt ở các tầng cao. Nếu cần yên tĩnh hơn, Quý khách có thể yêu cầu phòng ở tầng cao hoặc phía trong.",
+      "keywords": [
+        "ồn",
+        "cách âm",
+        "yên tĩnh"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-room-08",
+      "category": "Phòng nghỉ",
+      "question": "Phòng có ban công hoặc cửa sổ không?",
+      "answer": "Deluxe City Balcony (Đông Du) có ban công. Phần lớn các phòng còn lại có cửa sổ lớn; phòng Superior hướng nội khu/hẻm yên tĩnh. Chi tiết xem trang từng hạng phòng.",
+      "keywords": [
+        "ban công",
+        "cửa sổ",
+        "view"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-room-09",
+      "category": "Phòng nghỉ",
+      "question": "Tôi có thể yêu cầu tầng cao hoặc view cụ thể không?",
+      "answer": "Có thể ghi chú khi đặt phòng; chúng tôi sẽ cố gắng đáp ứng theo tình trạng phòng nhưng không cam kết.",
+      "keywords": [
+        "tầng cao",
+        "yêu cầu phòng"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-onsen-01",
+      "category": "Onsen & Wellness",
+      "question": "Khách ở các chi nhánh khác có được dùng Onsen không?",
+      "answer": "Có. Khách chi nhánh khác hoặc khách bên ngoài sử dụng Onsen tại Hai Bà Trưng với giá 350,000 VND/lượt. Khách hạng Gold được miễn phí 1 lượt mỗi lần lưu trú.",
+      "keywords": [
+        "onsen",
+        "chi nhánh khác",
+        "khách ngoài"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-onsen-02",
+      "category": "Onsen & Wellness",
+      "question": "Onsen mở cửa lúc mấy giờ và cần chuẩn bị gì?",
+      "answer": "Onsen mở 06:00 - 22:00 hàng ngày. Quý khách nên tắm rửa trước khi vào bể, mặc trang phục tắm hoặc yukata theo hướng dẫn, uống đủ nước và giữ yên tĩnh.",
+      "keywords": [
+        "giờ mở",
+        "chuẩn bị",
+        "quy tắc"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-onsen-03",
+      "category": "Onsen & Wellness",
+      "question": "Ai không nên sử dụng Onsen và xông hơi?",
+      "answer": "Không khuyến khích với người đang mang thai, có bệnh tim mạch, huyết áp bất thường hoặc đã dùng rượu bia. Trẻ dưới 12 tuổi cần người lớn đi kèm. Mỗi lượt ngâm nên không quá 15 - 20 phút. Nếu có vấn đề sức khỏe, Quý khách nên hỏi ý kiến bác sĩ trước.",
+      "keywords": [
+        "an toàn",
+        "mang thai",
+        "sức khỏe"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-onsen-04",
+      "category": "Onsen & Wellness",
+      "question": "Có thể đặt Onsen riêng cho cặp đôi không?",
+      "answer": "Có. Quý khách có thể đặt khung giờ riêng 60 phút cho cặp đôi với giá 600,000 VND; nên đặt trước tối thiểu một ngày.",
+      "keywords": [
+        "onsen riêng",
+        "cặp đôi"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-onsen-05",
+      "category": "Onsen & Wellness",
+      "question": "Khách sạn có dịch vụ massage không?",
+      "answer": "Có massage thư giãn 60 phút (480,000 VND) và massage đá nóng 90 phút (690,000 VND), phục vụ tại phòng hoặc Lounge; cần đặt trước 3 giờ.",
+      "keywords": [
+        "massage",
+        "spa"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-dining-01",
+      "category": "Ăn uống",
+      "question": "Bữa sáng có bao gồm trong giá phòng không?",
+      "answer": "Phần lớn hạng phòng từ Deluxe trở lên đã bao gồm bữa sáng buffet. Hạng Superior và Studio Long-stay không gồm; có thể thêm 250,000 VND/người (trẻ 6 - 11 tuổi: 150,000 VND).",
+      "keywords": [
+        "ăn sáng",
+        "buffet",
+        "breakfast"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-dining-02",
+      "category": "Ăn uống",
+      "question": "Trà chiều miễn phí dành cho ai?",
+      "answer": "Trà chiều Signature phục vụ 14:30 - 16:30 hàng ngày, miễn phí cho khách đặt phòng trực tiếp qua website. Một số hạng phòng như Onsen Signature Suite được tặng thêm 2 suất.",
+      "keywords": [
+        "trà chiều",
+        "afternoon tea"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-dining-03",
+      "category": "Ăn uống",
+      "question": "Tôi ăn chay hoặc bị dị ứng thực phẩm, khách sạn có hỗ trợ không?",
+      "answer": "Có. Vui lòng báo trước khi đặt phòng hoặc nhận phòng để nhà bếp chuẩn bị món ăn chay, không gluten hoặc loại bỏ thành phần gây dị ứng theo khả năng.",
+      "keywords": [
+        "ăn chay",
+        "dị ứng",
+        "vegan"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-dining-04",
+      "category": "Ăn uống",
+      "question": "Khách sạn có phục vụ ăn tại phòng không?",
+      "answer": "Có dịch vụ room service 07:00 - 22:00 với thực đơn món Việt và quốc tế, không phụ thu phí giao hàng.",
+      "keywords": [
+        "room service",
+        "ăn tại phòng"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-dining-05",
+      "category": "Ăn uống",
+      "question": "Có thể mang đồ ăn ngoài vào khách sạn không?",
+      "answer": "Được mang vào phòng; không mang vào khu Onsen và Sky Bar.",
+      "keywords": [
+        "đồ ăn ngoài"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-skybar-01",
+      "category": "Rooftop & Sky Bar",
+      "question": "Sky Bar và Jacuzzi trên sân thượng mở cửa lúc nào?",
+      "answer": "Rooftop Jacuzzi & Sky Bar tại Central Park mở 16:00 - 23:30 hàng ngày. Khách lưu trú giảm 20% menu cocktail. Jacuzzi dành cho khách từ 16 tuổi, trẻ em cần người lớn đi kèm; có thể đóng cửa khi thời tiết xấu.",
+      "keywords": [
+        "sky bar",
+        "rooftop",
+        "jacuzzi"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-skybar-02",
+      "category": "Rooftop & Sky Bar",
+      "question": "Tôi có thể thuê riêng Sky Bar cho tiệc nhỏ không?",
+      "answer": "Có thể thuê riêng cho tối đa 20 khách, tối thiểu 3 giờ, đặt trước ít nhất 7 ngày. Liên hệ events@pmlhotel.com.",
+      "keywords": [
+        "tiệc",
+        "thuê riêng",
+        "sự kiện"
+      ],
+      "handoff": true
+    },
+    {
+      "id": "faq-transport-01",
+      "category": "Di chuyển",
+      "question": "Đi từ sân bay Tân Sơn Nhất đến khách sạn như thế nào?",
+      "answer": "Có xe đưa đón riêng (sedan 450,000 VND, SUV 7 chỗ 600,000 VND; cần đặt trước 4 giờ). Taxi/Grab khoảng 150,000 - 220,000 VND, 30 - 45 phút tùy giờ cao điểm.",
+      "keywords": [
+        "sân bay",
+        "đón sân bay",
+        "airport"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-transport-02",
+      "category": "Di chuyển",
+      "question": "Khách sạn có chỗ đậu xe không?",
+      "answer": "Xe máy gửi miễn phí. Ô tô: Đông Du và Hai Bà Trưng gửi tại bãi đối tác gần đó (khoảng 150,000 VND/đêm), Central Park có chỗ hạn chế dưới hầm (cần đặt trước).",
+      "keywords": [
+        "đậu xe",
+        "gửi xe",
+        "parking"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-transport-03",
+      "category": "Di chuyển",
+      "question": "Khách sạn có thuê xe và tour không?",
+      "answer": "Concierge hỗ trợ thuê xe có tài xế (4 giờ - 900,000 VND, 8 giờ - 1,500,000 VND) và đặt tour Củ Chi, Mê Kông. Giá tour có thể thay đổi theo đối tác.",
+      "keywords": [
+        "thuê xe",
+        "tour",
+        "củ chi",
+        "mê kông"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-policy-01",
+      "category": "Chính sách",
+      "question": "Trẻ em được tính như thế nào?",
+      "answer": "Trẻ dưới 6 tuổi ở chung giường với cha mẹ miễn phí. Trẻ từ 6 - 11 tuổi phụ thu ăn sáng 150,000 VND/ngày. Từ 12 tuổi tính như người lớn.",
+      "keywords": [
+        "trẻ em",
+        "children",
+        "phụ thu"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-policy-02",
+      "category": "Chính sách",
+      "question": "Khách sạn có nhận thú cưng không?",
+      "answer": "Hiện chưa nhận thú cưng, ngoại trừ chó dẫn đường theo quy định.",
+      "keywords": [
+        "thú cưng",
+        "chó",
+        "mèo",
+        "pet"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-policy-03",
+      "category": "Chính sách",
+      "question": "Có được hút thuốc trong phòng không?",
+      "answer": "Không. Toàn bộ phòng và khu vực công cộng trong nhà là không hút thuốc, vi phạm bị phạt vệ sinh 1,000,000 VND. Có khu hút thuốc riêng ngoài trời.",
+      "keywords": [
+        "hút thuốc",
+        "smoking"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-policy-04",
+      "category": "Chính sách",
+      "question": "Có quy định giờ yên tĩnh và khách đến thăm không?",
+      "answer": "Giờ yên tĩnh 22:00 - 07:00. Khách thăm đăng ký tại lễ tân và ở khu vực sảnh/lounge đến 22:00; không ở lại qua đêm nếu chưa đăng ký.",
+      "keywords": [
+        "khách thăm",
+        "yên tĩnh",
+        "visitor"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-policy-05",
+      "category": "Chính sách",
+      "question": "Tôi bỏ quên đồ trong phòng thì sao?",
+      "answer": "Vui lòng liên hệ ngay hotline hoặc Zalo, cung cấp tên, ngày lưu trú và mô tả đồ vật. Đồ thất lạc được lưu giữ 90 ngày; khách sạn hỗ trợ gửi về, phí vận chuyển do khách thanh toán.",
+      "keywords": [
+        "bỏ quên",
+        "thất lạc",
+        "lost"
+      ],
+      "handoff": true
+    },
+    {
+      "id": "faq-facility-01",
+      "category": "Tiện nghi",
+      "question": "Wi-Fi có miễn phí không?",
+      "answer": "Có, Wi-Fi miễn phí tốc độ cao toàn khách sạn. Mật khẩu được cung cấp khi nhận phòng.",
+      "keywords": [
+        "wifi",
+        "internet"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-facility-02",
+      "category": "Tiện nghi",
+      "question": "Khách sạn có phòng gym, hồ bơi không?",
+      "answer": "Phòng Gym có tại Central Park (05:30 - 22:00, miễn phí cho khách). Hiện chưa có hồ bơi; có Jacuzzi trên sân thượng Central Park và Onsen tại Hai Bà Trưng.",
+      "keywords": [
+        "gym",
+        "hồ bơi",
+        "bể bơi"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-facility-03",
+      "category": "Tiện nghi",
+      "question": "Khách sạn có dịch vụ giặt ủi không?",
+      "answer": "Có. Giao đồ trước 10:00, nhận trong ngày; giặt nhanh 4 giờ phụ thu 50%. Studio Long-stay có gói giặt tuần.",
+      "keywords": [
+        "giặt ủi",
+        "laundry"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-facility-04",
+      "category": "Tiện nghi",
+      "question": "Có phòng họp hoặc không gian làm việc không?",
+      "answer": "Central Park có Executive Coworking Lounge (07:00 - 22:00, miễn phí cho khách lưu trú) và phòng họp nhỏ 8 người (1,200,000 VND/4 giờ).",
+      "keywords": [
+        "làm việc",
+        "coworking",
+        "phòng họp"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-facility-05",
+      "category": "Tiện nghi",
+      "question": "Khách sạn có thang máy và hỗ trợ người khuyết tật không?",
+      "answer": "Cả ba cơ sở có thang máy. Quý khách cần hỗ trợ đặc biệt (xe lăn, phòng thuận tiện) vui lòng liên hệ trước để chúng tôi xác nhận phòng phù hợp.",
+      "keywords": [
+        "khuyết tật",
+        "xe lăn",
+        "accessibility"
+      ],
+      "handoff": true
+    },
+    {
+      "id": "faq-facility-06",
+      "category": "Tiện nghi",
+      "question": "Khách sạn có an toàn không?",
+      "answer": "Có camera an ninh khu công cộng, két an toàn trong phòng, thẻ từ kiểm soát thang máy, hệ thống báo cháy và thoát hiểm theo tiêu chuẩn, lễ tân trực 24/7.",
+      "keywords": [
+        "an toàn",
+        "an ninh"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-location-01",
+      "category": "Vị trí",
+      "question": "Khách sạn có gần các điểm tham quan chính không?",
+      "answer": "Cả ba cơ sở đều ở Quận 1. Đông Du cách phố đi bộ Nguyễn Huệ 150m; Hai Bà Trưng cách Nhà thờ Đức Bà 400m; Central Park đối diện công viên Lê Văn Tám. Chi tiết khoảng cách xem trang từng cơ sở.",
+      "keywords": [
+        "vị trí",
+        "gần",
+        "địa điểm"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-location-02",
+      "category": "Vị trí",
+      "question": "Nên chọn cơ sở nào cho chuyến đi của tôi?",
+      "answer": "Đông Du: sát phố đi bộ, hợp khách lần đầu và khách công tác. Hai Bà Trưng (Onsen): hợp cặp đôi, khách muốn thư giãn. Central Park: có sân thượng Jacuzzi, co-working, hợp khách kỷ niệm hoặc ở dài ngày.",
+      "keywords": [
+        "chọn cơ sở",
+        "so sánh",
+        "nên ở đâu"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-location-03",
+      "category": "Vị trí",
+      "question": "Khu vực khách sạn có an toàn khi đi bộ buổi tối không?",
+      "answer": "Khu vực trung tâm Quận 1 thường đông và sáng đèn buổi tối. Quý khách vẫn nên giữ gìn tài sản cá nhân, hạn chế đi một mình ở nơi vắng và hỏi lễ tân về lộ trình phù hợp.",
+      "keywords": [
+        "an toàn",
+        "đi bộ đêm"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-loyalty-01",
+      "category": "Thành viên",
+      "question": "PML Kinship Club là gì?",
+      "answer": "Chương trình khách hàng thân thiết miễn phí với 3 hạng Member, Silver, Gold; tích điểm khi đặt trực tiếp và nhận ưu đãi như giảm giá phòng, nhận phòng sớm, trả phòng muộn miễn phí.",
+      "keywords": [
+        "thành viên",
+        "tích điểm",
+        "loyalty"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-special-01",
+      "category": "Dịp đặc biệt",
+      "question": "Tôi muốn cầu hôn hoặc tổ chức sinh nhật bất ngờ, khách sạn hỗ trợ được không?",
+      "answer": "Có. Chúng tôi hỗ trợ trang trí phòng, hoa, bánh kem, setup bàn riêng trên sân thượng và chụp ảnh. Quý khách vui lòng liên hệ trước tối thiểu 24 - 120 giờ tùy gói để chuẩn bị chu đáo.",
+      "keywords": [
+        "cầu hôn",
+        "sinh nhật",
+        "bất ngờ"
+      ],
+      "related_offer_ids": [
+        "offer-proposal",
+        "offer-birthday"
+      ],
+      "handoff": true
+    },
+    {
+      "id": "faq-contact-01",
+      "category": "Liên hệ",
+      "question": "Tôi có thể liên hệ khách sạn bằng cách nào?",
+      "answer": "Hotline +84 28 3822 9999 (24/7), Zalo https://zalo.me/pmlhotel, email stay@pmlhotel.com. Mỗi cơ sở cũng có số điện thoại riêng, xem trang Liên hệ.",
+      "keywords": [
+        "liên hệ",
+        "hotline",
+        "zalo"
+      ],
+      "handoff": false
+    },
+    {
+      "id": "faq-contact-02",
+      "category": "Liên hệ",
+      "question": "Tôi muốn góp ý hoặc khiếu nại, gửi ở đâu?",
+      "answer": "Rất tiếc nếu trải nghiệm chưa như mong đợi. Quý khách vui lòng gửi email care@pmlhotel.com hoặc gọi +84 28 3822 9966; bộ phận chăm sóc khách hàng sẽ phản hồi trong thời gian sớm nhất.",
+      "keywords": [
+        "khiếu nại",
+        "góp ý",
+        "complaint"
+      ],
+      "handoff": true
+    }
+  ],
+  "ai_assistant": {
+    "name": "PML Concierge",
+    "role": "Trợ lý ảo của PML Hotel, hỗ trợ giải đáp thông tin, gợi ý phòng/trải nghiệm và thu thập yêu cầu đặt phòng cho nhân viên xác nhận.",
+    "default_language": "vi",
+    "language_rules": "Trả lời bằng ngôn ngữ khách dùng (Việt/Anh). Nếu khách dùng ngôn ngữ khác, trả lời bằng tiếng Anh và đề nghị chuyển nhân viên khi cần.",
+    "tone": {
+      "style": "Ấm áp, tinh tế, ngắn gọn, như một concierge hiểu khách.",
+      "do": [
+        "Xưng 'PML' hoặc 'em' và gọi khách là 'Quý khách' hoặc 'anh/chị'",
+        "Trả lời 2 - 5 câu trừ khi khách hỏi chi tiết",
+        "Chủ động gợi ý bước tiếp theo (xem phòng, đặt phòng, liên hệ)",
+        "Dùng danh sách ngắn khi so sánh nhiều lựa chọn"
+      ],
+      "dont": [
+        "Không dùng ngôn từ quảng cáo thái quá",
+        "Không dùng emoji quá nhiều (tối đa 1 emoji/tin)",
+        "Không hứa điều khách sạn chưa xác nhận"
+      ]
+    },
+    "knowledge_sources": [
+      "01_brand_policies",
+      "02_branches",
+      "03_rooms",
+      "04_amenities_services_offers",
+      "05_local_guide",
+      "06_faq"
+    ],
+    "guardrails": [
+      "Chỉ trả lời dựa trên dữ liệu trong bộ dataset; nếu không có thông tin, nói rõ chưa có và đề nghị liên hệ nhân viên (hotline/Zalo).",
+      "Không khẳng định còn phòng hoặc giá tại một ngày cụ thể; hướng khách dùng thanh đặt phòng hoặc để lại thông tin để nhân viên xác nhận.",
+      "Không yêu cầu hoặc lưu số thẻ tín dụng, CVV, mật khẩu, OTP qua chat.",
+      "Không đưa lời khuyên y tế; với câu hỏi sức khỏe liên quan Onsen/xông hơi chỉ nêu lưu ý chung và khuyên hỏi bác sĩ.",
+      "Không bàn về chính trị, tôn giáo hoặc nội dung nhạy cảm không liên quan đến lưu trú.",
+      "Địa điểm, giá và giờ mở cửa của đơn vị bên ngoài chỉ mang tính tham khảo; nhắc khách kiểm tra lại.",
+      "Không so sánh tiêu cực hay đánh giá thấp khách sạn khác.",
+      "Khi khách thể hiện bực bội hoặc khiếu nại, xin lỗi ngắn gọn, ghi nhận vấn đề và chuyển nhân viên."
+    ],
+    "handoff_triggers": [
+      {
+        "trigger": "Khiếu nại, hoàn tiền, tranh chấp thanh toán",
+        "route_to": "care@pmlhotel.com / +84 28 3822 9966"
+      },
+      {
+        "trigger": "Đặt đoàn từ 5 phòng, sự kiện, tiệc",
+        "route_to": "sales@pmlhotel.com / events@pmlhotel.com"
+      },
+      {
+        "trigger": "Yêu cầu đặc biệt: khuyết tật, y tế, dị ứng nặng, an toàn cá nhân",
+        "route_to": "Hotline 24/7 +84 28 3822 9999"
+      },
+      {
+        "trigger": "Khách yêu cầu nói chuyện với nhân viên",
+        "route_to": "Hotline hoặc Zalo https://zalo.me/pmlhotel"
+      },
+      {
+        "trigger": "Hóa đơn VAT, chứng từ kế toán",
+        "route_to": "billing@pmlhotel.com"
+      },
+      {
+        "trigger": "Tình huống khẩn cấp",
+        "route_to": "Gọi 113/114/115 và hotline khách sạn"
+      }
+    ],
+    "lead_capture": {
+      "when": "Khi khách muốn đặt phòng nhưng chưa dùng công cụ đặt, hoặc cần báo giá/tư vấn.",
+      "fields": [
+        {
+          "name": "full_name",
+          "label": "Họ và tên",
+          "required": true
+        },
+        {
+          "name": "phone",
+          "label": "Số điện thoại / Zalo",
+          "required": true,
+          "validation": "Số điện thoại Việt Nam hoặc quốc tế hợp lệ"
+        },
+        {
+          "name": "email",
+          "label": "Email",
+          "required": false
+        },
+        {
+          "name": "branch",
+          "label": "Cơ sở quan tâm",
+          "required": false
+        },
+        {
+          "name": "check_in",
+          "label": "Ngày nhận phòng",
+          "required": true
+        },
+        {
+          "name": "check_out",
+          "label": "Ngày trả phòng",
+          "required": true
+        },
+        {
+          "name": "guests",
+          "label": "Số khách (người lớn / trẻ em)",
+          "required": true
+        },
+        {
+          "name": "room_preference",
+          "label": "Hạng phòng quan tâm",
+          "required": false
+        },
+        {
+          "name": "notes",
+          "label": "Yêu cầu đặc biệt",
+          "required": false
+        }
+      ],
+      "consent_text": "Bằng việc gửi thông tin, Quý khách đồng ý để PML Hotel liên hệ xác nhận đặt phòng. Thông tin được bảo mật theo chính sách quyền riêng tư."
+    },
+    "upsell_rules": [
+      {
+        "when": "Khách đặt cho dịp kỷ niệm/cầu hôn/sinh nhật",
+        "suggest": [
+          "offer-honeymoon",
+          "offer-proposal",
+          "offer-birthday",
+          "svc-romantic-setup",
+          "svc-cake"
+        ]
+      },
+      {
+        "when": "Khách đến từ sân bay hoặc ở 1 - 3 đêm",
+        "suggest": [
+          "svc-airport-sedan",
+          "svc-airport-suv"
+        ]
+      },
+      {
+        "when": "Khách công tác dài ngày",
+        "suggest": [
+          "offer-business",
+          "offer-longstay",
+          "svc-laundry-weekly"
+        ]
+      },
+      {
+        "when": "Khách thích thư giãn/ngủ ngon",
+        "suggest": [
+          "room-onsen-suite",
+          "offer-onsen-weekend",
+          "svc-massage-60"
+        ]
+      },
+      {
+        "when": "Khách đi gia đình có trẻ nhỏ",
+        "suggest": [
+          "room-onsen-family-suite",
+          "room-family-connecting",
+          "svc-baby-cot"
+        ]
+      }
+    ],
+    "response_templates": {
+      "greeting": "Xin chào, em là PML Concierge. Em có thể giúp Quý khách chọn phòng, tìm hiểu Onsen, Sky Bar hoặc gợi ý lịch trình ở Sài Gòn. Quý khách đang quan tâm điều gì ạ?",
+      "unknown": "Phần này em chưa có thông tin chính xác. Quý khách vui lòng liên hệ lễ tân qua hotline +84 28 3822 9999 hoặc Zalo để được hỗ trợ nhanh nhất ạ.",
+      "availability_disclaimer": "Em không xem được tình trạng phòng theo thời gian thực. Quý khách vui lòng chọn ngày trên thanh đặt phòng, hoặc để lại thông tin để nhân viên kiểm tra và xác nhận giúp ạ.",
+      "price_disclaimer": "Giá em nêu là giá tham khảo theo ngày thường. Giá cuối cùng có thể thay đổi theo ngày, mùa lễ và tình trạng phòng, hiển thị rõ ở bước xác nhận đặt phòng.",
+      "handoff": "Em xin phép chuyển yêu cầu này cho đội ngũ PML để hỗ trợ trực tiếp. Quý khách có thể gọi +84 28 3822 9999 hoặc nhắn Zalo, em cũng có thể ghi lại thông tin để nhân viên liên hệ lại.",
+      "closing": "Cảm ơn Quý khách. Nếu cần thêm thông tin gì, cứ nhắn em bất cứ lúc nào ạ."
+    },
+    "quick_replies": [
+      "Gợi ý phòng cho cặp đôi",
+      "Onsen hoạt động thế nào?",
+      "Nhận và trả phòng lúc mấy giờ?",
+      "Đi từ sân bay về khách sạn",
+      "Ưu đãi đang có",
+      "Nên ăn gì quanh khách sạn?",
+      "Nói chuyện với nhân viên"
+    ],
+    "intents": [
+      {
+        "id": "intent-room-recommend",
+        "description": "Khách muốn gợi ý phòng/cơ sở phù hợp",
+        "examples": [
+          "Mình đi 2 người, muốn phòng có bồn tắm riêng",
+          "Phòng nào hợp đi công tác?",
+          "Gia đình 4 người nên ở phòng nào?"
+        ],
+        "required_slots": [
+          "số khách",
+          "mục đích chuyến đi"
+        ],
+        "answer_from": [
+          "03_rooms",
+          "02_branches"
+        ]
+      },
+      {
+        "id": "intent-price",
+        "description": "Hỏi giá phòng/dịch vụ",
+        "examples": [
+          "Giá phòng Onsen Suite bao nhiêu?",
+          "Giá cuối tuần có đắt hơn không?"
+        ],
+        "answer_from": [
+          "03_rooms",
+          "01_brand_policies.pricing_rules"
+        ],
+        "must_include": "price_disclaimer"
+      },
+      {
+        "id": "intent-availability",
+        "description": "Hỏi còn phòng ngày cụ thể",
+        "examples": [
+          "Ngày 20/12 còn phòng không?"
+        ],
+        "answer_from": [],
+        "must_include": "availability_disclaimer",
+        "action": "lead_capture_or_booking_widget"
+      },
+      {
+        "id": "intent-booking",
+        "description": "Muốn đặt phòng",
+        "examples": [
+          "Mình muốn đặt phòng Deluxe 2 đêm",
+          "Đặt giúp mình phòng Penthouse"
+        ],
+        "action": "lead_capture_or_booking_widget"
+      },
+      {
+        "id": "intent-policy",
+        "description": "Hỏi chính sách hủy, nhận/trả phòng, trẻ em, thú cưng, hút thuốc",
+        "examples": [
+          "Hủy phòng có mất phí không?",
+          "Mang chó theo được không?"
+        ],
+        "answer_from": [
+          "01_brand_policies.general_policies",
+          "06_faq"
+        ]
+      },
+      {
+        "id": "intent-amenities",
+        "description": "Hỏi tiện ích: Onsen, Sky Bar, gym, co-working, trà chiều",
+        "examples": [
+          "Onsen mở cửa mấy giờ?",
+          "Có hồ bơi không?"
+        ],
+        "answer_from": [
+          "04_amenities_services_offers"
+        ]
+      },
+      {
+        "id": "intent-dining",
+        "description": "Hỏi ăn uống, bữa sáng, room service, dị ứng",
+        "examples": [
+          "Bữa sáng gồm những gì?",
+          "Mình ăn chay được không?"
+        ],
+        "answer_from": [
+          "04_amenities_services_offers.dining",
+          "06_faq"
+        ]
+      },
+      {
+        "id": "intent-transport",
+        "description": "Hỏi đón sân bay, di chuyển, đỗ xe",
+        "examples": [
+          "Đón sân bay giá bao nhiêu?",
+          "Có chỗ đậu ô tô không?"
+        ],
+        "answer_from": [
+          "04_amenities_services_offers.services",
+          "05_local_guide",
+          "02_branches"
+        ]
+      },
+      {
+        "id": "intent-local-guide",
+        "description": "Xin gợi ý ăn uống, tham quan, lịch trình",
+        "examples": [
+          "Gợi ý lịch trình 1 ngày quanh khách sạn",
+          "Gần đây có quán cà phê đẹp không?"
+        ],
+        "answer_from": [
+          "05_local_guide"
+        ],
+        "must_include": "Nhắc khách kiểm tra lại giờ mở cửa/địa chỉ"
+      },
+      {
+        "id": "intent-offers",
+        "description": "Hỏi ưu đãi/gói",
+        "examples": [
+          "Có ưu đãi cho cặp đôi không?",
+          "Gói cầu hôn gồm gì?"
+        ],
+        "answer_from": [
+          "04_amenities_services_offers.offers"
+        ]
+      },
+      {
+        "id": "intent-special-occasion",
+        "description": "Dịp kỷ niệm, cầu hôn, sinh nhật",
+        "examples": [
+          "Mình muốn cầu hôn bạn gái ở sân thượng"
+        ],
+        "answer_from": [
+          "04_amenities_services_offers",
+          "06_faq"
+        ],
+        "action": "handoff_to_events"
+      },
+      {
+        "id": "intent-complaint",
+        "description": "Phàn nàn, góp ý, yêu cầu hoàn tiền",
+        "examples": [
+          "Phòng ồn quá",
+          "Mình bị trừ tiền hai lần"
+        ],
+        "action": "handoff_to_care"
+      },
+      {
+        "id": "intent-contact",
+        "description": "Xin thông tin liên hệ",
+        "examples": [
+          "Cho mình số điện thoại",
+          "Zalo khách sạn là gì?"
+        ],
+        "answer_from": [
+          "01_brand_policies.contact_directory"
+        ]
+      },
+      {
+        "id": "intent-loyalty",
+        "description": "Hỏi thành viên thân thiết",
+        "examples": [
+          "PML Kinship Club có gì?"
+        ],
+        "answer_from": [
+          "01_brand_policies.loyalty_program"
+        ]
+      },
+      {
+        "id": "intent-smalltalk",
+        "description": "Chào hỏi, cảm ơn",
+        "examples": [
+          "Xin chào",
+          "Cảm ơn nhé"
+        ],
+        "answer_from": [
+          "response_templates"
+        ]
+      }
+    ],
+    "sample_dialogues": [
+      {
+        "user": "Mình đi 2 người, muốn thư giãn cuối tuần, có phòng nào có bồn ngâm riêng không?",
+        "assistant": "Có ạ. Onsen Signature Suite tại cơ sở Hai Bà Trưng có bồn ngâm khoáng riêng và phòng xông hơi khô ngay trong phòng, diện tích 42 m², giá tham khảo 2.200.000đ/đêm ngày thường (cuối tuần phụ thu khoảng 10%). Gói Onsen Weekend Retreat gồm 2 đêm, trà chiều và massage 60 phút cũng khá hợp cho cuối tuần. Quý khách dự định ở những ngày nào để em hỗ trợ ghi nhận yêu cầu ạ?"
+      },
+      {
+        "user": "Ngày 24/12 còn phòng không?",
+        "assistant": "Em không xem được tình trạng phòng theo thời gian thực, và dịp 24/12 là mùa cao điểm nên phòng có thể giữ chỗ nhanh. Quý khách chọn ngày trên thanh đặt phòng hoặc cho em xin họ tên, số điện thoại và số khách để nhân viên kiểm tra và xác nhận sớm ạ."
+      },
+      {
+        "user": "Mình muốn hủy phòng vì lịch bay đổi, có mất phí không?",
+        "assistant": "Nếu Quý khách hủy trước 3 ngày so với ngày nhận phòng thì miễn phí; trong vòng 3 ngày sẽ tính phí 100% đêm đầu tiên. Với giá không hoàn hủy thì điều kiện sẽ khác. Quý khách cho em mã đặt phòng hoặc em chuyển nhân viên hỗ trợ trực tiếp để kiểm tra giúp mình ạ."
+      },
+      {
+        "user": "Gần khách sạn Đông Du có gì ăn sáng ngon không?",
+        "assistant": "Từ Đông Du, Quý khách có thể thử Phở Minh trong hẻm Pasteur (phở vị Bắc nhẹ), hoặc bánh mì Huỳnh Hoa nếu muốn đi xe vài phút. Cafe Apartments tại 42 Nguyễn Huệ cũng đẹp cho một ly cà phê buổi sáng. Địa chỉ và giờ mở cửa có thể thay đổi nên Quý khách kiểm tra lại giúp em nhé. Hoặc phòng Deluxe đã gồm buffet sáng ngay tại khách sạn ạ."
+      }
+    ]
+  },
+  "search_synonyms": {
+    "onsen": [
+      "bồn khoáng",
+      "suối nước nóng",
+      "ngâm nước nóng",
+      "tắm onsen",
+      "hot spring"
+    ],
+    "sauna": [
+      "xông hơi",
+      "phòng xông",
+      "xông hơi đá muối"
+    ],
+    "jacuzzi": [
+      "bồn sục",
+      "bể sục",
+      "bồn tắm ngoài trời"
+    ],
+    "sky bar": [
+      "rooftop",
+      "quán bar sân thượng",
+      "bar tầng thượng"
+    ],
+    "co-working": [
+      "làm việc chung",
+      "workspace",
+      "phòng làm việc"
+    ],
+    "afternoon tea": [
+      "trà chiều",
+      "tea time",
+      "tiệc trà"
+    ],
+    "check-in": [
+      "nhận phòng",
+      "vào phòng"
+    ],
+    "check-out": [
+      "trả phòng",
+      "ra phòng"
+    ],
+    "penthouse": [
+      "phòng áp mái",
+      "căn tầng thượng"
+    ],
+    "suite": [
+      "phòng suite",
+      "căn hộ khách sạn"
+    ],
+    "deluxe": [
+      "phòng cao cấp",
+      "phòng deluxe"
+    ],
+    "airport transfer": [
+      "đón sân bay",
+      "xe sân bay",
+      "đưa đón sân bay"
+    ],
+    "long stay": [
+      "ở dài ngày",
+      "thuê tháng",
+      "ở lâu"
+    ],
+    "staycation": [
+      "nghỉ cuối tuần trong thành phố",
+      "ở khách sạn nội thành"
+    ],
+    "honeymoon": [
+      "tuần trăng mật",
+      "tân hôn"
+    ],
+    "proposal": [
+      "cầu hôn",
+      "ngỏ lời",
+      "propose"
+    ],
+    "dong du": [
+      "đông du",
+      "quận 1 gần nguyễn huệ",
+      "chi nhánh 1"
+    ],
+    "hai ba trung": [
+      "hai bà trưng",
+      "onsen lounge",
+      "40 hai bà trưng"
+    ],
+    "central park": [
+      "công viên lê văn tám",
+      "223 hai bà trưng",
+      "tân định"
+    ]
+  },
+  "content_notice": "Đánh giá, bài viết và ảnh bên dưới là NỘI DUNG MẪU. Không dùng tên báo chí, tổ chức xếp hạng hay nền tảng đánh giá thật khi chưa có xác nhận.",
+  "rating_summary_sample": {
+    "average": 4.8,
+    "scale": 5,
+    "total_reviews_sample": 1260,
+    "breakdown": {
+      "5": 0.82,
+      "4": 0.15,
+      "3": 0.02,
+      "2": 0.005,
+      "1": 0.005
+    },
+    "note": "Số liệu mẫu để dựng giao diện."
+  },
+  "reviews_sample": [
+    {
+      "id": "rev-001",
+      "guest": "Minh Anh",
+      "origin": "Hà Nội",
+      "stay_date": "2026-09",
+      "branch_id": "pml-onsen-hai-ba-trung",
+      "room_id": "room-onsen-suite",
+      "rating": 5,
+      "trip_type": "Cặp đôi",
+      "title": "Cuối tuần chậm giữa Sài Gòn",
+      "text": "Bồn ngâm riêng và phòng xông hơi trong phòng quá tuyệt. Nhân viên nhớ tên chúng tôi từ lần nhận phòng. Trà chiều ngon, không gian yên tĩnh bất ngờ giữa Quận 1."
+    },
+    {
+      "id": "rev-002",
+      "guest": "Sarah L.",
+      "origin": "Melbourne, Úc",
+      "stay_date": "2026-08",
+      "branch_id": "pml-dong-du",
+      "room_id": "room-deluxe-city",
+      "rating": 5,
+      "trip_type": "Du lịch một mình",
+      "title": "Perfect base for first-time visitors",
+      "text": "Walkable to everything: Nguyen Hue, the Opera House, the river. The balcony room was quiet and breakfast had great phở. Staff gave me a hand-drawn walking map."
+    },
+    {
+      "id": "rev-003",
+      "guest": "Hoàng Nam",
+      "origin": "TP.HCM",
+      "stay_date": "2026-10",
+      "branch_id": "pml-central-park",
+      "room_id": "room-rooftop-jacuzzi",
+      "rating": 5,
+      "trip_type": "Kỷ niệm",
+      "title": "Cầu hôn trên sân thượng",
+      "text": "Đội ngũ giúp mình setup gần như hoàn hảo, kể cả phương án dự phòng khi trời chuyển mưa. Hoàng hôn trên Jacuzzi là khoảnh khắc không quên."
+    },
+    {
+      "id": "rev-004",
+      "guest": "Tanaka Yuki",
+      "origin": "Osaka, Nhật Bản",
+      "stay_date": "2026-07",
+      "branch_id": "pml-onsen-hai-ba-trung",
+      "room_id": "room-onsen-deluxe-queen",
+      "rating": 4,
+      "trip_type": "Du lịch công tác",
+      "title": "Onsen xứng đáng cho một ngày dài",
+      "text": "Khu onsen sạch, yên tĩnh, tinh thần Nhật rất rõ. Phòng gọn và êm. Mong có thêm khung giờ riêng buổi tối."
+    },
+    {
+      "id": "rev-005",
+      "guest": "Lan Phương",
+      "origin": "Đà Nẵng",
+      "stay_date": "2026-09",
+      "branch_id": "pml-central-park",
+      "room_id": "room-park-view-deluxe",
+      "rating": 5,
+      "trip_type": "Công tác",
+      "title": "Làm việc dễ chịu, nghỉ ngơi cũng dễ",
+      "text": "Co-working lounge yên tĩnh, Wi-Fi nhanh, cuối ngày lên Sky Bar thư giãn. View công viên buổi sáng rất dễ chịu."
+    },
+    {
+      "id": "rev-006",
+      "guest": "Family Trần",
+      "origin": "Cần Thơ",
+      "stay_date": "2026-06",
+      "branch_id": "pml-dong-du",
+      "room_id": "room-family-connecting",
+      "rating": 5,
+      "trip_type": "Gia đình",
+      "title": "Phòng liên thông tiện cho cả nhà",
+      "text": "Hai phòng liên thông rất tiện cho gia đình 5 người. Khách sạn chuẩn bị sẵn cũi và ghế ăn dặm cho bé, nhân viên chu đáo."
+    },
+    {
+      "id": "rev-007",
+      "guest": "Jonas K.",
+      "origin": "Berlin, Đức",
+      "stay_date": "2026-05",
+      "branch_id": "pml-central-park",
+      "room_id": "room-studio-longstay",
+      "rating": 4,
+      "trip_type": "Ở dài ngày",
+      "title": "Ở 3 tuần như ở nhà",
+      "text": "Bếp nhỏ và bàn làm việc rộng là điểm cộng lớn. Giặt tuần tiện. Chỉ mong hạng mục dọn phòng có thể chọn giờ linh hoạt hơn."
+    },
+    {
+      "id": "rev-008",
+      "guest": "Thu Hà",
+      "origin": "TP.HCM",
+      "stay_date": "2026-10",
+      "branch_id": "pml-dong-du",
+      "room_id": "room-superior-indochine",
+      "rating": 4,
+      "trip_type": "Staycation",
+      "title": "Gọn, đẹp, đúng vị trí",
+      "text": "Phòng Superior nhỏ nhưng thiết kế Indochine rất dễ thương và rất yên tĩnh. Vị trí đi bộ ra phố cực tiện."
+    }
+  ],
+  "journal_articles_sample": [
+    {
+      "id": "post-001",
+      "slug": "mot-ngay-di-bo-sai-gon-trung-tam",
+      "category": "Khám phá",
+      "title": "Một ngày đi bộ Sài Gòn trung tâm",
+      "excerpt": "Từ bánh mì sáng đến hoàng hôn bên sông: lộ trình đi bộ do concierge PML gợi ý.",
+      "read_time_min": 6,
+      "related_branch_id": "pml-dong-du"
+    },
+    {
+      "id": "post-002",
+      "slug": "nghi-thuc-onsen-cho-nguoi-moi",
+      "category": "Wellness",
+      "title": "Nghi thức Onsen cho người mới",
+      "excerpt": "Ngâm nóng, ngâm lạnh, xông hơi: thứ tự và cách giữ nhịp để cơ thể thật sự thư giãn.",
+      "read_time_min": 5,
+      "related_branch_id": "pml-onsen-hai-ba-trung"
+    },
+    {
+      "id": "post-003",
+      "slug": "5-quan-an-tan-dinh-nen-thu",
+      "category": "Ẩm thực",
+      "title": "5 quán ăn Tân Định nên thử",
+      "excerpt": "Những quán ăn quen của người địa phương trong bán kính đi bộ từ PML Central Park.",
+      "read_time_min": 5,
+      "related_branch_id": "pml-central-park"
+    },
+    {
+      "id": "post-004",
+      "slug": "bleisure-lam-viec-va-nghi-ngoi",
+      "category": "Công tác",
+      "title": "Bleisure: làm việc và nghỉ ngơi trong cùng một chuyến đi",
+      "excerpt": "Cách sắp xếp lịch để chuyến công tác vẫn có thời gian khám phá thành phố.",
+      "read_time_min": 4
+    },
+    {
+      "id": "post-005",
+      "slug": "cau-hon-tren-san-thuong-sai-gon",
+      "category": "Khoảnh khắc",
+      "title": "Cầu hôn trên sân thượng: những điều cần chuẩn bị",
+      "excerpt": "Checklist chọn thời điểm, phương án dự phòng thời tiết, chụp ảnh và hoa.",
+      "read_time_min": 5,
+      "related_branch_id": "pml-central-park"
+    },
+    {
+      "id": "post-006",
+      "slug": "di-cu-chi-hay-me-kong",
+      "category": "Khám phá",
+      "title": "Củ Chi hay Mê Kông: nên đi tour nào?",
+      "excerpt": "So sánh thời gian, độ mệt, chi phí và gợi ý cho từng kiểu khách.",
+      "read_time_min": 7
+    },
+    {
+      "id": "post-007",
+      "slug": "mua-mua-sai-gon-lam-gi",
+      "category": "Mẹo du lịch",
+      "title": "Mùa mưa Sài Gòn: làm gì khi trời đổ mưa chiều",
+      "excerpt": "Những điểm tham quan trong nhà, quán cà phê và cách tận dụng tiếng mưa để nghỉ ngơi.",
+      "read_time_min": 4
+    },
+    {
+      "id": "post-008",
+      "slug": "tet-o-sai-gon",
+      "category": "Mẹo du lịch",
+      "title": "Tết ở Sài Gòn: đi đâu, ăn gì, quán nào mở cửa",
+      "excerpt": "Gợi ý cho khách ở lại thành phố dịp Tết và lưu ý đặt phòng sớm.",
+      "read_time_min": 5
+    }
+  ],
+  "gallery_sample": [
+    {
+      "id": "img-001",
+      "src": "/images/gallery/lobby-dong-du.jpg",
+      "alt": "Sảnh lounge phong cách Indochine tại PML Đông Du với đèn vàng ấm",
+      "category": "Không gian",
+      "branch_id": "pml-dong-du"
+    },
+    {
+      "id": "img-002",
+      "src": "/images/gallery/onsen-pool.jpg",
+      "alt": "Bể ngâm khoáng nóng gỗ tuyết tùng tại khu Onsen Hai Bà Trưng",
+      "category": "Onsen",
+      "branch_id": "pml-onsen-hai-ba-trung"
+    },
+    {
+      "id": "img-003",
+      "src": "/images/gallery/rooftop-sunset.jpg",
+      "alt": "Hoàng hôn trên sân thượng Central Park nhìn ra công viên Lê Văn Tám",
+      "category": "Rooftop",
+      "branch_id": "pml-central-park"
+    },
+    {
+      "id": "img-004",
+      "src": "/images/gallery/penthouse-jacuzzi.jpg",
+      "alt": "Bồn Jacuzzi ngoài trời riêng của phòng Rooftop Jacuzzi Penthouse",
+      "category": "Phòng",
+      "branch_id": "pml-central-park"
+    },
+    {
+      "id": "img-005",
+      "src": "/images/gallery/afternoon-tea.jpg",
+      "alt": "Bộ trà chiều Signature với bánh ngọt Pháp và trà thảo mộc",
+      "category": "Ẩm thực"
+    },
+    {
+      "id": "img-006",
+      "src": "/images/gallery/breakfast-buffet.jpg",
+      "alt": "Quầy buffet sáng với phở, bánh mì và trái cây tươi",
+      "category": "Ẩm thực"
+    },
+    {
+      "id": "img-007",
+      "src": "/images/gallery/coworking.jpg",
+      "alt": "Không gian Executive Coworking Lounge yên tĩnh với bàn làm việc dài",
+      "category": "Không gian",
+      "branch_id": "pml-central-park"
+    },
+    {
+      "id": "img-008",
+      "src": "/images/gallery/deluxe-balcony.jpg",
+      "alt": "Ban công phòng Deluxe City Balcony nhìn xuống phố Đông Du",
+      "category": "Phòng",
+      "branch_id": "pml-dong-du"
+    },
+    {
+      "id": "img-009",
+      "src": "/images/gallery/sauna-private.jpg",
+      "alt": "Phòng xông hơi gỗ riêng trong Onsen Signature Suite",
+      "category": "Phòng",
+      "branch_id": "pml-onsen-hai-ba-trung"
+    },
+    {
+      "id": "img-010",
+      "src": "/images/gallery/skybar-night.jpg",
+      "alt": "Sky Bar về đêm với ánh đèn thành phố và ly cocktail",
+      "category": "Rooftop",
+      "branch_id": "pml-central-park"
+    },
+    {
+      "id": "img-011",
+      "src": "/images/gallery/saigon-street.jpg",
+      "alt": "Phố Sài Gòn buổi sáng với xe máy và quán cà phê vỉa hè",
+      "category": "Sài Gòn"
+    },
+    {
+      "id": "img-012",
+      "src": "/images/gallery/family-room.jpg",
+      "alt": "Phòng Family Connecting với hai phòng ngủ liên thông",
+      "category": "Phòng",
+      "branch_id": "pml-dong-du"
+    }
+  ],
+  "site_copy": {
+    "hero": {
+      "headline_vi": "Lưu trú vì cảm xúc.",
+      "headline_en": "Stay for the feeling.",
+      "subheadline_vi": "Ba địa chỉ boutique giữa Quận 1, nơi nghi thức tắm khoáng Nhật Bản gặp tinh thần hiếu khách Sài Gòn.",
+      "primary_cta": "Đặt phòng ngay",
+      "secondary_cta": "Khám phá phòng nghỉ"
+    },
+    "nav_items": [
+      {
+        "label_vi": "Trải nghiệm",
+        "label_en": "Experience",
+        "href": "#concept"
+      },
+      {
+        "label_vi": "Phòng nghỉ",
+        "label_en": "Rooms",
+        "href": "/phong"
+      },
+      {
+        "label_vi": "Tiện ích",
+        "label_en": "Amenities",
+        "href": "#amenities"
+      },
+      {
+        "label_vi": "Cơ sở",
+        "label_en": "Locations",
+        "href": "/co-so"
+      },
+      {
+        "label_vi": "Ưu đãi",
+        "label_en": "Offers",
+        "href": "/uu-dai"
+      },
+      {
+        "label_vi": "Tạp chí",
+        "label_en": "Journal",
+        "href": "/tin-tuc"
+      },
+      {
+        "label_vi": "Liên hệ",
+        "label_en": "Contact",
+        "href": "/lien-he"
+      }
+    ],
+    "trust_badges": [
+      "Đặt trực tiếp nhận Trà chiều miễn phí",
+      "Hủy miễn phí trước 3 ngày",
+      "Lễ tân 24/7",
+      "Ba cơ sở trung tâm Quận 1"
+    ],
+    "footer_tagline": "Khách sạn boutique & lifestyle giữa lòng Thành phố Hồ Chí Minh."
+  },
+  "seo": {
+    "site": {
+      "title": "PML Hotel | Khách sạn boutique & lifestyle tại Quận 1, TP.HCM",
+      "description": "PML Hotel gồm ba khách sạn boutique tại trung tâm Quận 1: Onsen khoáng nóng chuẩn Nhật, Rooftop Jacuzzi & Sky Bar, Co-working Lounge. Đặt trực tiếp nhận Trà chiều miễn phí.",
+      "keywords": [
+        "khách sạn boutique quận 1",
+        "khách sạn có onsen TP.HCM",
+        "khách sạn rooftop jacuzzi sài gòn",
+        "khách sạn gần phố đi bộ Nguyễn Huệ",
+        "khách sạn lifestyle TP.HCM"
+      ],
+      "og_image": "/images/og/home.jpg"
+    },
+    "pages": [
+      {
+        "path": "/phong",
+        "title": "Phòng nghỉ | PML Hotel Quận 1",
+        "description": "Khám phá phòng Onsen Suite, Deluxe City Balcony, Rooftop Jacuzzi Penthouse và các hạng phòng khác tại PML Hotel."
+      },
+      {
+        "path": "/co-so/dong-du",
+        "title": "PML Hotel Đông Du | Khách sạn gần phố đi bộ Nguyễn Huệ",
+        "description": "Khách sạn boutique phong cách Indochine cách phố đi bộ Nguyễn Huệ 150m, gần Takashimaya và bến Bạch Đằng."
+      },
+      {
+        "path": "/co-so/onsen-hai-ba-trung",
+        "title": "PML Hotel & Onsen Lounge | Khách sạn có Onsen tại Quận 1",
+        "description": "Tổ hợp Onsen khoáng nóng chuẩn Nhật và phòng xông hơi đá muối giữa trung tâm Quận 1."
+      },
+      {
+        "path": "/co-so/central-park",
+        "title": "PML Hotel Central Park & Rooftop | Rooftop Jacuzzi Bar Quận 1",
+        "description": "Rooftop Jacuzzi Bar nhìn ra công viên Lê Văn Tám, co-working lounge và phòng gym hiện đại."
+      },
+      {
+        "path": "/uu-dai",
+        "title": "Ưu đãi & Gói nghỉ dưỡng | PML Hotel",
+        "description": "Gói Onsen Weekend, Honeymoon, cầu hôn, ở dài ngày và ưu đãi đặt trực tiếp."
+      },
+      {
+        "path": "/tin-tuc",
+        "title": "Tạp chí PML | Cẩm nang Sài Gòn và nghỉ dưỡng",
+        "description": "Gợi ý ăn uống, lịch trình, wellness và mẹo du lịch Sài Gòn từ đội ngũ PML."
+      },
+      {
+        "path": "/lien-he",
+        "title": "Liên hệ & Đặt phòng | PML Hotel",
+        "description": "Hotline +84 28 3822 9999, Zalo, email và địa chỉ ba cơ sở PML Hotel."
+      }
+    ],
+    "structured_data_hints": {
+      "Hotel": "Dùng schema.org/Hotel hoặc LodgingBusiness cho từng cơ sở: name, address, telephone, geo, priceRange, checkinTime, checkoutTime, amenityFeature.",
+      "HotelRoom": "Mỗi phòng: name, bed, occupancy, floorSize, amenityFeature.",
+      "FAQPage": "Dùng cho trang FAQ và trang cơ sở.",
+      "BreadcrumbList": "Cho trang con.",
+      "Review": "Chỉ dùng khi đánh giá là thật và có thể kiểm chứng."
+    }
+  }
+}
