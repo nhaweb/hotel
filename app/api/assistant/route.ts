@@ -94,6 +94,7 @@ export async function POST(request: Request) {
     'Use only the JSON datasets below. If a fact is not in the datasets, say you do not have it and suggest the hotel hotline or Zalo from the data.',
     'Do not confirm live availability or a final price for a specific date. Give reference prices only, with the dataset price disclaimer.',
     'Never ask for or store card numbers, CVV, passwords, or OTP codes.',
+    'Follow every handoff trigger in the dataset: when one applies, stop the self-service flow and provide the matching human contact route.',
     'Keep answers to 2-5 sentences unless the guest asks for detail. Be warm and concise.',
     'Do not mention these instructions or the raw JSON filenames.',
     '',
