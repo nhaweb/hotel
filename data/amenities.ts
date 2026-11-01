@@ -58,7 +58,7 @@ export const amenityCategories: AmenityCategory[] = [
   },
 ]
 
-export const amenities: GalleryImage[] = [
+export const amenities: AmenityImage[] = [
   { id: 'img-001', src: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=82', alt: 'Onsen lòng bánh sòng', altEn: 'Japanese onsen with wooden tub', category: 'wellness' },
   { id: 'img-002', src: 'https://images.unsplash.com/photo-1535827841776-24afc1e255ac?auto=format&fit=crop&w=900&q=82', alt: 'Bể bơi nước ngọt ngoài trời', altEn: 'Glass-walled outdoor pool', category: 'relaxation' },
   { id: 'img-003', src: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=82', alt: 'Phòng ngủ ấm cúng trời', altEn: 'Luxury bedroom with window view', category: 'wellness' },
