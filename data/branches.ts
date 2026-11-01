@@ -17,6 +17,8 @@ export type Branch = {
   highlights: string
   tagline: string
   nearby: NearbyPlace[]
+  lat: number
+  lng: number
 }
 
 export type AmenityHighlight = {
@@ -42,6 +44,8 @@ export const branches: Branch[] = [
     "email": "dongdu@pmlhotel.com",
     "highlights": "Vị trí vàng sát cạnh phố đi bộ Nguyễn Huệ, Takashimaya và bến Bạch Đằng. Thiết kế Indochine kết hợp hiện đại.",
     "tagline": "Trái tim Sài Gòn, ngay trước cửa.",
+    "lat": 10.7743,
+    "lng": 106.7040,
     "nearby": [
       {
         "name": "Phố đi bộ Nguyễn Huệ",
@@ -70,6 +74,8 @@ export const branches: Branch[] = [
     "email": "onsen@pmlhotel.com",
     "highlights": "Khách sạn Boutique duy nhất tại Quận 1 sở hữu tổ hợp Bể ngâm khoáng nóng Onsen chuẩn Nhật và Phòng xông hơi đá muối.",
     "tagline": "Chậm lại giữa lòng Quận 1.",
+    "lat": 10.7775,
+    "lng": 106.7022,
     "nearby": [
       {
         "name": "Nhà thờ Đức Bà & Bưu điện Trung tâm",
@@ -98,6 +104,8 @@ export const branches: Branch[] = [
     "email": "centralpark@pmlhotel.com",
     "highlights": "Sở hữu Rooftop Jacuzzi Bar view công viên Lê Văn Tám, không gian Co-working Lounge và phòng Gym hiện đại.",
     "tagline": "Sài Gòn nhìn từ trên cao.",
+    "lat": 10.7897,
+    "lng": 106.6919,
     "nearby": [
       {
         "name": "Công viên Lê Văn Tám",
@@ -147,5 +155,21 @@ export const amenityHighlights: AmenityHighlight[] = [
     "detail": "Phục vụ các loại trà thảo mộc organic, cà phê phin thủ công, bánh ngọt Pháp và trái cây tươi mùa.",
     "detailEn": "Herbal tea, Vietnamese phin coffee, and pastries, free for guests who book on the website.",
     "hours": "14:30 - 16:30 hàng ngày"
+  },
+  {
+    "id": "amenity-gym",
+    "name": "Phòng Gym",
+    "nameEn": "Fitness room",
+    "detail": "Máy chạy bộ, xe đạp tập, tạ tự do và thảm yoga. Miễn phí cho khách lưu trú tại Central Park.",
+    "detailEn": "Treadmills, bikes, free weights and yoga mats. Free for guests staying at Central Park.",
+    "hours": "05:30 - 22:00 hàng ngày"
+  },
+  {
+    "id": "amenity-concierge",
+    "name": "Concierge & bàn tour",
+    "nameEn": "Concierge & tours",
+    "detail": "Gợi ý lộ trình đi bộ, đặt bàn nhà hàng, tour Củ Chi / Mê Kông và hỗ trợ đưa đón sân bay.",
+    "detailEn": "Walking routes, restaurant bookings, Cu Chi / Mekong tours and airport transfers.",
+    "hours": "07:00 - 22:00 hàng ngày"
   }
 ]
