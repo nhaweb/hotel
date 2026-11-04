@@ -10,7 +10,7 @@ export const faqs: Faq[] = [
     "id": "faq-booking-01",
     "category": "Đặt phòng",
     "question": "Tôi đặt phòng bằng cách nào?",
-    "answer": "Quý khách có thể đặt phòng trực tiếp trên website (khuyên dùng để nhận Trà chiều Signature miễn phí), gọi hotline +84 28 3822 9999, nhắn Zalo hoặc gửi email stay@pmlhotel.com. Đội ngũ sẽ xác nhận trong thời gian ngắn."
+    "answer": "Quý khách có thể đặt phòng trực tiếp trên website (khuyên dùng để nhận Trà chiều Signature miễn phí), gọi hotline 0789 780 167, nhắn Zalo hoặc gửi email stay@pmlhotel.com. Đội ngũ sẽ xác nhận trong thời gian ngắn."
   },
   {
     "id": "faq-booking-02",
@@ -40,7 +40,7 @@ export const faqs: Faq[] = [
     "id": "faq-booking-06",
     "category": "Đặt phòng",
     "question": "Tôi cần đặt nhiều phòng cho đoàn thì sao?",
-    "answer": "Đặt từ 5 phòng trở lên được xem là đặt đoàn, áp dụng bảng giá riêng. Quý khách vui lòng liên hệ bộ phận Sales qua sales@pmlhotel.com hoặc +84 28 3822 9988."
+    "answer": "Đặt từ 5 phòng trở lên được xem là đặt đoàn, áp dụng bảng giá riêng. Quý khách vui lòng liên hệ bộ phận Sales qua sales@pmlhotel.com hoặc 0789 780 167."
   },
   {
     "id": "faq-booking-07",
@@ -370,12 +370,12 @@ export const faqs: Faq[] = [
     "id": "faq-contact-01",
     "category": "Liên hệ",
     "question": "Tôi có thể liên hệ khách sạn bằng cách nào?",
-    "answer": "Hotline +84 28 3822 9999 (24/7), Zalo https://zalo.me/pmlhotel, email stay@pmlhotel.com. Mỗi cơ sở cũng có số điện thoại riêng, xem trang Liên hệ."
+    "answer": "Hotline 0789 780 167 (24/7), Zalo https://zalo.me/pmlhotel, email stay@pmlhotel.com. Mỗi cơ sở cũng có số điện thoại riêng, xem trang Liên hệ."
   },
   {
     "id": "faq-contact-02",
     "category": "Liên hệ",
     "question": "Tôi muốn góp ý hoặc khiếu nại, gửi ở đâu?",
-    "answer": "Rất tiếc nếu trải nghiệm chưa như mong đợi. Quý khách vui lòng gửi email care@pmlhotel.com hoặc gọi +84 28 3822 9966; bộ phận chăm sóc khách hàng sẽ phản hồi trong thời gian sớm nhất."
+    "answer": "Rất tiếc nếu trải nghiệm chưa như mong đợi. Quý khách vui lòng gửi email care@pmlhotel.com hoặc gọi 0789 780 167; bộ phận chăm sóc khách hàng sẽ phản hồi trong thời gian sớm nhất."
   }
 ]

@@ -566,7 +566,7 @@ export function FloatingActions() {
 
 export function Concierge() {
   const [open, setOpen] = useState(false)
-  const [messages, setMessages] = useState<{ role: 'assistant'|'user'; text: string }[]>([{ role: 'assistant', text: 'Xin chào, em là PML Concierge. Em có thể giúp Quý khách chọn phòng, tìm hiểu Onsen hoặc lên lịch ở Sài Gòn.' }])
+  const [messages, setMessages] = useState<{ role: 'assistant'|'user'; text: string }[]>([{ role: 'assistant', text: 'Xin chào, em là PML Hotel. Em có thể giúp Quý khách chọn phòng, tìm hiểu Onsen hoặc lên lịch ở Sài Gòn.' }])
   const [draft, setDraft] = useState('')
   const [pending, setPending] = useState(false)
   const [error, setError] = useState(false)
@@ -598,13 +598,13 @@ export function Concierge() {
       setMessages([...next, { role: 'assistant', text: result.reply }])
     } catch { setError(true) } finally { setPending(false) }
   }
-  return <><button className="concierge-launcher" onClick={() => setOpen(true)} aria-label="Mở PML Concierge"><MessageCircle /> <span>PML Concierge</span></button>
-    {open && <div className="concierge-backdrop"><div className="concierge" ref={dialog} role="dialog" aria-modal="true" aria-label="PML Concierge">
-      <header><div><strong>PML Concierge</strong><span><i /> Trực tuyến</span></div><button onClick={() => setOpen(false)} aria-label="Đóng trợ lý"><X /></button></header>
+  return <><button className="concierge-launcher" onClick={() => setOpen(true)} aria-label="Mở PML Hotel"><MessageCircle /> <span>PML Hotel</span></button>
+    {open && <div className="concierge-backdrop"><div className="concierge" ref={dialog} role="dialog" aria-modal="true" aria-label="PML Hotel">
+      <header><div><strong>PML Hotel</strong><span><i /> Trực tuyến</span></div><button onClick={() => setOpen(false)} aria-label="Đóng trợ lý"><X /></button></header>
       <div className="messages" aria-live="polite">{messages.map((message, i) => <p key={i} className={message.role}>{message.text}</p>)}{pending && <p className="assistant typing">•••</p>}{error && <div className="assistant error">Chưa thể kết nối. <button onClick={() => send(messages.at(-1)?.text ?? '')}>Thử lại</button></div>}</div>
       <div className="quick-replies">{quickReplies.map((reply) => <button key={reply.id} onClick={() => send(reply.prompt)}>{reply.label}</button>)}</div>
       <p className="handoff">Cần người hỗ trợ? <a href={\`tel:\${siteConfig.hotline.replace(/\\s/g, '')}\`}>Gọi ngay</a> · <a href={siteConfig.zalo}>Zalo</a></p>
-      <form onSubmit={(event) => { event.preventDefault(); send(draft) }}><input value={draft} onChange={(event) => setDraft(event.target.value)} aria-label="Tin nhắn" placeholder="Hỏi PML Concierge…" /><button aria-label="Gửi tin nhắn">Gửi</button></form>
+      <form onSubmit={(event) => { event.preventDefault(); send(draft) }}><input value={draft} onChange={(event) => setDraft(event.target.value)} aria-label="Tin nhắn" placeholder="Hỏi PML Hotel…" /><button aria-label="Gửi tin nhắn">Gửi</button></form>
     </div></div>}
   </>
 }

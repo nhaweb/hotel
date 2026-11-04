@@ -47,7 +47,7 @@
       "Freelancer, digital nomad lưu trú dài ngày",
       "Gia đình nhỏ có trẻ em"
     ],
-    "hotline": "+84 28 3822 9999",
+    "hotline": "0789 780 167",
     "zalo": "https://zalo.me/pmlhotel",
     "email": "stay@pmlhotel.com",
     "website": "https://pmlhotel.example",
@@ -144,11 +144,11 @@
   },
 
   "contact_directory": [
-    {"department": "Đặt phòng (Reservations)", "phone": "+84 28 3822 9999", "email": "stay@pmlhotel.com", "hours": "24/7"},
-    {"department": "Sales đoàn & doanh nghiệp", "phone": "+84 28 3822 9988", "email": "sales@pmlhotel.com", "hours": "08:00 - 18:00, Thứ 2 - Thứ 7"},
-    {"department": "Sự kiện & tiệc nhỏ", "phone": "+84 28 3822 9977", "email": "events@pmlhotel.com", "hours": "08:00 - 18:00, Thứ 2 - Thứ 7"},
-    {"department": "Chăm sóc khách hàng & góp ý", "phone": "+84 28 3822 9966", "email": "care@pmlhotel.com", "hours": "08:00 - 22:00 hàng ngày"},
-    {"department": "Kế toán & hóa đơn", "phone": "+84 28 3822 9955", "email": "billing@pmlhotel.com", "hours": "08:00 - 17:00, Thứ 2 - Thứ 6"},
+    {"department": "Đặt phòng (Reservations)", "phone": "0789 780 167", "email": "stay@pmlhotel.com", "hours": "24/7"},
+    {"department": "Sales đoàn & doanh nghiệp", "phone": "0789 780 167", "email": "sales@pmlhotel.com", "hours": "08:00 - 18:00, Thứ 2 - Thứ 7"},
+    {"department": "Sự kiện & tiệc nhỏ", "phone": "0789 780 167", "email": "events@pmlhotel.com", "hours": "08:00 - 18:00, Thứ 2 - Thứ 7"},
+    {"department": "Chăm sóc khách hàng & góp ý", "phone": "0789 780 167", "email": "care@pmlhotel.com", "hours": "08:00 - 22:00 hàng ngày"},
+    {"department": "Kế toán & hóa đơn", "phone": "0789 780 167", "email": "billing@pmlhotel.com", "hours": "08:00 - 17:00, Thứ 2 - Thứ 6"},
     {"department": "Tuyển dụng", "phone": null, "email": "careers@pmlhotel.com", "hours": null},
     {"department": "Truyền thông & hợp tác", "phone": null, "email": "press@pmlhotel.com", "hours": null}
   ]

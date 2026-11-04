@@ -10,7 +10,7 @@ import { formatPrice } from '@/lib/format-price'
 import { siteConfig, type Locale } from '@/config/site'
 import { dictionaries } from '@/i18n'
 import { blur, roomCover, roomImages } from '@/lib/media'
-import { Header, RoomGallery } from '@/components/site-client'
+import { Footer, Header, RoomGallery } from '@/components/site-client'
 
 export function generateStaticParams() {
   return rooms.map((room) => ({ slug: room.id.replace('room-', '') }))
@@ -170,6 +170,9 @@ export default async function RoomPage({ params }: { params: Promise<{ slug: str
           </div>
         </section>
       )}
+
+      {/* Footer Info Added */}
+      <Footer initialLocale={locale} />
     </main>
   )
 }

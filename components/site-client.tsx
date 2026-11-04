@@ -3,11 +3,32 @@
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUp, CalendarDays, Check, ChevronDown, ChevronLeft, ChevronRight, Menu, MessageCircle, Phone, X } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import {
+  ArrowUp,
+  BedDouble,
+  Building2,
+  CalendarCheck,
+  CalendarDays,
+  Check,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Clock,
+  Gift,
+  Mail,
+  Menu,
+  MessageCircle,
+  Phone,
+  Sparkles,
+  Waves,
+  X,
+} from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { siteConfig, type Locale } from '@/config/site'
+import { navigationMenu, siteConfig, type Locale } from '@/config/site'
+import { branches } from '@/data/branches'
 import { dictionaries } from '@/i18n'
-import { quickReplies } from '@/data/assistant'
+import { formatPrice } from '@/lib/format-price'
 
 function readLocaleCookie(fallback: Locale): Locale {
   if (typeof document === 'undefined') return fallback
@@ -20,9 +41,10 @@ function setLocaleCookie(locale: Locale) {
   document.documentElement.lang = locale
 }
 
-export function Header({ initialLocale = 'vi' }: { initialLocale?: Locale; solid?: boolean }) {
+export function Header({ initialLocale = 'vi' }: { initialLocale?: Locale }) {
   const [locale, setLocale] = useState<Locale>(initialLocale)
   const [open, setOpen] = useState(false)
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const copy = dictionaries[locale]
 
   useEffect(() => {
@@ -33,42 +55,89 @@ export function Header({ initialLocale = 'vi' }: { initialLocale?: Locale; solid
 
   return (
     <header className="site-header is-compact">
-      <Link href="/" className="wordmark" aria-label={`${copy.home} ${siteConfig.name}`}>
-        {siteConfig.name}
-      </Link>
-      <nav className="desktop-nav" aria-label={copy.navAria}>
-        {siteConfig.nav.map((item) => (
-          <Link key={item.key} href={item.href} onClick={() => setOpen(false)}>
-            {copy.nav[item.key as keyof typeof copy.nav]}
-          </Link>
-        ))}
-      </nav>
-      <div className="header-actions">
-        <div className="language-toggle" aria-label={copy.language}>
-          {(['vi', 'en'] as const).map((item, i) => (
-            <span key={item}>
-              {i > 0 && ' | '}
-              <button
-                type="button"
-                aria-pressed={locale === item}
-                onClick={() => {
-                  setLocaleCookie(item)
-                  setLocale(item)
-                  window.location.reload()
-                }}
-              >
-                {item.toUpperCase()}
-              </button>
-            </span>
-          ))}
-        </div>
-        <Link href="/dat-phong" className="button button-accent desktop-book">
-          {copy.book}
+      <div className="header-inner">
+        <Link href="/" className="wordmark" aria-label={`${copy.home} ${siteConfig.name}`}>
+          {siteConfig.name}
         </Link>
-        <button className="menu-button" onClick={() => setOpen(!open)} aria-label={copy.openNav}>
-          {open ? <X /> : <Menu />}
-        </button>
+
+        {/* Desktop Nav according to user hierarchy */}
+        <nav className="desktop-nav" aria-label={copy.navAria}>
+          {navigationMenu.map((item) => {
+            const hasSub = Boolean(item.items && item.items.length > 0)
+            const isOpen = activeDropdown === item.key
+            return (
+              <div
+                key={item.key}
+                className="nav-dropdown-wrapper"
+                onMouseEnter={() => hasSub && setActiveDropdown(item.key)}
+                onMouseLeave={() => hasSub && setActiveDropdown(null)}
+              >
+                <Link
+                  href={item.href}
+                  className={`nav-dropdown-trigger ${isOpen ? 'is-open' : ''}`}
+                  onClick={(e) => {
+                    if (hasSub && window.innerWidth > 900) {
+                      // allow navigation but toggle dropdown
+                      setActiveDropdown(isOpen ? null : item.key)
+                    }
+                  }}
+                >
+                  <span>{locale === 'en' ? item.labelEn : item.labelVi}</span>
+                  {hasSub && <ChevronDown className="dropdown-caret" />}
+                </Link>
+
+                {hasSub && isOpen && (
+                  <div className="nav-dropdown-menu">
+                    {item.items!.map((sub) => (
+                      <Link
+                        key={sub.key}
+                        href={sub.href}
+                        className="nav-dropdown-item"
+                        onClick={() => setActiveDropdown(null)}
+                      >
+                        <strong>{locale === 'en' ? sub.labelEn : sub.labelVi}</strong>
+                        {(sub.descVi || sub.descEn) && (
+                          <small>{locale === 'en' ? sub.descEn : sub.descVi}</small>
+                        )}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )
+          })}
+        </nav>
+
+        {/* Header Right Actions */}
+        <div className="header-actions">
+          <div className="language-toggle" aria-label={copy.language}>
+            {(['vi', 'en'] as const).map((item, i) => (
+              <span key={item}>
+                {i > 0 && ' | '}
+                <button
+                  type="button"
+                  aria-pressed={locale === item}
+                  onClick={() => {
+                    setLocaleCookie(item)
+                    setLocale(item)
+                    window.location.reload()
+                  }}
+                >
+                  {item.toUpperCase()}
+                </button>
+              </span>
+            ))}
+          </div>
+          <Link href="/dat-phong" className="button button-accent desktop-book">
+            {copy.book}
+          </Link>
+          <button className="menu-button" onClick={() => setOpen(!open)} aria-label={copy.openNav}>
+            {open ? <X /> : <Menu />}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Drawer Menu */}
       <AnimatePresence>
         {open && (
           <motion.nav
@@ -77,11 +146,37 @@ export function Header({ initialLocale = 'vi' }: { initialLocale?: Locale; solid
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
           >
-            {siteConfig.nav.map((item) => (
-              <Link key={item.key} href={item.href} onClick={() => setOpen(false)}>
-                {copy.nav[item.key as keyof typeof copy.nav]}
-              </Link>
+            {navigationMenu.map((item) => (
+              <div key={item.key} className="mobile-nav-group">
+                <Link
+                  href={item.href}
+                  className="mobile-nav-title"
+                  onClick={() => setOpen(false)}
+                >
+                  {locale === 'en' ? item.labelEn : item.labelVi}
+                </Link>
+                {item.items && item.items.length > 0 && (
+                  <div className="mobile-sub-nav">
+                    {item.items.map((sub) => (
+                      <Link
+                        key={sub.key}
+                        href={sub.href}
+                        onClick={() => setOpen(false)}
+                      >
+                        {locale === 'en' ? sub.labelEn : sub.labelVi}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
+            <Link
+              href="/dat-phong"
+              className="button button-accent text-center mt-2"
+              onClick={() => setOpen(false)}
+            >
+              {copy.book}
+            </Link>
           </motion.nav>
         )}
       </AnimatePresence>
@@ -94,10 +189,10 @@ export function Reveal({ children, className = '' }: { children: React.ReactNode
   return (
     <motion.div
       className={className}
-      initial={reduced ? false : { opacity: 0, y: 18 }}
+      initial={reduced ? false : { opacity: 0, y: 14 }}
       whileInView={reduced ? {} : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.55 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.45 }}
     >
       {children}
     </motion.div>
@@ -269,21 +364,190 @@ export function RoomGallery({ images, roomName }: { images: string[]; roomName: 
   )
 }
 
+export function Footer({ initialLocale = 'vi' }: { initialLocale?: Locale }) {
+  const [locale, setLocale] = useState<Locale>(initialLocale)
+  const copy = dictionaries[locale]
+
+  useEffect(() => {
+    setLocale(readLocaleCookie(initialLocale))
+  }, [initialLocale])
+
+  return (
+    <footer className="footer">
+      <div className="footer-col brand-col">
+        <Link href="/" className="wordmark">
+          {siteConfig.name}
+        </Link>
+        <p>{copy.footerBlurb}</p>
+        <div className="footer-contacts">
+          <a href={`tel:${siteConfig.hotline.replace(/\s/g, '')}`}>
+            <Phone className="footer-contact-icon" />
+            <span>{siteConfig.hotline}</span>
+          </a>
+          <a href={`mailto:${siteConfig.email}`}>
+            <Mail className="footer-contact-icon" />
+            <span>{siteConfig.email}</span>
+          </a>
+        </div>
+      </div>
+
+      <div className="footer-col">
+        <h3>{copy.footerVisit}</h3>
+        {branches.map((branch) => (
+          <Link key={branch.id} href={`/co-so/${branch.slug}`} className="footer-branch-link">
+            <strong>{branch.name}</strong>
+            <small>{branch.street} · {copy.district1}</small>
+          </Link>
+        ))}
+      </div>
+
+      <div className="footer-col">
+        <h3>{copy.footerAmenities}</h3>
+        <Link href="/#amenities">{locale === 'en' ? 'Outdoor Pool & Jacuzzi' : 'Hồ bơi & Jacuzzi Rooftop'}</Link>
+        <Link href="/#amenities">{locale === 'en' ? 'Fitness & Gym Studio' : 'Phòng Gym & Yoga Studio'}</Link>
+        <Link href="/#amenities">{locale === 'en' ? 'Japanese Mineral Onsen' : 'Onsen Khoáng Nóng Nhật Bản'}</Link>
+        <Link href="/#amenities">{locale === 'en' ? 'Rooftop Bar & Lounge' : 'Sky Bar & Quầy Cà Phê'}</Link>
+        <Link href="/#offers">{copy.offersLabel}</Link>
+        <Link href="/tin-tuc">{copy.stories}</Link>
+      </div>
+
+      <div className="footer-col">
+        <h3>{copy.newsletter}</h3>
+        <p>{copy.newsletterText}</p>
+        <Newsletter initialLocale={locale} />
+        <div className="socials">
+          {Object.entries(siteConfig.social).map(([name, href]) => (
+            <a key={name} href={href} aria-label={name}>
+              {name}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* Centered Footer Bottom with Luxury Icon */}
+      <div className="footer-bottom">
+        <div className="footer-bottom__center">
+          <Sparkles className="footer-bottom__icon" />
+          <span className="footer-bottom__copy">{copy.copyright} {siteConfig.name}</span>
+          <span className="footer-bottom__dot">✦</span>
+          <span className="footer-bottom__sub">
+            {locale === 'en'
+              ? 'Boutique Luxury Hospitality · District 1, Ho Chi Minh City'
+              : 'Khách sạn Boutique & Lifestyle · Quận 1, TP. Hồ Chí Minh'}
+          </span>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+const conciergeSuggestions = {
+  vi: [
+    {
+      id: 'couple-room',
+      icon: BedDouble,
+      title: 'Phòng cặp đôi',
+      desc: 'Lãng mạn, view đẹp & bồn tắm',
+      prompt: 'Gợi ý phòng lãng mạn cho cặp đôi tại PML Hotel',
+    },
+    {
+      id: 'onsen-wellness',
+      icon: Waves,
+      title: 'Onsen & Spa',
+      desc: 'Giờ mở cửa, quy chuẩn & khoáng nóng',
+      prompt: 'Dịch vụ Onsen khoáng nóng tại PML hoạt động thế nào?',
+    },
+    {
+      id: 'checkin-rules',
+      icon: Clock,
+      title: 'Nhận & Trả phòng',
+      desc: '14:00 nhận - 12:00 trả & hỗ trợ sớm',
+      prompt: 'Quy định giờ nhận phòng và trả phòng tại PML Hotel như thế nào?',
+    },
+    {
+      id: 'current-offers',
+      icon: Gift,
+      title: 'Ưu đãi hiện có',
+      desc: 'Tiết kiệm tới 25% & dịch vụ tặng kèm',
+      prompt: 'Khách sạn hiện đang có những gói ưu đãi nào?',
+    },
+  ],
+  en: [
+    {
+      id: 'couple-room',
+      icon: BedDouble,
+      title: 'Couples & Romance',
+      desc: 'Romantic rooms with skyline views',
+      prompt: 'Recommend a romantic room for a couple at PML Hotel',
+    },
+    {
+      id: 'onsen-wellness',
+      icon: Waves,
+      title: 'Onsen & Spa',
+      desc: 'Opening hours & hot mineral rituals',
+      prompt: 'How does the Onsen experience work at PML Hotel?',
+    },
+    {
+      id: 'checkin-rules',
+      icon: Clock,
+      title: 'Check-in & Check-out',
+      desc: '14:00 in - 12:00 out & early arrival',
+      prompt: 'What are the check-in and check-out policies at PML Hotel?',
+    },
+    {
+      id: 'current-offers',
+      icon: Gift,
+      title: 'Special Offers',
+      desc: 'Save up to 25% with curated perks',
+      prompt: 'What special offers or packages are currently available?',
+    },
+  ],
+} as const
+
+export type RoomCardInfo = {
+  id: string
+  slug: string
+  name: string
+  nameEn?: string
+  branchId: string
+  branchName: string
+  priceVnd: number
+  sizeSqm?: number
+  bedType?: string
+  capacity?: string
+  imageUrl?: string
+  bookingUrl: string
+  detailUrl: string
+}
+
+type ChatMessage = {
+  role: 'assistant' | 'user'
+  text: string
+  suggestions?: string[]
+  roomCards?: RoomCardInfo[]
+}
+
 export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) {
+  const router = useRouter()
   const [locale, setLocale] = useState<Locale>(initialLocale)
   const copy = dictionaries[locale]
   const [open, setOpen] = useState(false)
-  const [messages, setMessages] = useState<{ role: 'assistant' | 'user'; text: string }[]>([])
+  const [messages, setMessages] = useState<ChatMessage[]>([])
   const [draft, setDraft] = useState('')
   const [pending, setPending] = useState(false)
   const [error, setError] = useState(false)
   const dialog = useRef<HTMLDivElement>(null)
+  const messagesEndRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const saved = readLocaleCookie(initialLocale)
     setLocale(saved)
     setMessages([{ role: 'assistant', text: dictionaries[saved].conciergeGreeting }])
   }, [initialLocale])
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages, pending])
 
   useEffect(() => {
     if (!open) return
@@ -314,7 +578,7 @@ export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) 
 
   async function send(text: string) {
     if (!text.trim() || pending) return
-    const next = [...messages, { role: 'user' as const, text }]
+    const next: ChatMessage[] = [...messages, { role: 'user', text }]
     setMessages(next)
     setDraft('')
     setPending(true)
@@ -327,7 +591,15 @@ export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) 
       })
       const result = await response.json()
       if (!response.ok || !result.reply) throw new Error()
-      setMessages([...next, { role: 'assistant', text: result.reply }])
+      setMessages([
+        ...next,
+        {
+          role: 'assistant',
+          text: result.reply,
+          suggestions: Array.isArray(result.suggestions) ? result.suggestions : undefined,
+          roomCards: Array.isArray(result.roomCards) ? result.roomCards : undefined,
+        },
+      ])
     } catch {
       setError(true)
     } finally {
@@ -340,15 +612,15 @@ export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) 
       {!open && (
         <button className="concierge-launcher" onClick={() => setOpen(true)} aria-label={copy.conciergeOpen}>
           <MessageCircle />
-          <span>PML Concierge</span>
+          <span>PML Hotel</span>
         </button>
       )}
       {open && (
         <div className="concierge-backdrop">
-          <div className="concierge" ref={dialog} role="dialog" aria-modal="true" aria-label="PML Concierge">
+          <div className="concierge" ref={dialog} role="dialog" aria-modal="true" aria-label="PML Hotel">
             <header>
               <div>
-                <strong>PML Concierge</strong>
+                <strong>PML Hotel</strong>
                 <span>
                   <i /> {copy.conciergeOnline}
                 </span>
@@ -359,11 +631,125 @@ export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) 
             </header>
             <div className="messages" aria-live="polite">
               {messages.map((message, i) => (
-                <p key={i} className={message.role}>
-                  {message.text}
-                </p>
+                <div key={i} className={`concierge-msg-row concierge-msg-row--${message.role}`}>
+                  <p className={`concierge-bubble concierge-bubble--${message.role}`}>
+                    {message.text}
+                  </p>
+                  {i === 0 && message.role === 'assistant' && (
+                    <div className="concierge-suggestions">
+                      <div className="concierge-suggestions-label">
+                        <Sparkles size={13} />
+                        <span>{locale === 'vi' ? 'Gợi ý câu hỏi phổ biến:' : 'Popular inquiries:'}</span>
+                      </div>
+                      <div className="concierge-grid">
+                        {conciergeSuggestions[locale].map((s) => {
+                          const Icon = s.icon
+                          return (
+                            <button
+                              key={s.id}
+                              type="button"
+                              className="concierge-card"
+                              onClick={() => send(s.prompt)}
+                              disabled={pending}
+                            >
+                              <div className="concierge-card__icon">
+                                <Icon size={16} />
+                              </div>
+                              <div className="concierge-card__text">
+                                <span className="concierge-card__title">{s.title}</span>
+                                <span className="concierge-card__desc">{s.desc}</span>
+                              </div>
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )}
+                  {message.role === 'assistant' && message.roomCards && message.roomCards.length > 0 && (
+                    <div className="concierge-rooms">
+                      <div className="concierge-rooms-label">
+                        <Building2 size={12} />
+                        <span>{locale === 'vi' ? 'Hạng phòng gợi ý đặt ngay:' : 'Rooms available to book:'}</span>
+                      </div>
+                      <div className="concierge-rooms-list">
+                        {message.roomCards.map((card) => (
+                          <div key={card.id} className="concierge-room-card">
+                            {card.imageUrl && (
+                              <div className="concierge-room-card__img">
+                                <img src={card.imageUrl} alt={card.name} />
+                                <span className="concierge-room-card__badge">
+                                  {card.branchName.replace('PML Hotel ', '')}
+                                </span>
+                              </div>
+                            )}
+                            <div className="concierge-room-card__body">
+                              <div className="concierge-room-card__header">
+                                <h4 className="concierge-room-card__title">
+                                  {locale === 'en' && card.nameEn ? card.nameEn : card.name}
+                                </h4>
+                                <div className="concierge-room-card__price">
+                                  <strong>{formatPrice(card.priceVnd)}</strong>
+                                  <small>/ {locale === 'en' ? 'night' : 'đêm'}</small>
+                                </div>
+                              </div>
+                              {(card.sizeSqm || card.capacity) && (
+                                <p className="concierge-room-card__meta">
+                                  {card.sizeSqm ? `${card.sizeSqm} m²` : ''}
+                                  {card.sizeSqm && card.capacity ? ' · ' : ''}
+                                  {card.capacity || ''}
+                                </p>
+                              )}
+                              <div className="concierge-room-card__actions">
+                                <button
+                                  type="button"
+                                  className="concierge-room-card__book-btn"
+                                  onClick={() => {
+                                    setOpen(false)
+                                    router.push(card.bookingUrl)
+                                  }}
+                                >
+                                  <CalendarCheck size={13} />
+                                  <span>{locale === 'vi' ? 'Đặt phòng này' : 'Book this room'}</span>
+                                </button>
+                                <Link
+                                  href={card.detailUrl}
+                                  className="concierge-room-card__detail-link"
+                                  onClick={() => setOpen(false)}
+                                >
+                                  {locale === 'vi' ? 'Xem phòng' : 'View room'} →
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {i > 0 && message.role === 'assistant' && message.suggestions && message.suggestions.length > 0 && (
+                    <div className="concierge-followups">
+                      <div className="concierge-followups-label">
+                        <Sparkles size={12} />
+                        <span>{locale === 'vi' ? 'Gợi ý câu hỏi liên quan:' : 'Related questions:'}</span>
+                      </div>
+                      <div className="concierge-followups-list">
+                        {message.suggestions.map((suggestion, sIdx) => (
+                          <button
+                            key={sIdx}
+                            type="button"
+                            className="concierge-followup-pill"
+                            onClick={() => send(suggestion)}
+                            disabled={pending}
+                          >
+                            <span>{suggestion}</span>
+                            <ChevronRight size={13} className="concierge-followup-icon" />
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
               ))}
-              {pending && <p className="assistant typing">{copy.conciergeTyping}</p>}
+              {pending && <p className="concierge-bubble concierge-bubble--assistant typing">{copy.conciergeTyping}</p>}
               {error && (
                 <div className="assistant error">
                   {copy.conciergeRetry}{' '}
@@ -372,13 +758,7 @@ export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) 
                   </button>
                 </div>
               )}
-            </div>
-            <div className="quick-replies">
-              {quickReplies.map((reply) => (
-                <button key={reply.id} type="button" onClick={() => send(reply.prompt)}>
-                  {reply.label}
-                </button>
-              ))}
+              <div ref={messagesEndRef} />
             </div>
             <p className="handoff">
               {copy.conciergeHandoff}{' '}

@@ -80,7 +80,7 @@
       {"path": "/co-so/central-park", "title": "PML Hotel Central Park & Rooftop | Rooftop Jacuzzi Bar Quận 1", "description": "Rooftop Jacuzzi Bar nhìn ra công viên Lê Văn Tám, co-working lounge và phòng gym hiện đại."},
       {"path": "/uu-dai", "title": "Ưu đãi & Gói nghỉ dưỡng | PML Hotel", "description": "Gói Onsen Weekend, Honeymoon, cầu hôn, ở dài ngày và ưu đãi đặt trực tiếp."},
       {"path": "/tin-tuc", "title": "Tạp chí PML | Cẩm nang Sài Gòn và nghỉ dưỡng", "description": "Gợi ý ăn uống, lịch trình, wellness và mẹo du lịch Sài Gòn từ đội ngũ PML."},
-      {"path": "/lien-he", "title": "Liên hệ & Đặt phòng | PML Hotel", "description": "Hotline +84 28 3822 9999, Zalo, email và địa chỉ ba cơ sở PML Hotel."}
+      {"path": "/lien-he", "title": "Liên hệ & Đặt phòng | PML Hotel", "description": "Hotline 0789 780 167, Zalo, email và địa chỉ ba cơ sở PML Hotel."}
     ],
     "structured_data_hints": {
       "Hotel": "Dùng schema.org/Hotel hoặc LodgingBusiness cho từng cơ sở: name, address, telephone, geo, priceRange, checkinTime, checkoutTime, amenityFeature.",

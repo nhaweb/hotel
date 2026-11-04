@@ -70,7 +70,7 @@
       "Freelancer, digital nomad lưu trú dài ngày",
       "Gia đình nhỏ có trẻ em"
     ],
-    "hotline": "+84 28 3822 9999",
+    "hotline": "0789 780 167",
     "zalo": "https://zalo.me/pmlhotel",
     "email": "stay@pmlhotel.com",
     "website": "https://pmlhotel.example",
@@ -254,31 +254,31 @@
   "contact_directory": [
     {
       "department": "Đặt phòng (Reservations)",
-      "phone": "+84 28 3822 9999",
+      "phone": "0789 780 167",
       "email": "stay@pmlhotel.com",
       "hours": "24/7"
     },
     {
       "department": "Sales đoàn & doanh nghiệp",
-      "phone": "+84 28 3822 9988",
+      "phone": "0789 780 167",
       "email": "sales@pmlhotel.com",
       "hours": "08:00 - 18:00, Thứ 2 - Thứ 7"
     },
     {
       "department": "Sự kiện & tiệc nhỏ",
-      "phone": "+84 28 3822 9977",
+      "phone": "0789 780 167",
       "email": "events@pmlhotel.com",
       "hours": "08:00 - 18:00, Thứ 2 - Thứ 7"
     },
     {
       "department": "Chăm sóc khách hàng & góp ý",
-      "phone": "+84 28 3822 9966",
+      "phone": "0789 780 167",
       "email": "care@pmlhotel.com",
       "hours": "08:00 - 22:00 hàng ngày"
     },
     {
       "department": "Kế toán & hóa đơn",
-      "phone": "+84 28 3822 9955",
+      "phone": "0789 780 167",
       "email": "billing@pmlhotel.com",
       "hours": "08:00 - 17:00, Thứ 2 - Thứ 6"
     },
@@ -311,7 +311,7 @@
         "lng": 106.704,
         "note": "Ước tính, cần xác minh bằng Google Maps"
       },
-      "phone": "+84 28 3822 1111",
+      "phone": "0789 780 167",
       "email": "dongdu@pmlhotel.com",
       "highlights": "Vị trí vàng sát cạnh phố đi bộ Nguyễn Huệ, Takashimaya và bến Bạch Đằng. Thiết kế Indochine kết hợp hiện đại.",
       "tagline_vi": "Trái tim Sài Gòn, ngay trước cửa.",
@@ -409,7 +409,7 @@
         "lng": 106.7022,
         "note": "Ước tính, cần xác minh bằng Google Maps"
       },
-      "phone": "+84 28 3822 2222",
+      "phone": "0789 780 167",
       "email": "onsen@pmlhotel.com",
       "highlights": "Khách sạn Boutique duy nhất tại Quận 1 sở hữu tổ hợp Bể ngâm khoáng nóng Onsen chuẩn Nhật và Phòng xông hơi đá muối.",
       "tagline_vi": "Chậm lại giữa lòng Quận 1.",
@@ -498,7 +498,7 @@
         "lng": 106.6919,
         "note": "Ước tính, cần xác minh bằng Google Maps"
       },
-      "phone": "+84 28 3822 3333",
+      "phone": "0789 780 167",
       "email": "centralpark@pmlhotel.com",
       "highlights": "Sở hữu Rooftop Jacuzzi Bar view công viên Lê Văn Tám, không gian Co-working Lounge và phòng Gym hiện đại.",
       "tagline_vi": "Sài Gòn nhìn từ trên cao.",
@@ -1855,7 +1855,7 @@
       "police": "113",
       "fire": "114",
       "ambulance": "115",
-      "hotel_hotline": "+84 28 3822 9999"
+      "hotel_hotline": "0789 780 167"
     },
     "medical_help": "Lễ tân hỗ trợ liên hệ cơ sở y tế gần nhất và hướng dẫn khách thủ tục khám cơ bản; không thay thế dịch vụ cấp cứu.",
     "public_holidays": [
@@ -1986,7 +1986,7 @@
       "id": "faq-booking-01",
       "category": "Đặt phòng",
       "question": "Tôi đặt phòng bằng cách nào?",
-      "answer": "Quý khách có thể đặt phòng trực tiếp trên website (khuyên dùng để nhận Trà chiều Signature miễn phí), gọi hotline +84 28 3822 9999, nhắn Zalo hoặc gửi email stay@pmlhotel.com. Đội ngũ sẽ xác nhận trong thời gian ngắn.",
+      "answer": "Quý khách có thể đặt phòng trực tiếp trên website (khuyên dùng để nhận Trà chiều Signature miễn phí), gọi hotline 0789 780 167, nhắn Zalo hoặc gửi email stay@pmlhotel.com. Đội ngũ sẽ xác nhận trong thời gian ngắn.",
       "keywords": [
         "đặt phòng",
         "book",
@@ -2049,7 +2049,7 @@
       "id": "faq-booking-06",
       "category": "Đặt phòng",
       "question": "Tôi cần đặt nhiều phòng cho đoàn thì sao?",
-      "answer": "Đặt từ 5 phòng trở lên được xem là đặt đoàn, áp dụng bảng giá riêng. Quý khách vui lòng liên hệ bộ phận Sales qua sales@pmlhotel.com hoặc +84 28 3822 9988.",
+      "answer": "Đặt từ 5 phòng trở lên được xem là đặt đoàn, áp dụng bảng giá riêng. Quý khách vui lòng liên hệ bộ phận Sales qua sales@pmlhotel.com hoặc 0789 780 167.",
       "keywords": [
         "đoàn",
         "group",
@@ -2716,7 +2716,7 @@
       "id": "faq-contact-01",
       "category": "Liên hệ",
       "question": "Tôi có thể liên hệ khách sạn bằng cách nào?",
-      "answer": "Hotline +84 28 3822 9999 (24/7), Zalo https://zalo.me/pmlhotel, email stay@pmlhotel.com. Mỗi cơ sở cũng có số điện thoại riêng, xem trang Liên hệ.",
+      "answer": "Hotline 0789 780 167 (24/7), Zalo https://zalo.me/pmlhotel, email stay@pmlhotel.com. Mỗi cơ sở cũng có số điện thoại riêng, xem trang Liên hệ.",
       "keywords": [
         "liên hệ",
         "hotline",
@@ -2728,7 +2728,7 @@
       "id": "faq-contact-02",
       "category": "Liên hệ",
       "question": "Tôi muốn góp ý hoặc khiếu nại, gửi ở đâu?",
-      "answer": "Rất tiếc nếu trải nghiệm chưa như mong đợi. Quý khách vui lòng gửi email care@pmlhotel.com hoặc gọi +84 28 3822 9966; bộ phận chăm sóc khách hàng sẽ phản hồi trong thời gian sớm nhất.",
+      "answer": "Rất tiếc nếu trải nghiệm chưa như mong đợi. Quý khách vui lòng gửi email care@pmlhotel.com hoặc gọi 0789 780 167; bộ phận chăm sóc khách hàng sẽ phản hồi trong thời gian sớm nhất.",
       "keywords": [
         "khiếu nại",
         "góp ý",
@@ -2738,7 +2738,7 @@
     }
   ],
   "ai_assistant": {
-    "name": "PML Concierge",
+    "name": "PML Hotel",
     "role": "Trợ lý ảo của PML Hotel, hỗ trợ giải đáp thông tin, gợi ý phòng/trải nghiệm và thu thập yêu cầu đặt phòng cho nhân viên xác nhận.",
     "default_language": "vi",
     "language_rules": "Trả lời bằng ngôn ngữ khách dùng (Việt/Anh). Nếu khách dùng ngôn ngữ khác, trả lời bằng tiếng Anh và đề nghị chuyển nhân viên khi cần.",
@@ -2777,7 +2777,7 @@
     "handoff_triggers": [
       {
         "trigger": "Khiếu nại, hoàn tiền, tranh chấp thanh toán",
-        "route_to": "care@pmlhotel.com / +84 28 3822 9966"
+        "route_to": "care@pmlhotel.com / 0789 780 167"
       },
       {
         "trigger": "Đặt đoàn từ 5 phòng, sự kiện, tiệc",
@@ -2785,7 +2785,7 @@
       },
       {
         "trigger": "Yêu cầu đặc biệt: khuyết tật, y tế, dị ứng nặng, an toàn cá nhân",
-        "route_to": "Hotline 24/7 +84 28 3822 9999"
+        "route_to": "Hotline 24/7 0789 780 167"
       },
       {
         "trigger": "Khách yêu cầu nói chuyện với nhân viên",
@@ -2896,11 +2896,11 @@
       }
     ],
     "response_templates": {
-      "greeting": "Xin chào, em là PML Concierge. Em có thể giúp Quý khách chọn phòng, tìm hiểu Onsen, Sky Bar hoặc gợi ý lịch trình ở Sài Gòn. Quý khách đang quan tâm điều gì ạ?",
-      "unknown": "Phần này em chưa có thông tin chính xác. Quý khách vui lòng liên hệ lễ tân qua hotline +84 28 3822 9999 hoặc Zalo để được hỗ trợ nhanh nhất ạ.",
+      "greeting": "Xin chào, em là PML Hotel. Em có thể giúp Quý khách chọn phòng, tìm hiểu Onsen, Sky Bar hoặc gợi ý lịch trình ở Sài Gòn. Quý khách đang quan tâm điều gì ạ?",
+      "unknown": "Phần này em chưa có thông tin chính xác. Quý khách vui lòng liên hệ lễ tân qua hotline 0789 780 167 hoặc Zalo để được hỗ trợ nhanh nhất ạ.",
       "availability_disclaimer": "Em không xem được tình trạng phòng theo thời gian thực. Quý khách vui lòng chọn ngày trên thanh đặt phòng, hoặc để lại thông tin để nhân viên kiểm tra và xác nhận giúp ạ.",
       "price_disclaimer": "Giá em nêu là giá tham khảo theo ngày thường. Giá cuối cùng có thể thay đổi theo ngày, mùa lễ và tình trạng phòng, hiển thị rõ ở bước xác nhận đặt phòng.",
-      "handoff": "Em xin phép chuyển yêu cầu này cho đội ngũ PML để hỗ trợ trực tiếp. Quý khách có thể gọi +84 28 3822 9999 hoặc nhắn Zalo, em cũng có thể ghi lại thông tin để nhân viên liên hệ lại.",
+      "handoff": "Em xin phép chuyển yêu cầu này cho đội ngũ PML để hỗ trợ trực tiếp. Quý khách có thể gọi 0789 780 167 hoặc nhắn Zalo, em cũng có thể ghi lại thông tin để nhân viên liên hệ lại.",
       "closing": "Cảm ơn Quý khách. Nếu cần thêm thông tin gì, cứ nhắn em bất cứ lúc nào ạ."
     },
     "quick_replies": [
@@ -3563,7 +3563,7 @@
       {
         "path": "/lien-he",
         "title": "Liên hệ & Đặt phòng | PML Hotel",
-        "description": "Hotline +84 28 3822 9999, Zalo, email và địa chỉ ba cơ sở PML Hotel."
+        "description": "Hotline 0789 780 167, Zalo, email và địa chỉ ba cơ sở PML Hotel."
       }
     ],
     "structured_data_hints": {

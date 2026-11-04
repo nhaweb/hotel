@@ -2,8 +2,10 @@
 
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { Header } from '@/components/site-client'
+import { Footer, Header } from '@/components/site-client'
 import { branches } from '@/data/branches'
+import { rooms } from '@/data/rooms'
+import { formatPrice } from '@/lib/format-price'
 import { submitBooking } from '@/lib/submit-booking'
 import { siteConfig } from '@/config/site'
 import { blur, branchImages } from '@/lib/media'
@@ -13,16 +15,32 @@ const defaultBranchId = branches[0]?.id ?? ''
 export default function BookingPage() {
   const [reference, setReference] = useState('')
   const [branchId, setBranchId] = useState(defaultBranchId)
+  const [roomId, setRoomId] = useState('')
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
-    const fromQuery = params.get('branchId')
-    if (fromQuery && branches.some((branch) => branch.id === fromQuery)) {
-      setBranchId(fromQuery)
+    const fromRoom = params.get('roomId') || params.get('room')
+    const fromBranch = params.get('branchId')
+
+    if (fromRoom) {
+      const found = rooms.find(
+        (r) => r.id === fromRoom || r.id === `room-${fromRoom}` || r.id.replace('room-', '') === fromRoom
+      )
+      if (found) {
+        setRoomId(found.id)
+        setBranchId(found.branchId)
+        return
+      }
+    }
+
+    if (fromBranch && branches.some((branch) => branch.id === fromBranch)) {
+      setBranchId(fromBranch)
     }
   }, [])
 
   const selected = branches.find((branch) => branch.id === branchId) ?? branches[0]
+  const branchRooms = rooms.filter((r) => r.branchId === branchId)
+  const selectedRoom = branchRooms.find((r) => r.id === roomId)
   const poster = branchImages[selected?.id ?? defaultBranchId] ?? Object.values(branchImages)[0]
 
   return (
@@ -51,9 +69,7 @@ export default function BookingPage() {
           <div>
             <p className="eyebrow ink">Yêu cầu đặt phòng</p>
             <h1>
-              Kỳ nghỉ được
-              <br />
-              <em>chăm chút.</em>
+              Kỳ nghỉ được <em>chăm chút.</em>
             </h1>
             <p>
               Đây là yêu cầu giữ chỗ, không phải xác nhận phòng theo thời gian thực. Đội ngũ PML sẽ liên hệ trực tiếp.
@@ -65,8 +81,10 @@ export default function BookingPage() {
             onSubmit={async (event) => {
               event.preventDefault()
               const form = new FormData(event.currentTarget)
+              const chosenRoom = String(form.get('roomTypeId') || '')
               const result = await submitBooking({
                 branchId: String(form.get('branchId')),
+                roomTypeId: chosenRoom ? chosenRoom : undefined,
                 checkIn: String(form.get('checkIn')),
                 checkOut: String(form.get('checkOut')),
                 guests: Number(form.get('guests')),
@@ -83,7 +101,10 @@ export default function BookingPage() {
                 name="branchId"
                 required
                 value={branchId}
-                onChange={(event) => setBranchId(event.target.value)}
+                onChange={(event) => {
+                  setBranchId(event.target.value)
+                  setRoomId('')
+                }}
               >
                 {branches.map((branch) => (
                   <option key={branch.id} value={branch.id}>
@@ -92,6 +113,26 @@ export default function BookingPage() {
                 ))}
               </select>
             </label>
+            <label>
+              Hạng phòng mong muốn
+              <select
+                name="roomTypeId"
+                value={roomId}
+                onChange={(event) => setRoomId(event.target.value)}
+              >
+                <option value="">-- Để PML tư vấn theo nhu cầu --</option>
+                {branchRooms.map((room) => (
+                  <option key={room.id} value={room.id}>
+                    {room.name} ({formatPrice(room.priceVnd)}/đêm)
+                  </option>
+                ))}
+              </select>
+            </label>
+            {selectedRoom && (
+              <p className="booking-room-pill" style={{ margin: '-0.3rem 0 0.8rem', fontSize: '0.82rem', color: 'var(--accent-dark)' }}>
+                ✓ Đang chọn: <strong>{selectedRoom.name}</strong> · {formatPrice(selectedRoom.priceVnd)}/đêm
+              </p>
+            )}
             <div>
               <label>
                 Nhận phòng
@@ -123,6 +164,9 @@ export default function BookingPage() {
           </form>
         </div>
       </section>
+
+      {/* Footer Info Added */}
+      <Footer />
     </main>
   )
 }

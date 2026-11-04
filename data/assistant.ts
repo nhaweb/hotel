@@ -39,7 +39,7 @@ export const assistantGuardrails = {
   handoffTriggers: [
   {
     "trigger": "Khiếu nại, hoàn tiền, tranh chấp thanh toán",
-    "route_to": "care@pmlhotel.com / +84 28 3822 9966"
+    "route_to": "care@pmlhotel.com / 0789 780 167"
   },
   {
     "trigger": "Đặt đoàn từ 5 phòng, sự kiện, tiệc",
@@ -47,7 +47,7 @@ export const assistantGuardrails = {
   },
   {
     "trigger": "Yêu cầu đặc biệt: khuyết tật, y tế, dị ứng nặng, an toàn cá nhân",
-    "route_to": "Hotline 24/7 +84 28 3822 9999"
+    "route_to": "Hotline 24/7 0789 780 167"
   },
   {
     "trigger": "Khách yêu cầu nói chuyện với nhân viên",

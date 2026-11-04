@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { cookies } from 'next/headers'
-import { Header, Reveal } from '@/components/site-client'
+import { Footer, Header, Reveal } from '@/components/site-client'
 import { stories } from '@/data/reviews'
 import { siteConfig, type Locale } from '@/config/site'
 import { dictionaries } from '@/i18n'
@@ -45,17 +45,9 @@ export default async function JournalPage() {
           <p className="eyebrow">{locale === 'en' ? 'PML Journal' : 'Tạp chí PML'}</p>
           <h1>
             {locale === 'en' ? (
-              <>
-                Slow rhythms
-                <br />
-                <em>in Saigon.</em>
-              </>
+              <>Slow rhythms <em>in Saigon.</em></>
             ) : (
-              <>
-                Những nhịp chậm
-                <br />
-                <em>giữa Sài Gòn.</em>
-              </>
+              <>Những nhịp chậm <em>giữa Sài Gòn.</em></>
             )}
           </h1>
           <p>
@@ -70,7 +62,7 @@ export default async function JournalPage() {
         <Reveal>
           <article className="journal-feature-card">
             <div className="journal-feature-card__media">
-              <Image src={storyImages[0]} alt={featured.title} fill sizes="(max-width: 900px) 100vw, 55vw" placeholder="blur" blurDataURL={blur} />
+              <Image src={storyImages[1]} alt={featured.title} fill priority sizes="(max-width: 900px) 100vw, 55vw" placeholder="blur" blurDataURL={blur} />
             </div>
             <div>
               <p className="eyebrow ink">
@@ -104,6 +96,9 @@ export default async function JournalPage() {
         </div>
         <p className="journal-note">{copy.sample}</p>
       </section>
+
+      {/* Footer Info Added */}
+      <Footer initialLocale={locale} />
     </main>
   )
 }
