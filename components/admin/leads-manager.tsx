@@ -1,7 +1,20 @@
 'use client'
 
 import { useMemo, useState, useTransition } from 'react'
-import { Loader2, MessageSquarePlus, Plus, RefreshCw, Sparkles } from 'lucide-react'
+import {
+  Bot,
+  Calendar,
+  Eye,
+  Loader2,
+  MessageSquare,
+  MessageSquarePlus,
+  PhoneCall,
+  Plus,
+  RefreshCw,
+  Sparkles,
+  Tag,
+  TrendingUp,
+} from 'lucide-react'
 import { toast } from 'sonner'
 import {
   addLeadInteraction,
@@ -12,12 +25,15 @@ import {
   getAdminLeadStats,
   updateLeadStage,
 } from '@/lib/actions/admin-leads'
+import { getAdminChatAudits, getChatMarketingInsights } from '@/lib/actions/admin-chat-audits'
 import { formatPrice } from '@/lib/format-price'
 import type {
   AdminLeadDetail,
   AdminLeadItem,
   AdminLeadStats,
   AdminUser,
+  ChatAuditItem,
+  ChatMarketingInsights,
   LeadPriority,
   LeadSource,
   LeadStage,
@@ -126,6 +142,34 @@ export function LeadsManager({ initialResult, initialStats, initialError, branch
     totalAmountVnd: '',
     numGuests: '2',
   })
+
+  // State for AI Chatbot Behavior & Marketing Insights Tab
+  const [viewTab, setViewTab] = useState<'crm' | 'chat_insights'>('crm')
+  const [chatAudits, setChatAudits] = useState<PaginatedResult<ChatAuditItem> | null>(null)
+  const [chatInsights, setChatInsights] = useState<ChatMarketingInsights | null>(null)
+  const [chatSearch, setChatSearch] = useState('')
+  const [chatHasPhoneOnly, setChatHasPhoneOnly] = useState(false)
+  const [transcriptModal, setTranscriptModal] = useState<ChatAuditItem | null>(null)
+
+  function reloadChatAudits(targetPage = 1, searchQuery = chatSearch, hasPhone = chatHasPhoneOnly) {
+    startTransition(async () => {
+      const [auditsRes, insightsRes] = await Promise.all([
+        getAdminChatAudits({
+          searchQuery: searchQuery.trim() || undefined,
+          hasPhoneOnly: hasPhone,
+          page: targetPage,
+          pageSize: 10,
+        }),
+        getChatMarketingInsights(),
+      ])
+      if (!auditsRes.ok) {
+        toast.error(auditsRes.error)
+        return
+      }
+      setChatAudits(auditsRes.result)
+      if (insightsRes.ok) setChatInsights(insightsRes.insights)
+    })
+  }
 
   const convertRooms = useMemo(
     () => rooms.filter((room) => !convertForm.branchId || room.branchId === convertForm.branchId),
@@ -325,163 +369,479 @@ export function LeadsManager({ initialResult, initialStats, initialError, branch
         </div>
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-        {kpi.map((item) => (
-          <Card key={item.label}>
-            <CardHeader className="pb-2">
-              <CardDescription>{item.label}</CardDescription>
-              <CardTitle className="text-2xl">{item.value}</CardTitle>
-            </CardHeader>
-          </Card>
-        ))}
+      {/* Tab Switcher: CRM Leads vs AI Chatbot Insights */}
+      <div className="flex border-b border-border">
+        <button
+          type="button"
+          onClick={() => setViewTab('crm')}
+          className={`flex items-center gap-2 border-b-2 px-4 py-2.5 text-sm font-medium transition-colors ${
+            viewTab === 'crm'
+              ? 'border-primary text-primary'
+              : 'border-transparent text-muted-foreground hover:text-foreground'
+          }`}
+        >
+          <Sparkles size={16} />
+          <span>Danh sách Leads CRM</span>
+          <Badge variant="secondary" className="ml-1 text-xs">
+            {stats?.totalLeads ?? result.total}
+          </Badge>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => {
+            setViewTab('chat_insights')
+            if (!chatAudits) reloadChatAudits(1)
+          }}
+          className={`flex items-center gap-2 border-b-2 px-4 py-2.5 text-sm font-medium transition-colors ${
+            viewTab === 'chat_insights'
+              ? 'border-primary text-primary'
+              : 'border-transparent text-muted-foreground hover:text-foreground'
+          }`}
+        >
+          <Bot size={16} />
+          <span>AI Chatbot Behavior & Marketing</span>
+          {chatInsights?.totalSessions ? (
+            <Badge variant="outline" className="ml-1 border-indigo-200 bg-indigo-50 text-indigo-700 text-xs">
+              {chatInsights.totalSessions} phiên ({chatInsights.sessionsWithPhone} SĐT)
+            </Badge>
+          ) : null}
+        </button>
       </div>
 
-      <div className="flex flex-wrap gap-2 rounded-xl border border-border bg-card p-3">
-        <select
-          className="h-9 rounded-lg border border-input bg-background px-2.5 text-sm"
-          value={stage}
-          onChange={(event) => {
-            const next = event.target.value as LeadStage | 'all'
-            setStage(next)
-            reload({ stage: next, source, priority, search, page: 1 })
-          }}
-          aria-label="Lọc stage"
-        >
-          {STAGES.map((item) => (
-            <option key={item} value={item}>
-              {item === 'all' ? 'Tất cả stage' : item}
-            </option>
-          ))}
-        </select>
-        <select
-          className="h-9 rounded-lg border border-input bg-background px-2.5 text-sm"
-          value={source}
-          onChange={(event) => {
-            const next = event.target.value as LeadSource | 'all'
-            setSource(next)
-            reload({ stage, source: next, priority, search, page: 1 })
-          }}
-          aria-label="Lọc nguồn"
-        >
-          {SOURCES.map((item) => (
-            <option key={item} value={item}>
-              {item === 'all' ? 'Tất cả nguồn' : item}
-            </option>
-          ))}
-        </select>
-        <select
-          className="h-9 rounded-lg border border-input bg-background px-2.5 text-sm"
-          value={priority}
-          onChange={(event) => {
-            const next = event.target.value as LeadPriority | 'all'
-            setPriority(next)
-            reload({ stage, source, priority: next, search, page: 1 })
-          }}
-          aria-label="Lọc ưu tiên"
-        >
-          {PRIORITIES.map((item) => (
-            <option key={item} value={item}>
-              {item === 'all' ? 'Tất cả priority' : item}
-            </option>
-          ))}
-        </select>
-        <Input
-          className="max-w-xs"
-          placeholder="Tên / SĐT / email / tag"
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter') reload({ stage, source, priority, search, page: 1 })
-          }}
-        />
-        <Button variant="secondary" onClick={() => reload({ stage, source, priority, search, page: 1 })} disabled={pending}>
-          Lọc
-        </Button>
-      </div>
-
-      <div className="rounded-xl border border-border bg-card shadow-sm">
-        {pending && result.data.length === 0 ? (
-          <div className="space-y-2 p-4">
-            {Array.from({ length: 5 }).map((_, index) => (
-              <Skeleton key={index} className="h-10 w-full" />
+      {viewTab === 'crm' ? (
+        <>
+          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            {kpi.map((item) => (
+              <Card key={item.label}>
+                <CardHeader className="pb-2">
+                  <CardDescription>{item.label}</CardDescription>
+                  <CardTitle className="text-2xl">{item.value}</CardTitle>
+                </CardHeader>
+              </Card>
             ))}
           </div>
-        ) : (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Khách</TableHead>
-                <TableHead>Nguồn</TableHead>
-                <TableHead>Stage</TableHead>
-                <TableHead>Ưu tiên</TableHead>
-                <TableHead>Quan tâm</TableHead>
-                <TableHead>Tương tác gần nhất</TableHead>
-                <TableHead className="text-right">Chi tiết</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {result.data.map((lead) => (
-                <TableRow key={lead.id}>
-                  <TableCell>
-                    <p className="font-medium">{lead.fullName}</p>
-                    <p className="text-xs text-muted-foreground">{lead.phone}</p>
-                  </TableCell>
-                  <TableCell>{lead.source}</TableCell>
-                  <TableCell>
-                    <Badge variant="outline" className={stageTone[lead.stage]}>
-                      {lead.stage}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>{lead.priority}</TableCell>
-                  <TableCell>
-                    {lead.roomTypeName ?? '—'}
-                    <span className="mt-0.5 block text-xs text-muted-foreground">{lead.branchName ?? 'Chưa chọn chi nhánh'}</span>
-                  </TableCell>
-                  <TableCell className="max-w-[220px] truncate text-xs text-muted-foreground">
-                    {lead.latestInteraction ?? '—'}
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <Button variant="outline" size="sm" onClick={() => openDetail(lead.id)} disabled={pending}>
-                      Mở
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-              {result.data.length === 0 ? (
-                <TableRow>
-                  <TableCell colSpan={7} className="py-10 text-center text-muted-foreground">
-                    Không có lead phù hợp.
-                  </TableCell>
-                </TableRow>
-              ) : null}
-            </TableBody>
-          </Table>
-        )}
-      </div>
 
-      <div className="flex items-center justify-between text-sm text-muted-foreground">
-        <span>
-          Trang {result.page}/{result.totalPages} · {result.total} leads
-        </span>
-        <div className="flex gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            disabled={pending || result.page <= 1}
-            onClick={() => reload({ stage, source, priority, search, page: result.page - 1 })}
-          >
-            Trước
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            disabled={pending || result.page >= result.totalPages}
-            onClick={() => reload({ stage, source, priority, search, page: result.page + 1 })}
-          >
-            Sau
-          </Button>
-        </div>
-      </div>
+          <div className="flex flex-wrap gap-2 rounded-xl border border-border bg-card p-3">
+            <select
+              className="h-9 rounded-lg border border-input bg-background px-2.5 text-sm"
+              value={stage}
+              onChange={(event) => {
+                const next = event.target.value as LeadStage | 'all'
+                setStage(next)
+                reload({ stage: next, source, priority, search, page: 1 })
+              }}
+              aria-label="Lọc stage"
+            >
+              {STAGES.map((item) => (
+                <option key={item} value={item}>
+                  {item === 'all' ? 'Tất cả stage' : item}
+                </option>
+              ))}
+            </select>
+            <select
+              className="h-9 rounded-lg border border-input bg-background px-2.5 text-sm"
+              value={source}
+              onChange={(event) => {
+                const next = event.target.value as LeadSource | 'all'
+                setSource(next)
+                reload({ stage, source: next, priority, search, page: 1 })
+              }}
+              aria-label="Lọc nguồn"
+            >
+              {SOURCES.map((item) => (
+                <option key={item} value={item}>
+                  {item === 'all' ? 'Tất cả nguồn' : item}
+                </option>
+              ))}
+            </select>
+            <select
+              className="h-9 rounded-lg border border-input bg-background px-2.5 text-sm"
+              value={priority}
+              onChange={(event) => {
+                const next = event.target.value as LeadPriority | 'all'
+                setPriority(next)
+                reload({ stage, source, priority: next, search, page: 1 })
+              }}
+              aria-label="Lọc ưu tiên"
+            >
+              {PRIORITIES.map((item) => (
+                <option key={item} value={item}>
+                  {item === 'all' ? 'Tất cả priority' : item}
+                </option>
+              ))}
+            </select>
+            <Input
+              className="max-w-xs"
+              placeholder="Tên / SĐT / email / tag"
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') reload({ stage, source, priority, search, page: 1 })
+              }}
+            />
+            <Button variant="secondary" onClick={() => reload({ stage, source, priority, search, page: 1 })} disabled={pending}>
+              Lọc
+            </Button>
+          </div>
+
+          <div className="rounded-xl border border-border bg-card shadow-sm">
+            {pending && result.data.length === 0 ? (
+              <div className="space-y-2 p-4">
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <Skeleton key={index} className="h-10 w-full" />
+                ))}
+              </div>
+            ) : (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Khách</TableHead>
+                    <TableHead>Nguồn</TableHead>
+                    <TableHead>Stage</TableHead>
+                    <TableHead>Ưu tiên</TableHead>
+                    <TableHead>Quan tâm</TableHead>
+                    <TableHead>Tương tác gần nhất</TableHead>
+                    <TableHead className="text-right">Chi tiết</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {result.data.map((lead) => (
+                    <TableRow key={lead.id}>
+                      <TableCell>
+                        <p className="font-medium">{lead.fullName}</p>
+                        <p className="text-xs text-muted-foreground">{lead.phone}</p>
+                      </TableCell>
+                      <TableCell>
+                        {lead.source === 'AI_CHATBOT' ? (
+                          <Badge variant="outline" className="border-indigo-300 bg-indigo-50 text-indigo-700 gap-1 font-medium text-xs">
+                            <Bot size={13} className="text-indigo-600" />
+                            AI Chatbot
+                          </Badge>
+                        ) : (
+                          lead.source
+                        )}
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant="outline" className={stageTone[lead.stage]}>
+                          {lead.stage}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>{lead.priority}</TableCell>
+                      <TableCell>
+                        {lead.roomTypeName ?? '—'}
+                        <span className="mt-0.5 block text-xs text-muted-foreground">{lead.branchName ?? 'Chưa chọn chi nhánh'}</span>
+                      </TableCell>
+                      <TableCell className="max-w-[220px] truncate text-xs text-muted-foreground">
+                        {lead.latestInteraction ?? '—'}
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <Button variant="outline" size="sm" onClick={() => openDetail(lead.id)} disabled={pending}>
+                          Mở
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                  {result.data.length === 0 ? (
+                    <TableRow>
+                      <TableCell colSpan={7} className="py-10 text-center text-muted-foreground">
+                        Không có lead phù hợp.
+                      </TableCell>
+                    </TableRow>
+                  ) : null}
+                </TableBody>
+              </Table>
+            )}
+          </div>
+
+          <div className="flex items-center justify-between text-sm text-muted-foreground">
+            <span>
+              Trang {result.page}/{result.totalPages} · {result.total} leads
+            </span>
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={pending || result.page <= 1}
+                onClick={() => reload({ stage, source, priority, search, page: result.page - 1 })}
+              >
+                Trước
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={pending || result.page >= result.totalPages}
+                onClick={() => reload({ stage, source, priority, search, page: result.page + 1 })}
+              >
+                Sau
+              </Button>
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          {/* Marketing Insights KPI cards */}
+          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            <Card>
+              <CardHeader className="pb-2">
+                <CardDescription className="flex items-center gap-1.5">
+                  <Bot size={14} className="text-indigo-600" />
+                  Tổng phiên chat AI
+                </CardDescription>
+                <CardTitle className="text-2xl">{chatInsights?.totalSessions ?? (chatAudits?.total ?? 0)}</CardTitle>
+              </CardHeader>
+            </Card>
+
+            <Card>
+              <CardHeader className="pb-2">
+                <CardDescription className="flex items-center gap-1.5">
+                  <PhoneCall size={14} className="text-emerald-600" />
+                  Thu thập được SĐT
+                </CardDescription>
+                <CardTitle className="text-2xl text-emerald-600">
+                  {chatInsights?.sessionsWithPhone ?? 0}
+                </CardTitle>
+              </CardHeader>
+            </Card>
+
+            <Card>
+              <CardHeader className="pb-2">
+                <CardDescription className="flex items-center gap-1.5">
+                  <TrendingUp size={14} className="text-primary" />
+                  Tỷ lệ chuyển đổi SĐT
+                </CardDescription>
+                <CardTitle className="text-2xl text-primary">
+                  {chatInsights?.conversionRatePercent ?? 0}%
+                </CardTitle>
+              </CardHeader>
+            </Card>
+
+            <Card>
+              <CardHeader className="pb-2">
+                <CardDescription className="flex items-center gap-1.5">
+                  <Tag size={14} className="text-amber-600" />
+                  Từ khóa hot nhất
+                </CardDescription>
+                <div className="mt-1 flex flex-wrap gap-1">
+                  {chatInsights?.topKeywords && chatInsights.topKeywords.length > 0 ? (
+                    chatInsights.topKeywords.slice(0, 3).map((kw) => (
+                      <Badge key={kw.tag} variant="secondary" className="text-xs">
+                        {kw.tag} ({kw.count})
+                      </Badge>
+                    ))
+                  ) : (
+                    <span className="text-xs text-muted-foreground">Đang cập nhật</span>
+                  )}
+                </div>
+              </CardHeader>
+            </Card>
+          </div>
+
+          {/* Filter Bar for Chat Audits */}
+          <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-border bg-card p-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <Input
+                className="w-72"
+                placeholder="Tìm khách / SĐT / nhu cầu / tag..."
+                value={chatSearch}
+                onChange={(e) => setChatSearch(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') reloadChatAudits(1, chatSearch, chatHasPhoneOnly)
+                }}
+              />
+              <Button
+                variant={chatHasPhoneOnly ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => {
+                  const next = !chatHasPhoneOnly
+                  setChatHasPhoneOnly(next)
+                  reloadChatAudits(1, chatSearch, next)
+                }}
+              >
+                <PhoneCall size={14} className="mr-1.5" />
+                {chatHasPhoneOnly ? 'Đang lọc có SĐT' : 'Chỉ khách có SĐT'}
+              </Button>
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => reloadChatAudits(1, chatSearch, chatHasPhoneOnly)}
+                disabled={pending}
+              >
+                Lọc
+              </Button>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => reloadChatAudits(chatAudits?.page || 1, chatSearch, chatHasPhoneOnly)}
+              disabled={pending}
+            >
+              {pending ? <Loader2 className="animate-spin mr-1.5" size={14} /> : <RefreshCw className="mr-1.5" size={14} />}
+              Làm mới
+            </Button>
+          </div>
+
+          {/* Chat Audits Table */}
+          <div className="rounded-xl border border-border bg-card shadow-sm">
+            {pending && !chatAudits ? (
+              <div className="space-y-2 p-4">
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <Skeleton key={index} className="h-10 w-full" />
+                ))}
+              </div>
+            ) : (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Khách hàng</TableHead>
+                    <TableHead>Nhu cầu khách muốn gì</TableHead>
+                    <TableHead>Cơ sở / Hạng phòng</TableHead>
+                    <TableHead>Mức độ quan tâm</TableHead>
+                    <TableHead>Tags hành vi</TableHead>
+                    <TableHead>Tin nhắn</TableHead>
+                    <TableHead className="text-right">Thao tác</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {chatAudits?.data && chatAudits.data.length > 0 ? (
+                    chatAudits.data.map((audit) => (
+                      <TableRow key={audit.id}>
+                        <TableCell>
+                          {audit.phone ? (
+                            <div>
+                              <p className="font-medium flex items-center gap-1.5 text-emerald-800">
+                                <PhoneCall size={13} className="text-emerald-600" />
+                                {audit.customerName || 'Khách AI Chatbot'}
+                              </p>
+                              <p className="text-xs font-mono text-emerald-700">{audit.phone}</p>
+                            </div>
+                          ) : (
+                            <div>
+                              <Badge variant="outline" className="text-xs text-muted-foreground border-dashed">
+                                Khách vãng lai
+                              </Badge>
+                              {audit.customerName ? (
+                                <p className="text-xs text-muted-foreground mt-0.5">{audit.customerName}</p>
+                              ) : null}
+                            </div>
+                          )}
+                        </TableCell>
+                        <TableCell className="max-w-[280px]">
+                          <p className="text-xs font-medium text-foreground line-clamp-2">
+                            {audit.intentSummary || 'Đang trò chuyện tư vấn tổng quát'}
+                          </p>
+                          {audit.estimatedDates ? (
+                            <span className="mt-1 inline-flex items-center gap-1 text-[11px] text-muted-foreground">
+                              <Calendar size={11} />
+                              {audit.estimatedDates}
+                            </span>
+                          ) : null}
+                        </TableCell>
+                        <TableCell>
+                          <p className="text-xs font-medium">{audit.preferredRoomTypeName || '—'}</p>
+                          <span className="block text-[11px] text-muted-foreground">
+                            {audit.preferredBranchName || 'Chưa rõ cơ sở'}
+                          </span>
+                        </TableCell>
+                        <TableCell>
+                          <Badge
+                            variant="outline"
+                            className={
+                              audit.readinessToBook?.toUpperCase().includes('READY') || audit.readinessToBook?.toUpperCase().includes('CAO')
+                                ? 'border-emerald-300 bg-emerald-50 text-emerald-800 text-[11px]'
+                                : 'border-slate-200 bg-slate-50 text-slate-700 text-[11px]'
+                            }
+                          >
+                            {audit.readinessToBook || 'INQUIRING'}
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="max-w-[180px]">
+                          <div className="flex flex-wrap gap-1">
+                            {audit.tags && audit.tags.length > 0 ? (
+                              audit.tags.slice(0, 3).map((tag, idx) => (
+                                <span
+                                  key={idx}
+                                  className="rounded-md bg-secondary px-1.5 py-0.5 text-[10px] text-secondary-foreground"
+                                >
+                                  {tag}
+                                </span>
+                              ))
+                            ) : (
+                              <span className="text-xs text-muted-foreground">—</span>
+                            )}
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <span className="text-xs font-mono text-muted-foreground">
+                            {audit.messageCount} lượt
+                          </span>
+                        </TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex justify-end gap-1.5">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="h-8 text-xs gap-1"
+                              onClick={() => setTranscriptModal(audit)}
+                            >
+                              <Eye size={12} />
+                              Transcript
+                            </Button>
+                            {audit.leadId ? (
+                              <Button
+                                variant="secondary"
+                                size="sm"
+                                className="h-8 text-xs gap-1"
+                                onClick={() => openDetail(audit.leadId!)}
+                              >
+                                <Sparkles size={12} />
+                                Mở Lead
+                              </Button>
+                            ) : null}
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell colSpan={7} className="py-10 text-center text-muted-foreground">
+                        Chưa có dữ liệu phân tích hội thoại AI Chatbot nào.
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            )}
+          </div>
+
+          {/* Pagination for Chat Audits */}
+          {chatAudits && chatAudits.totalPages > 1 ? (
+            <div className="flex items-center justify-between text-sm text-muted-foreground">
+              <span>
+                Trang {chatAudits.page}/{chatAudits.totalPages} · {chatAudits.total} phiên chat
+              </span>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  disabled={pending || chatAudits.page <= 1}
+                  onClick={() => reloadChatAudits(chatAudits.page - 1)}
+                >
+                  Trước
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  disabled={pending || chatAudits.page >= chatAudits.totalPages}
+                  onClick={() => reloadChatAudits(chatAudits.page + 1)}
+                >
+                  Sau
+                </Button>
+              </div>
+            </div>
+          ) : null}
+        </>
+      )}
 
       <Dialog open={createOpen} onOpenChange={setCreateOpen}>
         <DialogContent className="sm:max-w-lg">
@@ -769,6 +1129,105 @@ export function LeadsManager({ initialResult, initialStats, initialError, branch
             <Button onClick={saveConvert} disabled={pending}>
               {pending ? <Loader2 className="animate-spin" /> : null}
               Tạo booking
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Dialog xem toàn bộ Transcript hội thoại giữa Khách và AI Concierge */}
+      <Dialog open={Boolean(transcriptModal)} onOpenChange={(open) => !open && setTranscriptModal(null)}>
+        <DialogContent className="sm:max-w-2xl max-h-[85vh] flex flex-col">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Bot className="text-indigo-600" size={20} />
+              <span>Transcript Hội Thoại AI Concierge</span>
+            </DialogTitle>
+            <DialogDescription>
+              {transcriptModal?.customerName ? `${transcriptModal.customerName} · ` : ''}
+              {transcriptModal?.phone ? `SĐT: ${transcriptModal.phone} · ` : 'Khách vãng lai · '}
+              Cơ sở: {transcriptModal?.preferredBranchName || 'Chưa chọn'}
+            </DialogDescription>
+          </DialogHeader>
+
+          {transcriptModal ? (
+            <div className="space-y-4 overflow-y-auto pr-1 flex-1">
+              {/* Box phân tích ý định */}
+              <div className="rounded-xl border border-indigo-100 bg-indigo-50/60 p-3.5 text-xs text-indigo-950 space-y-1.5">
+                <p className="font-semibold text-indigo-900 flex items-center gap-1.5">
+                  <Sparkles size={14} className="text-indigo-600" />
+                  Phân tích tâm lý & nhu cầu khách hàng:
+                </p>
+                <p className="leading-relaxed">{transcriptModal.intentSummary || 'Đang tư vấn tổng quát.'}</p>
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {transcriptModal.tags.map((t, idx) => (
+                    <Badge key={idx} variant="secondary" className="bg-white text-[10px]">
+                      #{t}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+
+              {/* Chat bubbles */}
+              <div className="space-y-3">
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  Chi tiết từng lượt trò chuyện:
+                </h4>
+                {Array.isArray(transcriptModal.rawTranscript) && transcriptModal.rawTranscript.length > 0 ? (
+                  transcriptModal.rawTranscript.map((turn, index) => (
+                    <div
+                      key={index}
+                      className={`flex flex-col ${turn.role === 'user' ? 'items-end' : 'items-start'}`}
+                    >
+                      <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground mb-1">
+                        {turn.role === 'user' ? (
+                          <span>Khách hàng</span>
+                        ) : (
+                          <span className="flex items-center gap-1 text-indigo-600 font-medium">
+                            <Bot size={12} /> Trợ lý PML Hotel
+                          </span>
+                        )}
+                      </div>
+                      <div
+                        className={`rounded-2xl px-3.5 py-2.5 max-w-[85%] text-xs leading-relaxed ${
+                          turn.role === 'user'
+                            ? 'bg-primary text-primary-foreground rounded-tr-sm'
+                            : 'bg-muted text-foreground rounded-tl-sm border border-border'
+                        }`}
+                      >
+                        {turn.text}
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-xs text-muted-foreground italic">
+                    Không có transcript chi tiết cho phiên này.
+                  </p>
+                )}
+              </div>
+            </div>
+          ) : null}
+
+          <DialogFooter className="sm:justify-between items-center pt-3 border-t">
+            {transcriptModal?.leadId ? (
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => {
+                  const leadId = transcriptModal.leadId!
+                  setTranscriptModal(null)
+                  openDetail(leadId)
+                }}
+              >
+                <Sparkles size={14} className="mr-1.5" />
+                Mở hồ sơ Lead trong CRM
+              </Button>
+            ) : (
+              <span className="text-xs text-muted-foreground">
+                Khách chưa cung cấp SĐT để tạo Lead CRM.
+              </span>
+            )}
+            <Button variant="outline" size="sm" onClick={() => setTranscriptModal(null)}>
+              Đóng
             </Button>
           </DialogFooter>
         </DialogContent>

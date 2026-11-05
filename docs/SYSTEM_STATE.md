@@ -144,14 +144,14 @@
      ```
      - Guard: Blocks deletion if physical rooms or active reservations are linked.
   10. **`updateRoomTypePricing(input)`**:
-      ```typescript
-      export async function updateRoomTypePricing(input: {
+     ```typescript
+     export async function updateRoomTypePricing(input: {
         roomTypeId: string;
-        basePriceVnd: number;
-        totalInventory?: number;
-        adminName?: string;
-      }): Promise<{ ok: true; roomTypeId: string } | { ok: false; error: string }>
-      ```
+       basePriceVnd: number;
+       totalInventory?: number;
+       adminName?: string;
+     }): Promise<{ ok: true; roomTypeId: string } | { ok: false; error: string }>
+     ```
   11. **`getAdminBranches()`**:
       ```typescript
       export async function getAdminBranches(): Promise<{ ok: true; branches: AdminBranchItem[] } | { ok: false; error: string }>
@@ -467,8 +467,39 @@
 
 ### 9. AI Concierge & Chatbot (`/api/assistant`)
 - **File**: [`app/api/assistant/route.ts`](file:///d:/luxury-hotel-landing-page/app/api/assistant/route.ts)
-- **Capability**: Real-time room availability querying from Neon Postgres + automated follow-up suggestions + rich Room Cards with direct `/dat-phong?branchId=...&roomId=...` deep-linking.
-- **POST `/api/assistant`**: Returns `{ reply, suggestions, roomCards }`.
+- **Model Architecture (Paid Tier 1 Optimized)**:
+  - **Primary Model**: `gemini-3.8-flash` (Flagship multimodal conversational agent with superior Vietnamese hospitality nuance, accurate JSON adherence, and room matching).
+  - **Conversational Latency Optimization**: Configured `thinkingConfig: { thinkingBudget: 0 }` for thinking-capable models (`3.8`), dropping response times from ~7s down to ~2.5–3.5s while preserving high conversational quality.
+  - **Cascade Fallback Strategy**:
+    1. `gemini-3.8-flash` (Default primary)
+    2. `gemini-3.5-flash-lite` (Ultra-low latency fallback, ~180ms generation, no thinking tokens)
+    3. `gemini-3.5-flash` (Stable high-throughput fallback)
+    4. `gemini-flash-latest` (General pointer fallback)
+  - **Configurable Environment Override**: Supports `GEMINI_MODEL` in `.env.local` (e.g. `GEMINI_MODEL=gemini-3.5-flash-lite` for pure speed, or `GEMINI_MODEL=gemini-3.8-flash` for maximum reasoning).
+- **Capability**: Real-time room availability querying from Neon Postgres (`room_units`, `bookings`, `room_holds`) + automated follow-up suggestions + rich Room Cards with direct `/dat-phong?branchId=...&roomId=...` deep-linking.
+- **Customer Behavior Extraction (`customerAudit`)**:
+  - Automatically analyzes guest intent (`intentSummary`), extracted phone number, customer name, email, preferred branch, room type, dates, budget, readiness to book (`READY_TO_BOOK`, `INQUIRING`, etc.), and marketing tags in the same single Gemini inference pass.
+- **POST `/api/assistant`**: Returns `{ reply: string, suggestions: string[], roomCards: RoomCardItem[], modelUsed?: string }`.
+
+---
+
+### 10. AI Chatbot Behavior Analytics & Marketing Audit (`@/lib/actions/admin-chat-audits.ts`)
+- **File**: [`lib/actions/admin-chat-audits.ts`](file:///d:/luxury-hotel-landing-page/lib/actions/admin-chat-audits.ts)
+- **Functions**:
+  1. **`recordChatAudit(input)`**:
+     - Automatically called on every assistant conversation turn.
+     - Upserts into `chat_audits` by `sessionId`.
+     - Automatically scans messages & structured audit for phone number (`09...`, `03...`, `07...`, `08...`).
+     - **Auto-Sync to CRM**: When a phone number is detected, automatically creates or updates a Lead in `leads` (`source = 'AI_CHATBOT'`) and records interaction in `lead_interactions`, binding `lead_id` back to `chat_audits`.
+  2. **`getAdminChatAudits(filter)`**:
+     - Retrieves paginated list of chat sessions with full behavioral metadata (`intentSummary`, `phone`, `customerName`, `preferredBranch`, `tags`, `readinessToBook`).
+     - Supports search by customer name, phone, intent keyword, or tags; toggle for `hasPhoneOnly`.
+  3. **`getChatMarketingInsights(branchId?)`**:
+     - Returns aggregate statistics: Total sessions, Sessions with phone captured, Phone conversion rate (%), Top search keywords, and Branch popularity.
+- **Admin Board Integration**:
+  - Mounted in [`components/admin/leads-manager.tsx`](file:///d:/luxury-hotel-landing-page/components/admin/leads-manager.tsx) with a 2-tab interface:
+    - **Tab 1: 📋 Danh sách Leads CRM**: Leads with phones/contacts ready for sales follow-up and 1-click conversion to PMS booking.
+    - **Tab 2: 🤖 AI Chatbot Behavior & Marketing**: Complete customer chat sessions, behavioral signals, top inquiry tags, and full conversation transcript modal.
 
 ---
 
@@ -490,6 +521,7 @@
 13. **`admin_sessions`**: Active staff sessions with expiration dates, IP, and User-Agent.
 14. **`payments`**: Payment transaction records with gateway reference, transfer description, payment method (`VIETQR`, `BANK_TRANSFER`, `CASH`, `VNPAY`, `STRIPE`), status (`pending`, `completed`, `failed`, `refunded`), and raw gateway payload.
 15. **`room_holds`**: Temporary anti-overbooking inventory lock (15-minute TTL) with `hold_token`, `room_type_id`, `check_in_date`, `check_out_date`, `expires_at`, and `is_released`.
+16. **`chat_audits`**: Customer conversation intelligence store (session ID, guest name, phone, email, intent summary, preferred branch/room, dates, budget, readiness, marketing tags, message count, raw transcript, and linked CRM `lead_id`).
 
 *Database URL configured in `.env.local` as `DATABASE_URL` on Neon Lakebase Postgres.*
 
@@ -506,6 +538,7 @@
     import { getAdminBookings, updateBookingStatus, updateBookingPayment } from '@/lib/actions/admin-bookings'
     import { getAdminRoomUnits, updateRoomUnitStatus, updateRoomTypePricing } from '@/lib/actions/admin-rooms'
     import { getAdminFaqs, saveAdminFaq, deleteAdminFaq } from '@/lib/actions/admin-faqs'
+    import { getAdminChatAudits, getChatMarketingInsights } from '@/lib/actions/admin-chat-audits'
     import {
       getAdminLeads,
       getAdminLeadDetails,

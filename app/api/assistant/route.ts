@@ -6,6 +6,7 @@ import { parseAvailabilityQuery, fetchLiveAvailability, formatAvailabilityContex
 import { rooms } from '@/data/rooms'
 import { branches } from '@/data/branches'
 import { roomCover } from '@/lib/media'
+import { recordChatAudit } from '@/lib/actions/admin-chat-audits'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -27,7 +28,24 @@ const LANGUAGE: Record<string, string> = {
   zh: 'Simplified Chinese',
 }
 
-const MODELS = ['gemini-3.8-flash', 'gemini-3.5-flash', 'gemini-3.5-flash-lite', 'gemini-flash-latest']
+// Model cascade for Paid Tier 1:
+// - gemini-3.8-flash: Flagship fast conversational agent with high hospitality nuance
+// - gemini-3.5-flash-lite: Ultra-fast 1.2s backup model
+// - gemini-3.5-flash / gemini-flash-latest: Stable fallback models
+const DEFAULT_MODELS = [
+  'gemini-3.8-flash',
+  'gemini-3.5-flash-lite',
+  'gemini-3.5-flash',
+  'gemini-flash-latest',
+] as const
+
+function getModelCascade(): string[] {
+  const envModel = process.env.GEMINI_MODEL?.trim()
+  if (envModel) {
+    return [envModel, ...DEFAULT_MODELS.filter((m) => m !== envModel)]
+  }
+  return [...DEFAULT_MODELS]
+}
 
 type ChatTurn = { role: 'user' | 'assistant'; text: string }
 
@@ -385,6 +403,9 @@ export async function POST(request: Request) {
 
   const locale = typeof (body as { locale?: unknown }).locale === 'string' ? (body as { locale: string }).locale : 'vi'
   const language = LANGUAGE[locale] ?? LANGUAGE.vi
+  const sessionId = typeof (body as { sessionId?: unknown }).sessionId === 'string' && (body as { sessionId: string }).sessionId.trim()
+    ? (body as { sessionId: string }).sessionId.trim()
+    : `pml-sess-${Date.now()}`
   const rawMessages = (body as { messages?: unknown }).messages
   if (!Array.isArray(rawMessages) || rawMessages.length === 0 || rawMessages.length > 12 || !rawMessages.every(isChatTurn)) {
     return NextResponse.json({ error: 'invalid' }, { status: 400 })
@@ -481,42 +502,83 @@ export async function POST(request: Request) {
     '1. "reply": string containing your warm, concise response to the user.',
     '2. "suggestions": array of 2 to 3 concise, relevant follow-up questions (under 10 words each) in the same language that the guest is most likely to ask next based specifically on your answer, allowing them to tap to continue.',
     '3. "roomIds": (optional) array of specific room IDs discussed, recommended, or to be booked (e.g. ["room-superior-indochine", "room-deluxe-city-balcony", "room-onsen-suite"]).',
+    '4. "customerAudit": (optional) object analyzing the guest behavioral signals, intent, and profile from the conversation for hotel CRM & marketing:',
+    '   - "customerName": guest name if introduced (or empty)',
+    '   - "phone": guest phone number if provided (or empty)',
+    '   - "email": guest email if provided (or empty)',
+    '   - "intentSummary": concise 1-2 sentence Vietnamese summary of what the guest is specifically looking for, their needs, questions, or occasion',
+    '   - "preferredBranchId": branch ID if mentioned (pml-dong-du, pml-onsen-hai-ba-trung, pml-central-park, or empty)',
+    '   - "preferredRoomTypeId": room ID if discussed (or empty)',
+    '   - "estimatedDates": dates or duration if mentioned (or empty)',
+    '   - "budgetRange": budget or price mentioned (or empty)',
+    '   - "numGuests": number of guests (integer) or 0 if unstated',
+    '   - "readinessToBook": "READY_TO_BOOK", "HIGH_INTEREST", "INQUIRING", "PRICE_SENSITIVE", or "BROWSING"',
+    '   - "tags": array of 2-5 marketing tags (e.g. ["Onsen", "Cặp đôi", "Hỏi giá", "Có SĐT"])',
     '',
     knowledge,
   ].join('\n')
 
-  const requestBody = JSON.stringify({
-    systemInstruction: { parts: [{ text: systemText }] },
-    contents: messages.map((turn) => ({
-      role: turn.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: turn.text }],
-    })),
-    generationConfig: {
-      temperature: 0.4,
-      maxOutputTokens: 2500,
-      responseMimeType: 'application/json',
-      responseSchema: {
-        type: 'OBJECT',
-        properties: {
-          reply: { type: 'STRING', description: 'The warm, concise assistant response' },
-          suggestions: {
-            type: 'ARRAY',
-            items: { type: 'STRING' },
-            description: '2 to 3 short follow-up questions related specifically to this answer',
-          },
-          roomIds: {
-            type: 'ARRAY',
-            items: { type: 'STRING' },
-            description: 'Optional list of room IDs discussed or recommended to book',
-          },
-        },
-        required: ['reply', 'suggestions'],
-      },
-    },
-  })
+  const models = getModelCascade()
 
   try {
-    for (const model of MODELS) {
+    for (const model of models) {
+      const isThinkingModel = model.includes('3.8') || model.includes('2.5')
+
+      const generationConfig: Record<string, unknown> = {
+        temperature: 0.4,
+        maxOutputTokens: 2500,
+        responseMimeType: 'application/json',
+        responseSchema: {
+          type: 'OBJECT',
+          properties: {
+            reply: { type: 'STRING', description: 'The warm, concise assistant response' },
+            suggestions: {
+              type: 'ARRAY',
+              items: { type: 'STRING' },
+              description: '2 to 3 short follow-up questions related specifically to this answer',
+            },
+            roomIds: {
+              type: 'ARRAY',
+              items: { type: 'STRING' },
+              description: 'Optional list of room IDs discussed or recommended to book',
+            },
+            customerAudit: {
+              type: 'OBJECT',
+              description: 'Behavioral analysis and lead extraction of the guest from the entire conversation',
+              properties: {
+                customerName: { type: 'STRING', description: 'Guest name if mentioned or empty' },
+                phone: { type: 'STRING', description: 'Vietnamese phone number if provided or empty' },
+                email: { type: 'STRING', description: 'Guest email if provided or empty' },
+                intentSummary: { type: 'STRING', description: '1-2 sentence summary of what the guest is specifically looking for' },
+                preferredBranchId: { type: 'STRING', description: 'Branch ID (pml-dong-du, pml-onsen-hai-ba-trung, pml-central-park) or empty' },
+                preferredRoomTypeId: { type: 'STRING', description: 'Specific room ID or empty' },
+                estimatedDates: { type: 'STRING', description: 'Mentioned dates or duration or empty' },
+                budgetRange: { type: 'STRING', description: 'Mentioned budget or price sensitivity or empty' },
+                numGuests: { type: 'INTEGER', description: 'Estimated number of guests or 0 if unstated' },
+                readinessToBook: { type: 'STRING', description: 'READY_TO_BOOK, HIGH_INTEREST, INQUIRING, PRICE_SENSITIVE, or BROWSING' },
+                tags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Marketing tags' },
+              },
+            },
+          },
+          required: ['reply', 'suggestions'],
+        },
+      }
+
+      // Thinking models (3.8 Flash) default to deep extended reasoning (~6-8s).
+      // Setting thinkingBudget: 0 drops conversational latency to ~2-3s for instant chat.
+      if (isThinkingModel) {
+        generationConfig.thinkingConfig = { thinkingBudget: 0 }
+      }
+
+      const requestBody = JSON.stringify({
+        systemInstruction: { parts: [{ text: systemText }] },
+        contents: messages.map((turn) => ({
+          role: turn.role === 'assistant' ? 'model' : 'user',
+          parts: [{ text: turn.text }],
+        })),
+        generationConfig,
+      })
+
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
         method: 'POST',
         headers: {
@@ -526,11 +588,10 @@ export async function POST(request: Request) {
         body: requestBody,
       })
 
-      if (response.status === 404 || response.status === 503 || response.status === 429) {
-        continue
-      }
       if (!response.ok) {
-        return NextResponse.json({ error: 'upstream' }, { status: 502 })
+        const errorText = await response.text().catch(() => '')
+        console.warn(`[Concierge AI] Model ${model} returned HTTP ${response.status}: ${errorText.slice(0, 150)}`)
+        continue
       }
 
       const payload = (await response.json()) as {
@@ -540,11 +601,28 @@ export async function POST(request: Request) {
       if (rawText) {
         const lastUserText = messages[messages.length - 1]?.text ?? ''
         const { reply, suggestions, roomCards } = extractReplyAndSuggestions(rawText, lastUserText, locale)
-        return NextResponse.json({ reply, suggestions, roomCards })
+
+        // Extract customer audit data for admin CRM & marketing insights
+        try {
+          const cleanedJson = rawText.trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim()
+          const parsed = JSON.parse(cleanedJson) as { customerAudit?: any }
+          const customerAudit = parsed.customerAudit
+
+          // Record chat audit & lead asynchronously
+          recordChatAudit({
+            sessionId,
+            messages,
+            customerAudit,
+            lastUserText,
+          }).catch((err) => console.error('[Concierge AI] Error saving chat audit:', err))
+        } catch {}
+
+        return NextResponse.json({ reply, suggestions, roomCards, modelUsed: model })
       }
     }
     return NextResponse.json({ error: 'upstream' }, { status: 502 })
-  } catch {
+  } catch (err) {
+    console.error('[Concierge AI] Unexpected error:', err)
     return NextResponse.json({ error: 'upstream' }, { status: 502 })
   }
 }

@@ -533,8 +533,17 @@ export type RoomCardInfo = {
 type ChatMessage = {
   role: 'assistant' | 'user'
   text: string
+  at: number
   suggestions?: string[]
   roomCards?: RoomCardInfo[]
+}
+
+function formatChatTime(at: number, locale: Locale): string {
+  return new Intl.DateTimeFormat(locale === 'vi' ? 'vi-VN' : 'en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).format(new Date(at))
 }
 
 export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) {
@@ -549,11 +558,30 @@ export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) 
   const [error, setError] = useState(false)
   const dialog = useRef<HTMLDivElement>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const hasRoomCards = messages.some((m) => (m.roomCards?.length ?? 0) > 0)
+
+  const [sessionId] = useState(() => {
+    if (typeof window !== 'undefined') {
+      let s = sessionStorage.getItem('pml_chat_session')
+      if (!s) {
+        s = 'pml-' + Math.random().toString(36).slice(2, 9) + '-' + Date.now().toString(36)
+        sessionStorage.setItem('pml_chat_session', s)
+      }
+      return s
+    }
+    return 'pml-temp-' + Date.now()
+  })
 
   useEffect(() => {
     const saved = readLocaleCookie(initialLocale)
     setLocale(saved)
-    setMessages([{ role: 'assistant', text: dictionaries[saved].conciergeGreeting }])
+    setMessages([
+      {
+        role: 'assistant',
+        text: dictionaries[saved].conciergeGreeting,
+        at: Date.now(),
+      },
+    ])
   }, [initialLocale])
 
   useEffect(() => {
@@ -589,7 +617,7 @@ export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) 
 
   async function send(text: string) {
     if (!text.trim() || pending) return
-    const next: ChatMessage[] = [...messages, { role: 'user', text }]
+    const next: ChatMessage[] = [...messages, { role: 'user', text, at: Date.now() }]
     setMessages(next)
     setDraft('')
     setPending(true)
@@ -598,7 +626,7 @@ export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) 
       const response = await fetch('/api/assistant', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ locale, messages: next.slice(-8) }),
+        body: JSON.stringify({ locale, messages: next.slice(-8), sessionId }),
       })
       const result = await response.json()
       if (!response.ok || !result.reply) throw new Error()
@@ -607,6 +635,7 @@ export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) 
         {
           role: 'assistant',
           text: result.reply,
+          at: Date.now(),
           suggestions: Array.isArray(result.suggestions) ? result.suggestions : undefined,
           roomCards: Array.isArray(result.roomCards) ? result.roomCards : undefined,
         },
@@ -630,7 +659,13 @@ export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) 
       )}
       {open && (
         <div className="concierge-backdrop">
-          <div className="concierge" ref={dialog} role="dialog" aria-modal="true" aria-label="PML Hotel">
+          <div
+            className={`concierge${hasRoomCards ? ' concierge--with-cards' : ''}`}
+            ref={dialog}
+            role="dialog"
+            aria-modal="true"
+            aria-label="PML Hotel"
+          >
             <header>
               <div>
                 <strong>PML Hotel</strong>
@@ -644,10 +679,15 @@ export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) 
             </header>
             <div className="messages" aria-live="polite">
               {messages.map((message, i) => (
-                <div key={i} className={`concierge-msg-row concierge-msg-row--${message.role}`}>
-                  <p className={`concierge-bubble concierge-bubble--${message.role}`}>
-                    {message.text}
-                  </p>
+                <div key={`${message.at}-${i}`} className={`concierge-msg-row concierge-msg-row--${message.role}`}>
+                  <div className={`concierge-bubble-wrap concierge-bubble-wrap--${message.role}`}>
+                    <p className={`concierge-bubble concierge-bubble--${message.role}`}>
+                      {message.text}
+                    </p>
+                    <time className="concierge-time" dateTime={new Date(message.at).toISOString()}>
+                      {formatChatTime(message.at, locale)}
+                    </time>
+                  </div>
                   {i === 0 && message.role === 'assistant' && (
                     <div className="concierge-suggestions">
                       <div className="concierge-suggestions-label">
@@ -762,7 +802,20 @@ export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) 
                   )}
                 </div>
               ))}
-              {pending && <p className="concierge-bubble concierge-bubble--assistant typing">{copy.conciergeTyping}</p>}
+              {pending && (
+                <div className="concierge-msg-row concierge-msg-row--assistant" aria-label={copy.conciergeTyping}>
+                  <div className="concierge-bubble-wrap concierge-bubble-wrap--assistant">
+                    <div className="concierge-bubble concierge-bubble--assistant concierge-typing" role="status">
+                      <span />
+                      <span />
+                      <span />
+                    </div>
+                    <span className="concierge-time concierge-time--typing">
+                      {locale === 'vi' ? 'Đang soạn…' : 'Typing…'}
+                    </span>
+                  </div>
+                </div>
+              )}
               {error && (
                 <div className="assistant error">
                   {copy.conciergeRetry}{' '}

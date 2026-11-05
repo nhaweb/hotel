@@ -406,5 +406,51 @@ export interface ChangePasswordInput {
   newPassword: string
 }
 
+// ==========================================
+// AI CHATBOT AUDIT & MARKETING INSIGHTS
+// ==========================================
+
+export interface ChatAuditItem {
+  id: string
+  sessionId: string
+  customerName: string | null
+  phone: string | null
+  email: string | null
+  intentSummary: string | null
+  preferredBranch: string | null
+  preferredBranchName: string | null
+  preferredRoomType: string | null
+  preferredRoomTypeName: string | null
+  estimatedDates: string | null
+  budgetRange: string | null
+  numGuests: number | null
+  sentiment: string | null
+  readinessToBook: string | null
+  topics: string[]
+  tags: string[]
+  messageCount: number
+  leadId: string | null
+  rawTranscript?: { role: 'user' | 'assistant'; text: string; at?: number }[] | null
+  createdAt: string
+  updatedAt: string
+}
+
+export interface ChatAuditFilter {
+  hasPhoneOnly?: boolean
+  searchQuery?: string
+  branchId?: string
+  page?: number
+  pageSize?: number
+}
+
+export interface ChatMarketingInsights {
+  totalSessions: number
+  sessionsWithPhone: number
+  conversionRatePercent: number
+  topTopics: { topic: string; count: number }[]
+  topBranches: { branchId: string; branchName: string; count: number }[]
+  topKeywords: { tag: string; count: number }[]
+}
+
 
 
