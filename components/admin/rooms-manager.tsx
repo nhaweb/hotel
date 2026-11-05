@@ -33,6 +33,13 @@ import {
   updateRoomUnitStatus,
 } from '@/lib/actions/admin-rooms'
 import { formatPrice } from '@/lib/format-price'
+import {
+  normalizePhoneDigits,
+  validateDepositAmount,
+  validateGuestCheckOutDate,
+  validateGuestName,
+  validateGuestPhone,
+} from '@/lib/validate-guest'
 import type {
   AdminBranchItem,
   AdminRoomTypeItem,
@@ -136,6 +143,12 @@ export function RoomsManager({
   const [modalGuestPhone, setModalGuestPhone] = useState('')
   const [modalCheckOutDate, setModalCheckOutDate] = useState(getTomorrowDateString())
   const [modalDeposit, setModalDeposit] = useState('0')
+  const [modalGuestErrors, setModalGuestErrors] = useState<{
+    name?: string
+    phone?: string
+    checkOutDate?: string
+    deposit?: string
+  }>({})
 
   // Dialog states for Room Types (Categories)
   const [editingType, setEditingType] = useState<AdminRoomTypeItem | null>(null)
@@ -210,6 +223,7 @@ export function RoomsManager({
   // Open Guest Modal
   function openGuestModal(type: 'edit' | 'checkin', unit: RoomUnit) {
     setGuestModal({ type, unit })
+    setModalGuestErrors({})
     if (type === 'edit') {
       setModalGuestName(unit.currentGuestName ?? '')
       setModalGuestPhone(unit.currentCustomerPhone ?? '')
@@ -223,22 +237,42 @@ export function RoomsManager({
     }
   }
 
+  function validateGuestModalFields() {
+    const isCheckIn = guestModal?.type === 'checkin'
+    const errors = {
+      name: validateGuestName(modalGuestName, true),
+      phone: validateGuestPhone(modalGuestPhone, Boolean(isCheckIn)),
+      checkOutDate: validateGuestCheckOutDate(modalCheckOutDate, Boolean(isCheckIn)),
+      deposit: validateDepositAmount(modalDeposit),
+    }
+    const cleaned = Object.fromEntries(
+      Object.entries(errors).filter(([, value]) => Boolean(value))
+    ) as typeof modalGuestErrors
+    setModalGuestErrors(cleaned)
+    return cleaned
+  }
+
   // Submit Save Guest (from Guest Modal)
   function handleSaveGuestModal() {
     if (!guestModal) return
 
-    if (!modalGuestName.trim()) {
-      toast.error('Vui lòng nhập họ tên khách hàng')
+    const errors = validateGuestModalFields()
+    if (Object.keys(errors).length > 0) {
+      toast.error(Object.values(errors)[0] || 'Vui lòng kiểm tra lại thông tin khách cư trú')
       return
     }
+
+    const normalizedPhone = modalGuestPhone.trim()
+      ? normalizePhoneDigits(modalGuestPhone)
+      : undefined
 
     startTransition(async () => {
       if (guestModal.type === 'edit') {
         const result = await updateRoomGuest({
           roomUnitId: guestModal.unit.id,
           bookingId: guestModal.unit.currentBookingId || undefined,
-          guestName: modalGuestName.trim(),
-          guestPhone: modalGuestPhone.trim() || undefined,
+          guestName: modalGuestName.trim().replace(/\s+/g, ' '),
+          guestPhone: normalizedPhone,
           checkOutDate: modalCheckOutDate || undefined,
           depositAmountVnd: Number(modalDeposit) || 0,
           adminName: user?.fullName || 'Receptionist',
@@ -254,8 +288,8 @@ export function RoomsManager({
         // Quick Check-in
         const result = await checkInRoomGuest({
           roomUnitId: guestModal.unit.id,
-          guestName: modalGuestName.trim(),
-          guestPhone: modalGuestPhone.trim() || '0900000000',
+          guestName: modalGuestName.trim().replace(/\s+/g, ' '),
+          guestPhone: normalizedPhone || '',
           checkOutDate: modalCheckOutDate,
           depositAmountVnd: Number(modalDeposit) || 0,
           adminName: user?.fullName || 'Receptionist',
@@ -1007,47 +1041,115 @@ export function RoomsManager({
                 id="modal-guest-name"
                 placeholder="VD: Nguyễn Văn An"
                 value={modalGuestName}
-                onChange={(e) => setModalGuestName(e.target.value)}
+                aria-invalid={Boolean(modalGuestErrors.name)}
+                className={modalGuestErrors.name ? 'border-rose-400 focus-visible:ring-rose-400/40' : ''}
+                onChange={(e) => {
+                  setModalGuestName(e.target.value)
+                  if (modalGuestErrors.name) {
+                    setModalGuestErrors((prev) => ({ ...prev, name: validateGuestName(e.target.value, true) }))
+                  }
+                }}
+                onBlur={() => validateGuestModalFields()}
               />
+              {modalGuestErrors.name ? (
+                <p className="text-xs font-medium text-rose-600" role="alert">
+                  {modalGuestErrors.name}
+                </p>
+              ) : null}
             </div>
 
             <div className="grid gap-1.5">
-              <Label htmlFor="modal-guest-phone">Số điện thoại liên hệ</Label>
+              <Label htmlFor="modal-guest-phone">
+                Số điện thoại liên hệ{guestModal?.type === 'checkin' ? ' *' : ''}
+              </Label>
               <Input
                 id="modal-guest-phone"
+                inputMode="tel"
                 placeholder="VD: 0912 345 678"
                 value={modalGuestPhone}
-                onChange={(e) => setModalGuestPhone(e.target.value)}
+                aria-invalid={Boolean(modalGuestErrors.phone)}
+                className={modalGuestErrors.phone ? 'border-rose-400 focus-visible:ring-rose-400/40' : ''}
+                onChange={(e) => {
+                  setModalGuestPhone(e.target.value)
+                  if (modalGuestErrors.phone) {
+                    setModalGuestErrors((prev) => ({
+                      ...prev,
+                      phone: validateGuestPhone(e.target.value, guestModal?.type === 'checkin'),
+                    }))
+                  }
+                }}
+                onBlur={() => validateGuestModalFields()}
               />
+              {modalGuestErrors.phone ? (
+                <p className="text-xs font-medium text-rose-600" role="alert">
+                  {modalGuestErrors.phone}
+                </p>
+              ) : (
+                <span className="text-[11px] text-muted-foreground">SĐT di động 10 số (03/05/07/08/09)</span>
+              )}
             </div>
 
             <div className="grid gap-1.5">
-              <Label htmlFor="modal-guest-checkout">Ngày trả phòng (Check-out)</Label>
+              <Label htmlFor="modal-guest-checkout">
+                Ngày trả phòng (Check-out){guestModal?.type === 'checkin' ? ' *' : ''}
+              </Label>
               <Input
                 id="modal-guest-checkout"
                 type="date"
                 value={modalCheckOutDate}
-                onChange={(e) => setModalCheckOutDate(e.target.value)}
+                min={new Date().toISOString().slice(0, 10)}
+                aria-invalid={Boolean(modalGuestErrors.checkOutDate)}
+                className={modalGuestErrors.checkOutDate ? 'border-rose-400 focus-visible:ring-rose-400/40' : ''}
+                onChange={(e) => {
+                  setModalCheckOutDate(e.target.value)
+                  if (modalGuestErrors.checkOutDate) {
+                    setModalGuestErrors((prev) => ({
+                      ...prev,
+                      checkOutDate: validateGuestCheckOutDate(e.target.value, guestModal?.type === 'checkin'),
+                    }))
+                  }
+                }}
+                onBlur={() => validateGuestModalFields()}
               />
+              {modalGuestErrors.checkOutDate ? (
+                <p className="text-xs font-medium text-rose-600" role="alert">
+                  {modalGuestErrors.checkOutDate}
+                </p>
+              ) : null}
             </div>
 
             <div className="grid gap-1.5">
-              <Label htmlFor="modal-guest-deposit">
-                {guestModal?.type === 'edit' ? 'Tiền cọc trước (VND)' : 'Tiền cọc trước (VND)'}
-              </Label>
+              <Label htmlFor="modal-guest-deposit">Tiền cọc trước (VND)</Label>
               <Input
                 id="modal-guest-deposit"
                 type="number"
                 min={0}
                 value={modalDeposit}
-                onChange={(e) => setModalDeposit(e.target.value)}
+                aria-invalid={Boolean(modalGuestErrors.deposit)}
+                className={modalGuestErrors.deposit ? 'border-rose-400 focus-visible:ring-rose-400/40' : ''}
+                onChange={(e) => {
+                  setModalDeposit(e.target.value)
+                  if (modalGuestErrors.deposit) {
+                    setModalGuestErrors((prev) => ({
+                      ...prev,
+                      deposit: validateDepositAmount(e.target.value),
+                    }))
+                  }
+                }}
+                onBlur={() => validateGuestModalFields()}
                 placeholder="0"
               />
-              <span className="text-[11px] text-muted-foreground">
-                {guestModal?.type === 'edit'
-                  ? 'Số tiền khách đã đóng trước. Phần còn lại sẽ được thu khi làm thủ tục Checkout.'
-                  : 'Khoản tiền nhận cọc từ khách khi nhận phòng (nếu có).'}
-              </span>
+              {modalGuestErrors.deposit ? (
+                <p className="text-xs font-medium text-rose-600" role="alert">
+                  {modalGuestErrors.deposit}
+                </p>
+              ) : (
+                <span className="text-[11px] text-muted-foreground">
+                  {guestModal?.type === 'edit'
+                    ? 'Số tiền khách đã đóng trước. Phần còn lại sẽ được thu khi làm thủ tục Checkout.'
+                    : 'Khoản tiền nhận cọc từ khách khi nhận phòng (nếu có).'}
+                </span>
+              )}
             </div>
           </div>
 

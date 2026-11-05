@@ -124,9 +124,10 @@ export function BookingsManager({ initialResult, initialError }: Props) {
             <TableHeader>
               <TableRow>
                 <TableHead>Mã</TableHead>
+                <TableHead>Thời điểm đặt</TableHead>
                 <TableHead>Khách</TableHead>
                 <TableHead>Phòng</TableHead>
-                <TableHead>Ngày</TableHead>
+                <TableHead>Ngày lưu trú</TableHead>
                 <TableHead>Tổng tiền & Cọc</TableHead>
                 <TableHead>Trạng thái</TableHead>
                 <TableHead className="text-right">Cập nhật</TableHead>
@@ -136,6 +137,21 @@ export function BookingsManager({ initialResult, initialError }: Props) {
               {result.data.map((booking) => (
                 <TableRow key={booking.id}>
                   <TableCell className="font-medium">{booking.bookingCode}</TableCell>
+                  <TableCell className="whitespace-nowrap text-xs text-muted-foreground">
+                    <span className="block font-medium text-foreground">
+                      {new Date(booking.createdAt).toLocaleDateString('vi-VN', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                      })}
+                    </span>
+                    <span>
+                      {new Date(booking.createdAt).toLocaleTimeString('vi-VN', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}
+                    </span>
+                  </TableCell>
                   <TableCell>
                     {booking.customerName}
                     <span className="mt-0.5 block text-xs text-muted-foreground">{booking.customerPhone}</span>
@@ -182,7 +198,7 @@ export function BookingsManager({ initialResult, initialError }: Props) {
               ))}
               {result.data.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={7} className="py-10 text-center text-muted-foreground">
+                  <TableCell colSpan={8} className="py-10 text-center text-muted-foreground">
                     Không có booking nào.
                   </TableCell>
                 </TableRow>

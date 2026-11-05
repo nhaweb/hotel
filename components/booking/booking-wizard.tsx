@@ -30,6 +30,11 @@ import {
 } from '@/lib/actions/booking-engine'
 import { formatPrice } from '@/lib/format-price'
 import { siteConfig } from '@/config/site'
+import {
+  normalizePhoneDigits,
+  validateGuestStayFields,
+  type GuestFieldErrors,
+} from '@/lib/validate-guest'
 import type {
   AvailableRoomType,
   OnlineBookingResult,
@@ -150,6 +155,7 @@ export function BookingWizard({
   const [guestPhone, setGuestPhone] = useState('')
   const [guestEmail, setGuestEmail] = useState('')
   const [specialRequests, setSpecialRequests] = useState('')
+  const [guestErrors, setGuestErrors] = useState<GuestFieldErrors>({})
   const [paymentOption, setPaymentOption] = useState<OnlinePaymentOption>('DEPOSIT_30')
   const [isCreatingBooking, setIsCreatingBooking] = useState(false)
 
@@ -349,6 +355,24 @@ export function BookingWizard({
     window.scrollTo({ top: 300, behavior: 'smooth' })
   }
 
+  function runGuestValidation(next?: {
+    name?: string
+    phone?: string
+    email?: string
+    notes?: string
+  }): GuestFieldErrors {
+    const errors = validateGuestStayFields({
+      name: next?.name ?? guestName,
+      phone: next?.phone ?? guestPhone,
+      email: next?.email ?? guestEmail,
+      notes: next?.notes ?? specialRequests,
+      phoneRequired: true,
+      emailRequired: false,
+    })
+    setGuestErrors(errors)
+    return errors
+  }
+
   // Step 2 -> 3: Create Booking & Initialize Payment
   function handleCreateBooking() {
     if (pending || isCreatingBooking) return
@@ -357,12 +381,10 @@ export function BookingWizard({
       toast.error('Vui lòng chọn hạng phòng')
       return
     }
-    if (!guestName.trim()) {
-      toast.error('Vui lòng nhập họ và tên người đặt phòng')
-      return
-    }
-    if (!guestPhone.trim() || guestPhone.trim().length < 8) {
-      toast.error('Vui lòng nhập số điện thoại liên hệ hợp lệ')
+
+    const errors = runGuestValidation()
+    if (Object.keys(errors).length > 0) {
+      toast.error(Object.values(errors)[0] || 'Vui lòng kiểm tra lại thông tin khách lưu trú')
       return
     }
 
@@ -376,8 +398,8 @@ export function BookingWizard({
           checkOutDate,
           numGuests: guests,
           numRooms: roomsCount,
-          customerName: guestName.trim(),
-          customerPhone: guestPhone.trim(),
+          customerName: guestName.trim().replace(/\s+/g, ' '),
+          customerPhone: normalizePhoneDigits(guestPhone),
           customerEmail: guestEmail.trim() || null,
           specialRequests: specialRequests.trim() || null,
           paymentOption,
@@ -877,29 +899,75 @@ export function BookingWizard({
                     id="guest-name"
                     placeholder="VD: Nguyễn Hoàng Nam"
                     value={guestName}
-                    onChange={(e) => setGuestName(e.target.value)}
+                    autoComplete="name"
+                    aria-invalid={Boolean(guestErrors.name)}
+                    className={guestErrors.name ? 'border-rose-400 focus-visible:ring-rose-400/40' : ''}
+                    onChange={(e) => {
+                      const value = e.target.value
+                      setGuestName(value)
+                      if (guestErrors.name) runGuestValidation({ name: value })
+                    }}
+                    onBlur={() => runGuestValidation()}
                   />
+                  {guestErrors.name ? (
+                    <p className="text-xs font-medium text-rose-600" role="alert">
+                      {guestErrors.name}
+                    </p>
+                  ) : null}
                 </div>
 
-                <div className="grid gap-1.5">
-                  <Label htmlFor="guest-phone">Số điện thoại liên hệ *</Label>
+                <div className="grid grid-rows-[auto_auto_1.25rem] gap-1.5 content-start">
+                  <Label htmlFor="guest-phone" className="leading-5">
+                    Số điện thoại *
+                  </Label>
                   <Input
                     id="guest-phone"
+                    inputMode="tel"
                     placeholder="VD: 0987 654 321"
                     value={guestPhone}
-                    onChange={(e) => setGuestPhone(e.target.value)}
+                    autoComplete="tel"
+                    aria-invalid={Boolean(guestErrors.phone)}
+                    className={guestErrors.phone ? 'border-rose-400 focus-visible:ring-rose-400/40' : ''}
+                    onChange={(e) => {
+                      const value = e.target.value
+                      setGuestPhone(value)
+                      if (guestErrors.phone) runGuestValidation({ phone: value })
+                    }}
+                    onBlur={() => runGuestValidation()}
                   />
+                  <p
+                    className={`truncate text-[11px] leading-5 ${guestErrors.phone ? 'font-medium text-rose-600' : 'text-muted-foreground'}`}
+                    role={guestErrors.phone ? 'alert' : undefined}
+                  >
+                    {guestErrors.phone || 'SĐT di động 10 số (03/05/07/08/09)'}
+                  </p>
                 </div>
 
-                <div className="grid gap-1.5">
-                  <Label htmlFor="guest-email">Địa chỉ Email (Nhận mã xác nhận)</Label>
+                <div className="grid grid-rows-[auto_auto_1.25rem] gap-1.5 content-start">
+                  <Label htmlFor="guest-email" className="leading-5">
+                    Email (tuỳ chọn)
+                  </Label>
                   <Input
                     id="guest-email"
                     type="email"
                     placeholder="VD: hoangnam@example.com"
                     value={guestEmail}
-                    onChange={(e) => setGuestEmail(e.target.value)}
+                    autoComplete="email"
+                    aria-invalid={Boolean(guestErrors.email)}
+                    className={guestErrors.email ? 'border-rose-400 focus-visible:ring-rose-400/40' : ''}
+                    onChange={(e) => {
+                      const value = e.target.value
+                      setGuestEmail(value)
+                      if (guestErrors.email) runGuestValidation({ email: value })
+                    }}
+                    onBlur={() => runGuestValidation()}
                   />
+                  <p
+                    className={`truncate text-[11px] leading-5 ${guestErrors.email ? 'font-medium text-rose-600' : 'text-muted-foreground'}`}
+                    role={guestErrors.email ? 'alert' : undefined}
+                  >
+                    {guestErrors.email || 'Nhận mã xác nhận đặt phòng'}
+                  </p>
                 </div>
 
                 <div className="grid gap-1.5 sm:col-span-2">
@@ -908,8 +976,25 @@ export function BookingWizard({
                     id="guest-notes"
                     placeholder="VD: Đến nhận phòng lúc 15:00, chuẩn bị bồn tắm Onsen thảo mộc, phòng tầng cao..."
                     value={specialRequests}
-                    onChange={(e) => setSpecialRequests(e.target.value)}
+                    maxLength={500}
+                    aria-invalid={Boolean(guestErrors.notes)}
+                    className={guestErrors.notes ? 'border-rose-400 focus-visible:ring-rose-400/40' : ''}
+                    onChange={(e) => {
+                      const value = e.target.value
+                      setSpecialRequests(value)
+                      if (guestErrors.notes) runGuestValidation({ notes: value })
+                    }}
+                    onBlur={() => runGuestValidation()}
                   />
+                  {guestErrors.notes ? (
+                    <p className="text-xs font-medium text-rose-600" role="alert">
+                      {guestErrors.notes}
+                    </p>
+                  ) : (
+                    <p className="text-[11px] text-muted-foreground text-right">
+                      {specialRequests.trim().length}/500
+                    </p>
+                  )}
                 </div>
               </div>
 
