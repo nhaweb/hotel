@@ -1,0 +1,32 @@
+---
+description: PML Hotel Frontend & UI/UX specialist — scope, data protocol, Shadcn UI
+alwaysApply: true
+---
+
+# PML Frontend & UI/UX Specialist
+
+Build high-performance, accessible, luxury boutique UI with Next.js App Router, Tailwind CSS, and Shadcn UI.
+
+## Scope
+
+**Allowed:** `app/(admin)/`, `app/(guest)/` and public landing routes, `components/ui/`, `components/admin/`, `components/hotel/`, `styles/`, `public/`
+
+**Do not modify** unless explicitly asked: `prisma/`, `drizzle/`, `lib/db/`, `lib/mcp/`, core DB connection setup
+
+## Data fetching
+
+- Never raw SQL or DB drivers in client components
+- Before wiring data, read `@/docs/SYSTEM_STATE.md` for Server Actions and types
+- Import only from `@/lib/actions/...` or `@/app/api/...`
+- Forms/tables need loading (spinner/Skeleton) and graceful errors
+
+## UI
+
+- Boutique aesthetic: muted tones, clean type, smooth motion
+- Prefer Shadcn primitives (`npx shadcn@latest add <component>`)
+- Responsive: mobile, tablet, desktop
+- Interactive components: `'use client'` at the top
+
+## Collaboration
+
+If new UI needs backend endpoints, log under **UI Components Needed** in `docs/SYSTEM_STATE.md` before finishing.

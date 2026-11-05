@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
 
 :root {
   --cream: #f8f3eb;
@@ -11,6 +12,49 @@
   --shadow: 0 20px 60px rgba(38, 33, 29, 0.1);
   --radius: 1.15rem;
   --section: clamp(2.8rem, 5vw, 5rem);
+
+  /* Shadcn / admin tokens mapped to PML boutique palette */
+  --background: #f8f3eb;
+  --foreground: #26211d;
+  --card: #ffffff;
+  --card-foreground: #26211d;
+  --popover: #ffffff;
+  --popover-foreground: #26211d;
+  --primary: #26211d;
+  --primary-foreground: #f8f3eb;
+  --secondary: #efe6d9;
+  --secondary-foreground: #26211d;
+  --muted-foreground: #71685f;
+  --accent-foreground: #26211d;
+  --destructive: #b42318;
+  --border: rgba(38, 33, 29, 0.14);
+  --input: rgba(38, 33, 29, 0.18);
+  --ring: #c99b65;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--cream-2);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--cream-2);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
 }
 
 * {
@@ -1072,57 +1116,80 @@ em {
   font-weight: 700;
 }
 
-/* Reviews Experience */
+/* Reviews Experience — matched two-panel height */
 .reviews-experience {
   display: grid;
-  grid-template-columns: 1.35fr 0.85fr;
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  align-items: stretch;
+  min-height: min(420px, 70vw);
 }
 
-.reviews-experience__stage {
+.reviews-experience__stage,
+.reviews-experience__side {
   background: white;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: clamp(1.4rem, 3.5vw, 2.5rem);
-  min-height: 340px;
+  min-height: 0;
+  height: 100%;
+}
+
+.reviews-experience__stage {
+  padding: 1.35rem 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 0.85rem;
+}
+
+.reviews-experience__intro {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
 }
 
 .reviews-experience__avatar {
-  width: 58px;
-  height: 58px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   background: var(--cream-2);
   color: var(--accent-dark);
   font-family: var(--font-serif);
-  font-size: 1.2rem;
-  margin-bottom: 0.8rem;
+  font-size: 1.05rem;
+  flex: none;
 }
 
 .reviews-experience__stars {
   color: var(--accent);
-  letter-spacing: 0.2em;
-  margin-bottom: 0.8rem;
+  letter-spacing: 0.16em;
+  font-size: 0.9rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
 }
 
 .reviews-experience__stage blockquote {
   margin: 0;
+  flex: 1;
   font-family: var(--font-serif);
-  font-size: clamp(1.4rem, 2.5vw, 2.1rem);
-  line-height: 1.35;
+  font-size: clamp(1.25rem, 2.1vw, 1.75rem);
+  line-height: 1.45;
+}
+
+.reviews-experience__title {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.4;
 }
 
 .reviews-experience__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.7rem;
-  margin-top: 1.2rem;
+  gap: 0.35rem 0.65rem;
+  margin: 0;
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 
 .reviews-experience__meta strong {
@@ -1132,13 +1199,15 @@ em {
 .reviews-experience__controls {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  margin-top: 1.6rem;
+  gap: 0.65rem;
+  margin-top: auto;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line);
 }
 
 .reviews-experience__controls>button {
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   border: 1px solid var(--line);
   background: white;
@@ -1149,7 +1218,8 @@ em {
 
 .reviews-experience__dots {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.35rem;
+  flex-wrap: wrap;
 }
 
 .reviews-experience__dots button {
@@ -1164,23 +1234,44 @@ em {
 
 .reviews-experience__dots button.is-active {
   background: var(--accent-dark);
-  width: 22px;
+  width: 20px;
   border-radius: 999px;
+}
+
+.reviews-experience__side {
+  padding: 1.1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  min-height: 0;
+}
+
+.reviews-experience__side-label {
+  margin: 0;
+  padding: 0 0.25rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
 }
 
 .reviews-experience__rail {
   display: grid;
-  gap: 0.6rem;
+  gap: 0.4rem;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 0.15rem;
 }
 
 .reviews-experience__rail>button {
   text-align: left;
   border: 1px solid var(--line);
-  background: white;
-  border-radius: 0.8rem;
-  padding: 0.9rem;
+  background: var(--cream);
+  border-radius: 0.7rem;
+  padding: 0.7rem 0.8rem;
   display: grid;
-  gap: 0.2rem;
+  gap: 0.15rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -1188,16 +1279,27 @@ em {
 .reviews-experience__rail>button.is-active {
   border-color: var(--accent);
   background: var(--cream-2);
+  box-shadow: inset 3px 0 0 var(--accent);
 }
 
 .reviews-experience__rail strong {
-  font-size: 0.92rem;
+  font-size: 0.9rem;
 }
 
-.reviews-experience__rail span,
-.reviews-experience__rail small {
+.reviews-experience__rail span {
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.reviews-experience__note {
+  display: block;
+  margin-top: auto;
+  padding: 0.35rem 0.25rem 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.4;
 }
 
 /* Gallery moments */
@@ -1640,53 +1742,41 @@ em {
   margin-top: 2rem;
 }
 
-/* Booking Page */
+/* Booking Page — form-first, no poster column */
 .booking-page {
   min-height: 100vh;
-  padding: 7.5rem clamp(1.2rem, 6vw, 6rem) 4rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
-  max-width: 1500px;
+  padding: 7rem clamp(1.2rem, 5vw, 4rem) 3.5rem;
+  max-width: 1080px;
   margin: 0 auto;
 }
 
-.booking-poster {
-  position: relative;
-  min-height: min(72vh, 700px);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: var(--ink);
-  isolation: isolate;
+.booking-page__intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  margin-bottom: 0.25rem;
 }
 
-.booking-poster img {
-  object-fit: cover;
+.booking-page__intro h1 {
+  margin: 0.2rem 0 0;
+  font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
-.booking-poster__caption {
-  position: absolute;
-  inset: auto 0 0;
-  padding: 2rem 1.6rem 1.8rem;
-  background: linear-gradient(0deg, rgba(20, 16, 13, 0.88), transparent);
-  color: white;
-}
-
-.booking-poster__caption h2 {
-  margin: 0.35rem 0 0.55rem;
-  font-size: clamp(1.5rem, 2.2vw, 2.1rem);
-  color: white;
-}
-
-.booking-poster__caption p {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.78);
+.booking-page__lead {
+  margin: 0.55rem 0 0;
+  max-width: 36rem;
+  font-size: 0.9rem;
   line-height: 1.55;
+  color: var(--muted-foreground);
 }
 
 .booking-panel {
   display: grid;
-  gap: 1.8rem;
+  gap: 1.25rem;
   align-content: start;
 }
 
@@ -1716,11 +1806,35 @@ em {
 .booking-page select {
   display: block;
   width: 100%;
-  padding: 0.85rem;
-  border: 1px solid var(--line);
-  margin-top: 0.35rem;
-  background: var(--cream);
-  border-radius: 0.35rem;
+  box-sizing: border-box;
+  height: 2.5rem;
+  padding: 0 0.75rem;
+  margin-top: 0;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--background);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--foreground);
+  outline: none;
+}
+
+.booking-page select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2371685f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2.25rem;
+  cursor: pointer;
+}
+
+.booking-page select:focus,
+.booking-page input:focus {
+  border-color: #c99b65;
+  box-shadow: 0 0 0 2px rgba(201, 155, 101, 0.35);
 }
 
 .booking-page form>div {
@@ -2576,10 +2690,18 @@ em {
   .location-showcase,
   .faq,
   .detail-layout,
-  .booking-page,
-  .branch-info-header {
+  .branch-info-header,
+  .reviews-experience {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1rem;
+  }
+
+  .reviews-experience {
+    min-height: 0;
+  }
+
+  .reviews-experience__rail {
+    max-height: 260px;
   }
 
   .detail-layout aside {
@@ -2648,10 +2770,6 @@ em {
     bottom: 4.8rem;
   }
 
-  .booking-poster {
-    min-height: 340px;
-    order: -1;
-  }
 }
 
 @media (max-width: 560px) {
@@ -2686,4 +2804,123 @@ em {
   .gallery-moments__item.is-wide {
     grid-column: span 2;
   }
+}
+
+/* Call Buttons & Hotline Badges with Icons */
+.booking-hotline-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #ffffff;
+  border: 1px solid rgba(201, 155, 101, 0.4);
+  border-radius: 999px;
+  color: var(--accent-dark);
+  font-weight: 600;
+  font-size: 0.88rem;
+  margin-top: 0.6rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(27, 24, 22, 0.04);
+}
+
+.booking-hotline-btn:hover {
+  background: var(--ink);
+  color: #ffffff;
+  border-color: var(--ink);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(27, 24, 22, 0.12);
+}
+
+.booking-hotline-btn svg {
+  color: var(--accent);
+  transition: color 0.2s ease;
+}
+
+.booking-hotline-btn:hover svg {
+  color: #ffffff;
+}
+
+.branch-phone-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.95rem;
+  background: #ffffff;
+  border: 1px solid rgba(201, 155, 101, 0.4);
+  border-radius: 999px;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.86rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(27, 24, 22, 0.04);
+}
+
+.branch-phone-btn:hover {
+  background: var(--ink);
+  color: #ffffff;
+  border-color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.branch-phone-btn svg {
+  color: var(--accent-dark);
+}
+
+.branch-phone-btn:hover svg {
+  color: #ffffff;
+}
+
+.branch-meta-call {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: inherit;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.branch-meta-call:hover {
+  color: var(--accent-dark);
+}
+
+.branch-meta-call svg {
+  color: var(--accent-dark);
+  transition: transform 0.2s ease;
+}
+
+.branch-meta-call:hover svg {
+  transform: scale(1.15);
+}
+
+.handoff-call-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.handoff-call-link:hover {
+  color: var(--ink);
+}
+
+.handoff-call-link svg {
+  color: var(--accent-dark);
+}
+
+/* Admin FAQs — fixed-height scrollable table */
+.admin-faqs-panel [data-slot="table-container"] {
+  max-height: min(62vh, 640px);
+  overflow: auto;
+}
+
+.admin-faqs-panel [data-slot="table-head"] {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--card);
+  box-shadow: inset 0 -1px 0 var(--border);
 }

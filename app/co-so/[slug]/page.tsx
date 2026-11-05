@@ -75,8 +75,10 @@ export default async function BranchPage({ params }: { params: Promise<{ slug: s
               <strong>{branch.address}</strong>
             </p>
             <p className="branch-phone-line">
-              <Phone className="w-4 h-4 inline mr-1 text-[var(--accent-dark)]" />
-              <a href={`tel:${branch.phone.replace(/\s/g, '')}`}>{branch.phone}</a>
+              <a href={`tel:${branch.phone.replace(/\s/g, '')}`} className="branch-phone-btn">
+                <Phone size={15} />
+                <span>Hotline: {branch.phone}</span>
+              </a>
             </p>
           </div>
 

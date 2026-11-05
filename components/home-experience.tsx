@@ -621,7 +621,9 @@ export function LocationShowcase({ branches, locale }: LocationProps) {
                 <MapPin /> {branch.address}
               </p>
               <p className="branch-photo-card__meta">
-                <Phone /> {branch.phone}
+                <a href={`tel:${branch.phone.replace(/\s/g, '')}`} className="branch-meta-call">
+                  <Phone /> <span>{branch.phone}</span>
+                </a>
               </p>
               <div className="branch-chips">
                 {branch.nearby.slice(0, 3).map((place) => (
@@ -665,18 +667,22 @@ export function ReviewsExperience({ reviews, locale, note }: ReviewsProps) {
   return (
     <div className="reviews-experience">
       <div className="reviews-experience__stage">
-        <div className="reviews-experience__avatar" aria-hidden>
-          {initials}
-        </div>
-        <div className="reviews-experience__stars" aria-label="5 / 5">
-          ★★★★★
+        <div className="reviews-experience__intro">
+          <div className="reviews-experience__avatar" aria-hidden>
+            {initials}
+          </div>
+          <div>
+            <div className="reviews-experience__stars" aria-label="5 / 5">
+              ★★★★★
+            </div>
+            <div className="reviews-experience__meta">
+              <strong>{review.guest}</strong>
+              <span>{review.origin}</span>
+            </div>
+          </div>
         </div>
         <blockquote key={review.id}>“{locale === 'en' ? review.textEn : review.text}”</blockquote>
-        <div className="reviews-experience__meta">
-          <strong>{review.guest}</strong>
-          <span>{review.origin}</span>
-          <span>{locale === 'en' ? review.titleEn : review.title}</span>
-        </div>
+        <p className="reviews-experience__title">{locale === 'en' ? review.titleEn : review.title}</p>
         <div className="reviews-experience__controls">
           <button type="button" aria-label="Previous review" onClick={() => setActive((value) => (value - 1 + reviews.length) % reviews.length)}>
             <ChevronLeft />
@@ -691,14 +697,17 @@ export function ReviewsExperience({ reviews, locale, note }: ReviewsProps) {
           </button>
         </div>
       </div>
-      <aside className="reviews-experience__rail">
-        {reviews.map((item, i) => (
-          <button key={item.id} type="button" className={i === active ? 'is-active' : ''} onClick={() => setActive(i)}>
-            <strong>{item.guest}</strong>
-            <span>{locale === 'en' ? item.titleEn : item.title}</span>
-          </button>
-        ))}
-        <small>{note}</small>
+      <aside className="reviews-experience__side">
+        <p className="reviews-experience__side-label">{locale === 'en' ? 'Guest voices' : 'Giọng nói khách'}</p>
+        <div className="reviews-experience__rail">
+          {reviews.map((item, i) => (
+            <button key={item.id} type="button" className={i === active ? 'is-active' : ''} onClick={() => setActive(i)}>
+              <strong>{item.guest}</strong>
+              <span>{locale === 'en' ? item.titleEn : item.title}</span>
+            </button>
+          ))}
+        </div>
+        <small className="reviews-experience__note">{note}</small>
       </aside>
     </div>
   )

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { cookies } from 'next/headers'
 import { notFound } from 'next/navigation'
-import { Check, MapPin } from 'lucide-react'
+import { Check, MapPin, Phone } from 'lucide-react'
 import { rooms } from '@/data/rooms'
 import { branches } from '@/data/branches'
 import { formatPrice } from '@/lib/format-price'
@@ -11,6 +11,7 @@ import { siteConfig, type Locale } from '@/config/site'
 import { dictionaries } from '@/i18n'
 import { blur, roomCover, roomImages } from '@/lib/media'
 import { Footer, Header, RoomGallery } from '@/components/site-client'
+import { RoomBookingAside } from '@/components/booking/room-booking-aside'
 
 export function generateStaticParams() {
   return rooms.map((room) => ({ slug: room.id.replace('room-', '') }))
@@ -125,24 +126,7 @@ export default async function RoomPage({ params }: { params: Promise<{ slug: str
           </div>
         </article>
 
-        <aside className="room-booking-card">
-          <p className="eyebrow ink">{room.category}</p>
-          <strong>
-            {formatPrice(room.priceVnd)} <small>{copy.perNight}</small>
-          </strong>
-          <p>{locale === 'en' ? 'Reference rate including taxes where shown. Final confirmation by reservations.' : 'Giá tham khảo đã gồm thuế (nếu hiển thị). Giá cuối được xác nhận khi giữ chỗ.'}</p>
-          <ul>
-            <li>{view}</li>
-            <li>{room.sizeSqm} m²</li>
-            <li>{room.maxAdults} {locale === 'en' ? 'adults max' : 'người lớn tối đa'}</li>
-          </ul>
-          <Link className="button button-accent" href={`/dat-phong?room=${room.id}&branchId=${room.branchId}`}>
-            {locale === 'en' ? 'Request this room' : 'Gửi yêu cầu đặt phòng'}
-          </Link>
-          <a className="button button-ghost-ink" href={`tel:${siteConfig.hotline.replace(/\s/g, '')}`}>
-            {siteConfig.hotline}
-          </a>
-        </aside>
+        <RoomBookingAside room={room} locale={locale} hotline={siteConfig.hotline} />
       </section>
 
       {related.length > 0 && (

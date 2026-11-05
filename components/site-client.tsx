@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import {
   ArrowUp,
   BedDouble,
@@ -170,13 +170,23 @@ export function Header({ initialLocale = 'vi' }: { initialLocale?: Locale }) {
                 )}
               </div>
             ))}
-            <Link
-              href="/dat-phong"
-              className="button button-accent text-center mt-2"
-              onClick={() => setOpen(false)}
-            >
-              {copy.book}
-            </Link>
+            <div className="mobile-menu-actions" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.6rem', marginTop: '0.75rem' }}>
+              <Link
+                href="/dat-phong"
+                className="button button-accent text-center"
+                onClick={() => setOpen(false)}
+              >
+                {copy.book}
+              </Link>
+              <a
+                href={`tel:${siteConfig.hotline.replace(/\s/g, '')}`}
+                className="button button-ghost-ink text-center"
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
+              >
+                <Phone size={15} />
+                <span>Hotline: {siteConfig.hotline}</span>
+              </a>
+            </div>
           </motion.nav>
         )}
       </AnimatePresence>
@@ -529,6 +539,7 @@ type ChatMessage = {
 
 export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) {
   const router = useRouter()
+  const pathname = usePathname()
   const [locale, setLocale] = useState<Locale>(initialLocale)
   const copy = dictionaries[locale]
   const [open, setOpen] = useState(false)
@@ -606,6 +617,8 @@ export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) 
       setPending(false)
     }
   }
+
+  if (pathname?.startsWith('/admin')) return null
 
   return (
     <>
@@ -762,7 +775,10 @@ export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) 
             </div>
             <p className="handoff">
               {copy.conciergeHandoff}{' '}
-              <a href={`tel:${siteConfig.hotline.replace(/\s/g, '')}`}>{copy.conciergeCall}</a> · <a href={siteConfig.zalo}>Zalo</a>
+              <a href={`tel:${siteConfig.hotline.replace(/\s/g, '')}`} className="handoff-call-link">
+                <Phone size={12} />
+                <span>{copy.conciergeCall}</span>
+              </a> · <a href={siteConfig.zalo}>Zalo</a>
             </p>
             <form
               onSubmit={(event) => {
