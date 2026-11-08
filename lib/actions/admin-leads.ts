@@ -3,6 +3,7 @@
 import { z } from 'zod'
 import { getDb } from '@/lib/db'
 import { getCurrentAdmin } from '@/lib/actions/admin-auth'
+import { sendZaloNotification } from '@/lib/zalo-notify'
 import type {
   AdminLeadItem,
   AdminLeadDetail,
@@ -554,6 +555,19 @@ export async function createLead(
         );
       `
     } catch {}
+
+    // Bắn thông báo Zalo nếu lead được tạo từ Form website / Tư vấn (khác AI_CHATBOT đã có kênh riêng)
+    if (input.source !== 'AI_CHATBOT') {
+      sendZaloNotification({
+        type: 'consultation_lead',
+        customerName: input.fullName,
+        customerPhone: input.phone,
+        customerEmail: input.email || null,
+        branchName: input.branchId || null,
+        roomTypeName: input.roomTypeId || null,
+        intentSummary: input.interestNotes || null,
+      }).catch((err) => console.warn('[createLead] Zalo notification error:', err))
+    }
 
     return { ok: true, leadId: lead.id }
   } catch (err: unknown) {

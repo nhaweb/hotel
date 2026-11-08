@@ -3,6 +3,7 @@
 import { z } from 'zod'
 import { getDb } from '@/lib/db'
 import { generateVietQrDetails } from '@/lib/vietqr'
+import { sendZaloNotification } from '@/lib/zalo-notify'
 import type {
   AvailableRoomType,
   CheckAvailabilityInput,
@@ -510,6 +511,24 @@ export async function createOnlineBooking(
       console.warn('Mini-CRM auto-sync warning:', crmErr)
     }
 
+    // 🎯 BẮN NOTIFICATION TỚI ZALO LỄ TÂN KHI CÓ ĐƠN ĐẶT PHÒNG MỚI
+    sendZaloNotification({
+      type: 'new_booking',
+      customerName: data.customerName,
+      customerPhone: data.customerPhone,
+      customerEmail: data.customerEmail || null,
+      branchName: rt.branch_name,
+      roomTypeName: rt.name,
+      bookingCode,
+      checkInDate: data.checkInDate,
+      checkOutDate: data.checkOutDate,
+      nights,
+      numGuests: data.numGuests || 2,
+      totalAmountVnd: totalAmount,
+      depositAmountVnd: depositRequired,
+      notes: data.specialRequests || null,
+    }).catch((err) => console.warn('[createOnlineBooking] Zalo notification error:', err))
+
     return {
       ok: true,
       result: {
@@ -612,12 +631,25 @@ export async function confirmBookingPayment(input: {
       booking_code: string
       total_amount_vnd: string | number
       deposit_amount_vnd: string | number
+      check_in_date: string
+      check_out_date: string
+      customer_name: string
+      customer_phone: string
+      branch_name: string
+      room_name: string
     }
 
     const bookings = (await sql`
-      SELECT id, booking_code, total_amount_vnd, deposit_amount_vnd
-      FROM bookings
-      WHERE UPPER(booking_code) = ${input.bookingCode.trim().toUpperCase()}
+      SELECT 
+        b.id, b.booking_code, b.total_amount_vnd, b.deposit_amount_vnd,
+        b.check_in_date, b.check_out_date,
+        c.full_name AS customer_name, c.phone AS customer_phone,
+        br.name AS branch_name, rt.name AS room_name
+      FROM bookings b
+      JOIN customers c ON b.customer_id = c.id
+      JOIN branches br ON b.branch_id = br.id
+      JOIN room_types rt ON b.room_type_id = rt.id
+      WHERE UPPER(b.booking_code) = ${input.bookingCode.trim().toUpperCase()}
       LIMIT 1;
     `) as unknown as BookingItem[]
 
@@ -670,6 +702,20 @@ export async function confirmBookingPayment(input: {
         );
       `
     } catch {}
+
+    // 🎯 BẮN ZALO NOTIFICATION TỚI LỄ TÂN KHI TIỀN CỌC ĐÃ VÀO TÀI KHOẢN
+    sendZaloNotification({
+      type: 'payment_received',
+      customerName: b.customer_name,
+      customerPhone: b.customer_phone,
+      branchName: b.branch_name,
+      roomTypeName: b.room_name,
+      bookingCode: b.booking_code,
+      checkInDate: b.check_in_date,
+      checkOutDate: b.check_out_date,
+      totalAmountVnd: totalAmount,
+      depositAmountVnd: input.amountVnd,
+    }).catch((err) => console.warn('[confirmBookingPayment] Zalo notification error:', err))
 
     return { ok: true, bookingCode: b.booking_code }
   } catch (error) {

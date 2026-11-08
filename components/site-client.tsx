@@ -616,8 +616,9 @@ export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) 
   }, [open])
 
   async function send(text: string) {
-    if (!text.trim() || pending) return
-    const next: ChatMessage[] = [...messages, { role: 'user', text, at: Date.now() }]
+    const trimmed = text.trim()
+    if (!trimmed || pending) return
+    const next: ChatMessage[] = [...messages, { role: 'user', text: trimmed, at: Date.now() }]
     setMessages(next)
     setDraft('')
     setPending(true)
@@ -629,17 +630,20 @@ export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) 
         body: JSON.stringify({ locale, messages: next.slice(-8), sessionId }),
       })
       const result = await response.json()
-      if (!response.ok || !result.reply) throw new Error()
-      setMessages([
-        ...next,
-        {
-          role: 'assistant',
-          text: result.reply,
-          at: Date.now(),
-          suggestions: Array.isArray(result.suggestions) ? result.suggestions : undefined,
-          roomCards: Array.isArray(result.roomCards) ? result.roomCards : undefined,
-        },
-      ])
+      if (result.reply) {
+        setMessages([
+          ...next,
+          {
+            role: 'assistant',
+            text: result.reply,
+            at: Date.now(),
+            suggestions: Array.isArray(result.suggestions) ? result.suggestions : undefined,
+            roomCards: Array.isArray(result.roomCards) ? result.roomCards : undefined,
+          },
+        ])
+      } else {
+        throw new Error()
+      }
     } catch {
       setError(true)
     } finally {
@@ -839,7 +843,13 @@ export function Concierge({ initialLocale = 'vi' }: { initialLocale?: Locale }) 
                 send(draft)
               }}
             >
-              <input value={draft} onChange={(event) => setDraft(event.target.value)} aria-label={copy.conciergePlaceholder} placeholder={copy.conciergePlaceholder} />
+              <input
+                value={draft}
+                onChange={(event) => setDraft(event.target.value)}
+                maxLength={500}
+                aria-label={copy.conciergePlaceholder}
+                placeholder={copy.conciergePlaceholder}
+              />
               <button type="submit" aria-label={copy.conciergeSend}>
                 {copy.conciergeSend}
               </button>

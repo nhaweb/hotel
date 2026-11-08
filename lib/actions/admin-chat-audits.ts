@@ -5,6 +5,8 @@ import { getDb } from '@/lib/db'
 import { getCurrentAdmin } from '@/lib/actions/admin-auth'
 import { branches } from '@/data/branches'
 import { rooms } from '@/data/rooms'
+import { isValidVietnamPhone } from '@/lib/anti-spam'
+import { sendZaloNotification } from '@/lib/zalo-notify'
 import type {
   ChatAuditItem,
   ChatAuditFilter,
@@ -131,8 +133,8 @@ export async function recordChatAudit(input: RecordChatAuditInput): Promise<{ ok
 
     let leadId: string | null = null
 
-    // 1. TỰ ĐỘNG BẮT LEAD CRM KHI CÓ SĐT HOẶC KHÁCH YÊU CẦU LIÊN HỆ
-    if (phone && phone.length >= 9) {
+    // 1. TỰ ĐỘNG BẮT LEAD CRM KHI CÓ SĐT HỢP LỆ (Lọc bỏ số rác / spam)
+    if (phone && isValidVietnamPhone(phone)) {
       try {
         // Kiểm tra xem đã có Lead với SĐT này chưa
         const existingLeads = (await sql`
@@ -234,6 +236,20 @@ export async function recordChatAudit(input: RecordChatAuditInput): Promise<{ ok
             } catch {}
           }
         }
+
+        // 🎯 BẮN ZALO NOTIFICATION TỚI LỄ TÂN MỖI KHI CÓ SĐT TỪ CHATBOT
+        const finalDisplayName = customerName || (existingLeads && existingLeads[0]?.full_name) || `Khách AI Chatbot (${phone.slice(-4)})`
+        sendZaloNotification({
+          type: 'ai_chatbot_lead',
+          customerName: finalDisplayName,
+          customerPhone: phone,
+          customerEmail: email || null,
+          branchName: preferredBranch ? branchMap.get(preferredBranch) || preferredBranch : null,
+          roomTypeName: preferredRoomType ? roomMap.get(preferredRoomType) || preferredRoomType : null,
+          intentSummary,
+          numGuests,
+          checkInDate: estimatedDates,
+        }).catch((err) => console.warn('[recordChatAudit] Zalo notification error:', err))
       } catch (err) {
         console.warn('[recordChatAudit] Error syncing lead:', err)
       }

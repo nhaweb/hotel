@@ -476,6 +476,20 @@
     3. `gemini-3.5-flash` (Stable high-throughput fallback)
     4. `gemini-flash-latest` (General pointer fallback)
   - **Configurable Environment Override**: Supports `GEMINI_MODEL` in `.env.local` (e.g. `GEMINI_MODEL=gemini-3.5-flash-lite` for pure speed, or `GEMINI_MODEL=gemini-3.8-flash` for maximum reasoning).
+- **Strict Scope & Guardrail Protocol**:
+  - **Chỉ phục vụ phạm vi PML Hotel**: Trợ lý chỉ giải đáp các nội dung liên quan trực tiếp đến 3 chi nhánh PML Hotel (Đông Du, Hai Bà Trưng Onsen, Central Park), các hạng phòng, giá, tình trạng phòng, dịch vụ tiện ích nội khu (Onsen khoáng nóng, sauna, ẩm thực, đưa đón sân bay, ưu đãi), quy định nhận/trả phòng, thanh toán VietQR và chính sách lưu trú.
+  - **Từ chối tuyệt đối câu hỏi ngoài lề (Out-of-scope Refusal)**: Từ chối ngắn gọn và chuẩn mực tất cả câu hỏi về lập trình, giải toán, khoa học, tin tức, chính trị, thời tiết tổng quát, tư vấn đời sống, hoặc trò chuyện phiếm, hướng khách về dịch vụ PML Hotel.
+  - **Phong cách chuẩn mực, trung tính, ít cảm xúc**: Thay vì biểu cảm nồng nhiệt hoặc hoa mỹ, trợ lý sử dụng phong cách điềm đạm, khách quan, chuyên nghiệp; xưng "PML Hotel" hoặc "tôi", gọi khách là "Quý khách", hạn chế tối đa cảm xúc cá nhân và không dùng emoji biểu cảm.
+- **🛡️ Multi-Layer Anti-Spam & Rate Limiting Engine (`@/lib/anti-spam.ts`)**:
+  - **Sliding-window Rate Limiter (Bộ đệm chống flood)**: Chặn gửi dồn dập (burst < 1000ms), giới hạn tối đa 12 tin/phút trên mỗi Client IP + SessionId, tối đa 50 tin/phiên chat để triệt tiêu bot loop hoặc tấn công DoS.
+  - **Pre-LLM Zero-Cost Spam Short-Circuiting**: Chặn ngay lập tức trước khi gọi Gemini API với các chuỗi rác (keysmash, chuỗi phụ âm không nghĩa, ký tự lặp >= 5 lần, tin nhắn gửi trùng lặp liên tiếp, link quảng cáo ngoài, từ khóa cờ bạc/scam/crypto, và các mẫu prompt injection). Phản hồi định tuyến sẵn chỉ trong ~1ms mà không tốn chi phí token AI.
+  - **CRM Lead Data Validation (`isValidVietnamPhone`)**: Chỉ cho phép số di động 10 chữ số hợp lệ của Việt Nam (đầu 03, 05, 07, 08, 09) được đồng bộ vào bảng `leads` CRM, lọc sạch toàn bộ số ảo/số rác (dạng `0999999999`, `0123456789`) tránh gây ô nhiễm dữ liệu bán hàng.
+  - **Client-Side UX Guards**: Khống chế độ dài ký tự nhập `maxLength={500}`, xử lý mượt mà mã lỗi 429 và hiển thị thông điệp hướng dẫn rõ ràng.
+- **📊 Monthly AI Quota & Budget Protection (`@/lib/ai-quota.ts`)**:
+  - **Giới hạn 10.000 tin nhắn / tháng**: Tự động đếm và quản lý hạn mức trong bảng `ai_monthly_usage` trên Neon Postgres theo từng tháng (`YYYY-MM`).
+  - **Tối ưu chi phí & Ngăn tràn hạn mức**: Khi chạm mốc 10.000 câu hỏi, hệ thống ngắt toàn bộ lệnh gọi Gemini API để tránh phát sinh chi phí ngoài dự kiến, chuyển sang thông báo lịch sự hướng dẫn khách liên hệ Hotline 24/7 (0789 780 167) hoặc Zalo.
+  - **Tin nhắn rác không trừ hạn mức**: Các truy vấn bị bộ lọc Anti-Spam chặn sẽ bị loại bỏ ngay từ đầu, không bị trừ vào quota 10.000 tin của khách sạn.
+  - **Tùy biến linh hoạt**: Cho phép điều chỉnh qua biến môi trường `MONTHLY_AI_MESSAGE_LIMIT` trong `.env.local`.
 - **Capability**: Real-time room availability querying from Neon Postgres (`room_units`, `bookings`, `room_holds`) + automated follow-up suggestions + rich Room Cards with direct `/dat-phong?branchId=...&roomId=...` deep-linking.
 - **Customer Behavior Extraction (`customerAudit`)**:
   - Automatically analyzes guest intent (`intentSummary`), extracted phone number, customer name, email, preferred branch, room type, dates, budget, readiness to book (`READY_TO_BOOK`, `INQUIRING`, etc.), and marketing tags in the same single Gemini inference pass.
@@ -503,6 +517,28 @@
 
 ---
 
+### 11. Real-time Zalo Reception Notifications (`@/lib/zalo-notify.ts`)
+- **File**: [`lib/zalo-notify.ts`](file:///d:/hotel/lib/zalo-notify.ts)
+- **Functions**:
+  ```typescript
+  export async function sendZaloNotification(data: ZaloNotificationPayload): Promise<{
+    ok: boolean;
+    channel?: 'zalo_webhook' | 'zalo_oa' | 'console_logged';
+    error?: string;
+  }>
+  ```
+- **Trigger Scenarios**:
+  1. **AI Chatbot thu thập được SĐT khách hàng** (`ai_chatbot_lead`): Bắn ngay tên khách, SĐT (đính kèm link `tel:` để lễ tân chạm là gọi ngay), cơ sở, hạng phòng, thời gian dự kiến và tóm tắt nhu cầu do AI trích xuất.
+  2. **Đơn đặt phòng mới từ Website** (`new_booking`): Bắn mã `PML-XXXX`, thông tin phòng, ngày check-in/out, số tiền phòng và tiền cọc VietQR cần thanh toán.
+  3. **Xác nhận thanh toán / Chuyển khoản thành công** (`payment_received`): Báo nhận tiền cọc thành công, phòng đã được hệ thống tự động khóa giữ chỗ, sẵn sàng đón khách.
+  4. **Form tư vấn từ Landing Page** (`consultation_lead`): Báo khách yêu cầu liên hệ lại.
+- **Kênh điều hướng (Multi-channel Dispatcher)**:
+  - **Zalo Group Webhook (`ZALO_WEBHOOK_URL`)**: Gửi trực tiếp vào nhóm Zalo nội bộ của Lễ tân & Quản lý khách sạn.
+  - **Zalo OA / ZNS (`ZALO_OA_ACCESS_TOKEN`)**: Gửi tin nhắn CS/ZNS trực tiếp qua Zalo Official Account.
+  - **Audit Log Neon DB**: Mọi thông báo đều được tự động ghi nhận vào `admin_activity_logs`.
+
+---
+
 ## 🗄️ Neon PostgreSQL Database Schema
 
 ### Current Active Tables:
@@ -522,6 +558,7 @@
 14. **`payments`**: Payment transaction records with gateway reference, transfer description, payment method (`VIETQR`, `BANK_TRANSFER`, `CASH`, `VNPAY`, `STRIPE`), status (`pending`, `completed`, `failed`, `refunded`), and raw gateway payload.
 15. **`room_holds`**: Temporary anti-overbooking inventory lock (15-minute TTL) with `hold_token`, `room_type_id`, `check_in_date`, `check_out_date`, `expires_at`, and `is_released`.
 16. **`chat_audits`**: Customer conversation intelligence store (session ID, guest name, phone, email, intent summary, preferred branch/room, dates, budget, readiness, marketing tags, message count, raw transcript, and linked CRM `lead_id`).
+17. **`ai_monthly_usage`**: Monthly message quota counter (`month_key` YYYY-MM, `request_count`, `last_request_at`) preventing API budget overruns.
 
 *Database URL configured in `.env.local` as `DATABASE_URL` on Neon Lakebase Postgres.*
 

@@ -282,5 +282,15 @@ CREATE TABLE IF NOT EXISTS room_holds (
 
 CREATE INDEX IF NOT EXISTS idx_room_holds_lookup ON room_holds(room_type_id, check_in_date, check_out_date, expires_at);
 
+-- ==========================================
+-- AI MONTHLY USAGE (10,000 Messages/Month Quota)
+-- ==========================================
+
+CREATE TABLE IF NOT EXISTS ai_monthly_usage (
+  month_key VARCHAR(7) PRIMARY KEY, -- 'YYYY-MM'
+  request_count INT NOT NULL DEFAULT 0,
+  last_request_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
 
 
