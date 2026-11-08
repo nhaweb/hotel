@@ -239,7 +239,7 @@ export async function recordChatAudit(input: RecordChatAuditInput): Promise<{ ok
 
         // 🎯 BẮN ZALO NOTIFICATION TỚI LỄ TÂN MỖI KHI CÓ SĐT TỪ CHATBOT
         const finalDisplayName = customerName || (existingLeads && existingLeads[0]?.full_name) || `Khách AI Chatbot (${phone.slice(-4)})`
-        sendZaloNotification({
+        await sendZaloNotification({
           type: 'ai_chatbot_lead',
           customerName: finalDisplayName,
           customerPhone: phone,

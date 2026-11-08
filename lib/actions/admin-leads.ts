@@ -558,7 +558,7 @@ export async function createLead(
 
     // Bắn thông báo Zalo nếu lead được tạo từ Form website / Tư vấn (khác AI_CHATBOT đã có kênh riêng)
     if (input.source !== 'AI_CHATBOT') {
-      sendZaloNotification({
+      await sendZaloNotification({
         type: 'consultation_lead',
         customerName: input.fullName,
         customerPhone: input.phone,

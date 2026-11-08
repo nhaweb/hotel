@@ -512,7 +512,7 @@ export async function createOnlineBooking(
     }
 
     // 🎯 BẮN NOTIFICATION TỚI ZALO LỄ TÂN KHI CÓ ĐƠN ĐẶT PHÒNG MỚI
-    sendZaloNotification({
+    await sendZaloNotification({
       type: 'new_booking',
       customerName: data.customerName,
       customerPhone: data.customerPhone,
@@ -704,7 +704,7 @@ export async function confirmBookingPayment(input: {
     } catch {}
 
     // 🎯 BẮN ZALO NOTIFICATION TỚI LỄ TÂN KHI TIỀN CỌC ĐÃ VÀO TÀI KHOẢN
-    sendZaloNotification({
+    await sendZaloNotification({
       type: 'payment_received',
       customerName: b.customer_name,
       customerPhone: b.customer_phone,

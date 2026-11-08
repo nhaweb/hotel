@@ -684,16 +684,17 @@ export async function POST(request: Request) {
           const parsed = JSON.parse(cleanedJson) as { customerAudit?: any }
           const customerAudit = parsed.customerAudit
 
-          // Increment monthly usage counter
-          incrementMonthlyQuota().catch((err) => console.warn('[Concierge AI] Error incrementing monthly quota:', err))
-
-          // Record chat audit & lead asynchronously
-          recordChatAudit({
-            sessionId,
-            messages,
-            customerAudit,
-            lastUserText,
-          }).catch((err) => console.error('[Concierge AI] Error saving chat audit:', err))
+          // Increment monthly usage counter & record chat audit + trigger Zalo
+          // (await with Promise.allSettled ensures Vercel serverless functions do not freeze before webhook completes)
+          await Promise.allSettled([
+            incrementMonthlyQuota().catch((err) => console.warn('[Concierge AI] Error incrementing monthly quota:', err)),
+            recordChatAudit({
+              sessionId,
+              messages,
+              customerAudit,
+              lastUserText,
+            }).catch((err) => console.error('[Concierge AI] Error saving chat audit:', err)),
+          ])
         } catch {}
 
         return NextResponse.json({ reply, suggestions, roomCards, modelUsed: model })

@@ -176,6 +176,7 @@ export function buildZaloMessage(data: ZaloNotificationPayload): {
 export async function sendZaloNotification(data: ZaloNotificationPayload): Promise<{
   ok: boolean
   channel?: 'zalo_webhook' | 'zalo_oa' | 'console_logged'
+  webhookConfigured?: boolean
   error?: string
 }> {
   const { title, text } = buildZaloMessage(data)
@@ -198,6 +199,7 @@ export async function sendZaloNotification(data: ZaloNotificationPayload): Promi
             data,
             timestamp: Date.now(),
           }),
+          signal: AbortSignal.timeout(5000),
         })
         if (res.ok) {
           sentChannel = 'zalo_webhook'
@@ -269,10 +271,10 @@ export async function sendZaloNotification(data: ZaloNotificationPayload): Promi
       console.warn('[Zalo Notify] Error logging to admin_activity_logs:', dbErr)
     }
 
-    return { ok: true, channel: sentChannel }
+    return { ok: true, channel: sentChannel, webhookConfigured: Boolean(webhookUrl) }
   } catch (err) {
     console.error('[Zalo Notify] Unexpected notification error:', err)
-    return { ok: false, error: err instanceof Error ? err.message : 'Unknown error' }
+    return { ok: false, error: err instanceof Error ? err.message : 'Unknown error', webhookConfigured: Boolean(webhookUrl) }
   }
 }
 
