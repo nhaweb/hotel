@@ -2698,7 +2698,7 @@ em {
 
 .lightbox {
   position: fixed;
-  z-index: 100;
+  z-index: 2000;
   inset: 0;
   background: rgba(20, 16, 13, 0.96);
   color: white;
@@ -2709,6 +2709,7 @@ em {
 .lightbox-image {
   position: absolute;
   inset: 5rem;
+  z-index: 1;
 }
 
 .lightbox-image img {
@@ -2717,7 +2718,7 @@ em {
 
 .lightbox button {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   border: 0;
   border-radius: 50%;
   width: 48px;
