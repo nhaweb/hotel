@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
@@ -12,6 +12,7 @@ import {
   MapPin,
   Phone,
   Sparkles,
+  X,
 } from 'lucide-react'
 import type { Locale } from '@/config/site'
 import type { Room } from '@/data/rooms'
@@ -719,7 +720,39 @@ export function ReviewsExperience({ reviews, locale, note }: ReviewsProps) {
 
 export function GalleryMoments({ locale }: { locale: Locale }) {
   const [active, setActive] = useState<number | null>(null)
+  const dialog = useRef<HTMLDivElement>(null)
   const copy = dictionaries[locale]
+  const activeMoment = active === null ? null : galleryMoments[active]
+
+  useEffect(() => {
+    if (active === null) return
+    const previous = document.activeElement instanceof HTMLElement ? document.activeElement : null
+    document.body.style.overflow = 'hidden'
+    dialog.current?.querySelector<HTMLButtonElement>('.lightbox-close')?.focus()
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setActive(null)
+      if (event.key === 'ArrowLeft') setActive((value) => (value === null ? null : (value - 1 + galleryMoments.length) % galleryMoments.length))
+      if (event.key === 'ArrowRight') setActive((value) => (value === null ? null : (value + 1) % galleryMoments.length))
+      if (event.key !== 'Tab' || !dialog.current) return
+      const buttons = [...dialog.current.querySelectorAll<HTMLElement>('button')]
+      const first = buttons[0]
+      const last = buttons.at(-1)
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last?.focus()
+      }
+      if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first?.focus()
+      }
+    }
+    addEventListener('keydown', onKeyDown)
+    return () => {
+      document.body.style.overflow = ''
+      removeEventListener('keydown', onKeyDown)
+      previous?.focus()
+    }
+  }, [active])
 
   return (
     <div className="gallery-moments">
@@ -731,21 +764,21 @@ export function GalleryMoments({ locale }: { locale: Locale }) {
           </button>
         ))}
       </div>
-      {active !== null && (
-        <div className="lightbox gallery-lightbox" role="dialog" aria-modal="true" aria-label={copy.galleryLabel}>
+      {activeMoment && (
+        <div className="lightbox gallery-lightbox" ref={dialog} role="dialog" aria-modal="true" aria-label={copy.galleryLabel}>
           <button type="button" className="lightbox-close" onClick={() => setActive(null)} aria-label="Close">
-            ×
+            <X />
           </button>
-          <button type="button" className="lightbox-prev" onClick={() => setActive((active - 1 + galleryMoments.length) % galleryMoments.length)} aria-label="Previous">
+          <button type="button" className="lightbox-prev" onClick={() => setActive((value) => (value === null ? null : (value - 1 + galleryMoments.length) % galleryMoments.length))} aria-label="Previous">
             <ChevronLeft />
           </button>
           <div className="lightbox-image">
-            <Image src={galleryMoments[active].src} alt={galleryMoments[active].alt} fill sizes="100vw" priority />
+            <Image src={activeMoment.src} alt={activeMoment.alt} fill sizes="100vw" priority />
           </div>
-          <button type="button" className="lightbox-next" onClick={() => setActive((active + 1) % galleryMoments.length)} aria-label="Next">
+          <button type="button" className="lightbox-next" onClick={() => setActive((value) => (value === null ? null : (value + 1) % galleryMoments.length))} aria-label="Next">
             <ChevronRight />
           </button>
-          <p>{galleryMoments[active].alt}</p>
+          <p aria-live="polite">{activeMoment.alt}</p>
         </div>
       )}
     </div>
